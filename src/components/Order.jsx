@@ -1,7 +1,22 @@
 import React from 'react';
+import { Container } from 'semantic-ui-react';
+import ShopGrid from './ShopGrid';
 
-const Order = () => (
-  <h1>Order Now</h1>
-);
+class Order extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      selectedItem: null
+    };
+  }
+
+  render() {
+    return (
+      <Container>
+        <ShopGrid />
+      </Container>
+    );
+  }
+}
 
 export default Order;
