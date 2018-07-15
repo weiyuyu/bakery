@@ -14,9 +14,12 @@ const styles = {
 };
 
 export default class Navigation extends Component {
-  state = {
-    activeItem: null
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeItem: null
+    }
+  }
 
   handleItemClick = (e, { name }) => {
     this.setState({ activeItem: name });
