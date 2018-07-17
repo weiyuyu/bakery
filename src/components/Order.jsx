@@ -3,17 +3,11 @@ import { Container } from 'semantic-ui-react';
 import ShopGrid from './ShopGrid';
 
 class Order extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      selectedItem: null
-    };
-  }
-
+  
   render() {
     return (
       <Container>
-        <ShopGrid />
+        <ShopGrid addItemToCart={this.props.addItemToCart} removeItemFromCart={this.props.removeItemFromCart} cart={this.props.cart}/>
       </Container>
     );
   }

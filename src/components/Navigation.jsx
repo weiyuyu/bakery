@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Dropdown, Image } from 'semantic-ui-react';
+import { Menu, Image } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import logo from './../img/logo_black_sm.png';
 
@@ -66,18 +66,14 @@ export default class Navigation extends Component {
           onClick={this.handleItemClick}
           style={menuStyle}
         />
-        <Dropdown
-          item
-          icon='shopping cart'
-          simple
+        <Menu.Item
+          as={Link}
+          to='/cart'
+          name='cart'
+          active={activeItem === 'cart'}
+          onClick={this.handleItemClick}
           style={menuStyle}
-        >
-          <Dropdown.Menu>
-            <Dropdown.Item>
-              <span className='text'>New</span>
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
+        />
       </Menu>
     )
   }

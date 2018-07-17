@@ -22,16 +22,18 @@ export default class ShopItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: 0,
+      quantity: this.props.cart[this.props.itemName] || 0
     };
   }
 
   handleAdd = () => {
     this.setState({ quantity: this.state.quantity+1 });
+    this.props.addItemToCart(this.props.itemName);
   };
 
   handleRemove = () => {
     this.setState({ quantity: this.state.quantity-1 });
+    this.props.removeItemFromCart(this.props.itemName);
   };
 
   render() {

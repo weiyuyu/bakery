@@ -21,9 +21,30 @@ export default class ShopGrid extends React.Component {
     const { containerStyle } = styles;
     return (
       <Card.Group style={containerStyle}>
-        <ShopItem itemName="itemName1" itemType="itemType1" itemDescription="itemDescription1"/>
-        <ShopItem itemName="itemName2" itemType="itemType2" itemDescription="itemDescription2"/>
-        <ShopItem itemName="itemName3" itemType="itemType3" itemDescription="itemDescription3"/>
+        <ShopItem
+          itemName="itemName1"
+          itemType="itemType1"
+          itemDescription="itemDescription1"
+          addItemToCart={this.props.addItemToCart}
+          removeItemFromCart={this.props.removeItemFromCart}
+          cart={this.props.cart}
+        />
+        <ShopItem
+          itemName="itemName2"
+          itemType="itemType2"
+          itemDescription="itemDescription2"
+          addItemToCart={this.props.addItemToCart}
+          removeItemFromCart={this.props.removeItemFromCart}
+          cart={this.props.cart}
+        />
+        <ShopItem
+          itemName="itemName3"
+          itemType="itemType3"
+          itemDescription="itemDescription3"
+          addItemToCart={this.props.addItemToCart}
+          removeItemFromCart={this.props.removeItemFromCart}
+          cart={this.props.cart}
+        />
       </Card.Group>
     );
   }

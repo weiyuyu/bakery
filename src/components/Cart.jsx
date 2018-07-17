@@ -1,26 +1,22 @@
 import React from 'react';
 
 export default class Cart extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      items: []
-    };
-  }
-
-  handleAdd = () => {
-    let cart = this.state.items;
-    cart.push(this.props.itemName);
-    this.setState({ items: cart });
-  };
-
-  handleRemove = () => {
-    this.setState({ items: this.state.items.slice(0, -1) });
-  }
-
   render() {
+    let cart = this.props.cart;
+    let cartItems = Object.keys(cart).map(function(key) {
+      return [key, Number(cart[key])];
+    });
+
     return (
-      <h1> Shopping Cart </h1>
+      <div>
+        {
+          cartItems.map((item) => {
+            if(item[1] > 0) {
+              return <li key={item[0]}>{`Item Name: ${item[0]}, Quantity: ${item[1]}`}</li>
+            }
+          })
+        }
+      </div>
     );
   }
 }
