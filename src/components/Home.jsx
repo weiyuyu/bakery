@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Image } from 'semantic-ui-react';
-import banner from './../img/logo_pink_lg.png';
+import banner from './../img/logo/logo_pink_lg.png';
 
 const Home = () => {
   const { bannerStyle } = styles;
