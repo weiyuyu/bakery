@@ -10,11 +10,12 @@ export default class Cart extends React.Component {
     return (
       <div>
         {
-          cartItems.map((item) => {
-            if(item[1] > 0) {
+          cartItems
+          .filter(item => item[1] > 0)
+          .map((item) => {
               return <li key={item[0]}>{`Item Name: ${item[0]}, Quantity: ${item[1]}`}</li>
             }
-          })
+          )
         }
       </div>
     );
