@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Image, Modal, Header } from 'semantic-ui-react';
+import { Card, Button, Image, Modal, Header, Divider } from 'semantic-ui-react';
 import ItemCarousel from './ItemCarousel';
 import { Animated } from 'react-animated-css';
 
@@ -13,8 +13,7 @@ import cream2 from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F
 
 import standard_scone1 from './../img/原味司康/180B6A17-7FFD-4B02-8B4B-CF3D5B5F8AD8.JPG';
 import standard_scone2 from './../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG';
-import standard_scone3 from './../img/原味司康/D87EEEF1-22C9-470D-B1B8-5DCC1751F71E.JPG';
-import standard_scone4 from './../img/原味司康/E63D53D4-CDBF-4B40-B2A5-6F5FDED455F8.JPG';
+import standard_scone3 from './../img/原味司康/E63D53D4-CDBF-4B40-B2A5-6F5FDED455F8.JPG';
 
 import tea_scone1 from './../img/伯爵茶司康/6173911E-419F-4847-B18E-FD7B93C62492.JPG';
 import tea_scone2 from './../img/伯爵茶司康/CE8AFA52-06CB-403C-A8C9-07DCFBFD2FCC.JPG';
@@ -36,7 +35,7 @@ const styles = {
   },
   modalContentStyle: {
     'textAlign': 'center'
-  }
+  },
 };
 
 const cinnamon = [
@@ -91,21 +90,16 @@ const standard_scone = [
     "file": standard_scone3,
     "legend": "原味司康"
   },
-  {
-    "id": 9,
-    "file": standard_scone4,
-    "legend": "原味司康"
-  }
 ];
 
 const tea_scone = [
   {
-    "id": 10,
+    "id": 9,
     "file": tea_scone1,
     "legend": "伯爵茶司康"
   },
   {
-    "id": 11,
+    "id": 10,
     "file": tea_scone2,
     "legend": "伯爵茶司康"
   },
@@ -113,7 +107,7 @@ const tea_scone = [
 
 const mixed_scone = [
   {
-    "id": 12,
+    "id": 11,
     "file": mixed_scone1,
     "legend": "綜合司康"
   },
@@ -125,7 +119,8 @@ export default class ShopItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: this.props.cart[this.props.itemName] || 0
+      quantity: this.props.cart[this.props.itemName] || 0,
+      modalOpen: false
     };
   }
 
@@ -138,6 +133,14 @@ export default class ShopItem extends React.Component {
     this.setState({ quantity: this.state.quantity-1 });
     this.props.removeItemFromCart(this.props.itemName);
   };
+
+  openModal = () => {
+    this.setState({modalOpen: true});
+  };
+
+  closeModal = () => {
+    this.setState({modalOpen: false});
+  }
 
   render() {
     const { cardStyle, thumbnailStyle, modalContentStyle, textStyle } = styles;
@@ -154,16 +157,16 @@ export default class ShopItem extends React.Component {
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
+            <div className="ui two buttons">
+              <Button color='pink' onClick={this.openModal}> View </Button>
+            </div>
             <Modal
-              trigger={
-                <div className='ui two buttons'>
-                  <Button color='pink'>
-                    View
-                  </Button>
-                </div>
-              }
+              open={this.state.modalOpen}
+              dimmer={true}
             >
-              <Modal.Header>Item Details</Modal.Header>
+              <Modal.Header>
+                <span style={textStyle}> {this.props.itemName} </span>
+              </Modal.Header>
               <Modal.Content style={modalContentStyle}>
                 {/* <Image wrapped rounded size='medium' src={thumbnails[this.props.id-1]} style={thumbnailStyle}/> */}
                 <ItemCarousel items={images[this.props.id-1]}/>
@@ -176,6 +179,8 @@ export default class ShopItem extends React.Component {
                   <p style={textStyle}>{`Quantity: ${quantity}`}</p>
                   <p style={textStyle}>{this.props.itemDescription}</p>
                 </Modal.Description>
+                <Divider />
+                <Button onClick={this.closeModal}> Close </Button>
               </Modal.Content>
             </Modal>
           </Card.Content>

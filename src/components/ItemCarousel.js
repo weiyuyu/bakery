@@ -11,20 +11,20 @@ export default class ItemCarousel extends Component {
     }
 
     render() {
-        return (
-            <Carousel>
-              {
-                  this.state.items.map(item => {
-                    return (
-                      <div key={item["id"]}>
-                          <img src={item["file"]} alt="thumbnail"/>
-                          <p className="legend">{item["legend"]}</p>
-                      </div>
-                    );
-                  })
-              }
-            </Carousel>
-        );
+      return (
+          <Carousel swipable showStatus={false}>
+            {
+                this.state.items.map(item => {
+                  return (
+                    <div key={item["id"]}>
+                        <img src={item["file"]} alt="thumbnail"/>
+                        <p className="legend">{item["legend"]}</p>
+                    </div>
+                  );
+                })
+            }
+          </Carousel>
+      );
     }
 };
 
