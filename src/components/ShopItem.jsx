@@ -231,7 +231,7 @@ export default class ShopItem extends React.Component {
                   }
                 </Modal.Description>
                 <Divider />
-                <Button onClick={this.closeModal}> Close </Button>
+                <Button onClick={this.closeModal}> Add to Cart </Button>
               </Modal.Content>
             </Modal>
           </Card.Content>
