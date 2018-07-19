@@ -14,8 +14,8 @@ const items = [
     "id": 1,
     "name": "肉桂捲",
     "price": {
-      "boxOfFour": 1200,
-      "boxOfSix": 800
+      "boxOfFour": 800,
+      "boxOfSix": 1200
     }
   },
   {
@@ -67,23 +67,25 @@ export default class ShopGrid extends React.Component {
               return (
                 <ShopItem
                   itemName={item["name"]}
-                  itemType={`$${item["price"]["boxOfFour"]}`}
+                  itemType={`$${item["price"]["boxOfFour"]}/4入 | $${item["price"]["boxOfSix"]}/6入`}
                   itemDescription="itemDescription"
                   addItemToCart={this.props.addItemToCart}
                   removeItemFromCart={this.props.removeItemFromCart}
                   cart={this.props.cart}
                   id={item["id"]}
+                  key={item["id"]}
                 />
               );
             } else return (
               <ShopItem
                 itemName={item["name"]}
-                itemType={`$${item["price"]}`}
+                itemType={`$${item["price"]}/1份`}
                 itemDescription="itemDescription"
                 addItemToCart={this.props.addItemToCart}
                 removeItemFromCart={this.props.removeItemFromCart}
                 cart={this.props.cart}
                 id={item["id"]}
+                key={item["id"]}
               />
             );
           })
