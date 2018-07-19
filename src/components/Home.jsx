@@ -1,22 +1,33 @@
 import React from 'react';
-import { Container, Image } from 'semantic-ui-react';
-import banner from './../img/logo/logo_pink_lg.png';
+import { Container, Grid } from 'semantic-ui-react';
+import ReactPlaceholder from 'react-placeholder';
+import "react-placeholder/lib/reactPlaceholder.css";
 
 const Home = () => {
-  const { bannerStyle } = styles;
+  const { containerStyle, gridStyle } = styles;
   return (
-    <Container>
-      <Image src={banner} style={bannerStyle}/>
-      <h1>Welcome to Janet's Bakery</h1>
+    <Container style={containerStyle}>
+      <Grid columns={2} divided style={gridStyle}>
+        <Grid.Row>
+          <Grid.Column>
+            <ReactPlaceholder showLoadingAnimation color='#ffaeae' type='media' rows={7} ready={false} />
+          </Grid.Column>
+          <Grid.Column>
+            <ReactPlaceholder showLoadingAnimation color='#ffaeae' type='media' rows={7} ready={false} />
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     </Container>
   );
 };
 
 const styles = {
-  bannerStyle: {
-    'marginTop': 20,
-    'marginBottom': 20
+  containerStyle: {
+    'padding': 20
+  },
+  gridStyle: {
+    marginTop: 50
   }
-};
+}
 
 export default Home;
