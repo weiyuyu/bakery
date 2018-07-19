@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Image, Modal, Header, Divider } from 'semantic-ui-react';
+import { Card, Button, Image, Modal, Header, Divider, Dropdown } from 'semantic-ui-react';
 import ItemCarousel from './ItemCarousel';
 import { Animated } from 'react-animated-css';
 
@@ -119,19 +119,51 @@ export default class ShopItem extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      quantity: this.props.cart[this.props.itemName] || 0,
-      modalOpen: false
+      modalOpen: false,
+      options: this.props.options,
+      bundle: null,
+      quantities: {}
     };
   }
 
+  componentWillMount() {
+    switch(this.props.itemType) {
+      case 'multi':
+        this.setState({
+          quantities: {
+            "boxOfFour": 0,
+            "boxOfSix": 0
+          }
+        });
+        break;
+      case 'single':
+        this.setState({
+          quantities: {
+            "one": 0
+          }
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
   handleAdd = () => {
-    this.setState({ quantity: this.state.quantity+1 });
-    this.props.addItemToCart(this.props.itemName);
+    let newQuantities = this.state.quantities;
+    newQuantities[this.state.bundle] += 1;
+    this.setState({
+      quantities: newQuantities
+    });
+    this.props.addItemToCart(this.props.itemName, this.state.bundle);
   };
 
   handleRemove = () => {
-    this.setState({ quantity: this.state.quantity-1 });
-    this.props.removeItemFromCart(this.props.itemName);
+    let newQuantities = this.state.quantities;
+    newQuantities[this.state.bundle] -= 1;
+    this.setState({
+      quantities: newQuantities
+    });
+    this.props.removeItemFromCart(this.props.itemName, this.state.bundle);
   };
 
   openModal = () => {
@@ -142,16 +174,27 @@ export default class ShopItem extends React.Component {
     this.setState({modalOpen: false});
   }
 
+  handleDropdownChange = (e, data) => {
+    console.log(data.value);
+    this.setState({bundle: data.value});
+  };
+
   render() {
+    let removeDisabled = true;
+    if(this.state.quantities[this.state.bundle]) {
+      if(this.state.quantities[this.state.bundle] > 0) {
+        removeDisabled = false;
+      }
+    }
     const { cardStyle, thumbnailStyle, modalContentStyle, textStyle } = styles;
-    const { quantity } = this.state;
+    const { options, modalOpen } = this.state;
     return (
       <Animated animationIn="bounceInUp" isVisible={true}>
         <Card style={cardStyle}>
           <Card.Content>
             <Image src={images[this.props.id-1][0]["file"]} alt="Placeholder" rounded style={thumbnailStyle}/>
             <Card.Header style={textStyle}> {this.props.itemName} </Card.Header>
-            <Card.Meta style={textStyle}> {this.props.itemType} </Card.Meta>
+            <Card.Meta style={textStyle}> {this.props.itemPrice} </Card.Meta>
             <Card.Description style={textStyle}>
               {this.props.itemDescription}
             </Card.Description>
@@ -161,7 +204,7 @@ export default class ShopItem extends React.Component {
               <Button color='pink' onClick={this.openModal}> View </Button>
             </div>
             <Modal
-              open={this.state.modalOpen}
+              open={modalOpen}
               dimmer={true}
             >
               <Modal.Header>
@@ -170,14 +213,22 @@ export default class ShopItem extends React.Component {
               <Modal.Content style={modalContentStyle}>
                 {/* <Image wrapped rounded size='medium' src={thumbnails[this.props.id-1]} style={thumbnailStyle}/> */}
                 <ItemCarousel items={images[this.props.id-1]}/>
+                <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange}/>
                 <Button.Group>
-                  <Button disabled={quantity === 0} icon='minus' onClick={this.handleRemove} />
+                  <Button disabled={removeDisabled} icon='minus' onClick={this.handleRemove} />
                   <Button icon='plus' onClick={this.handleAdd} />
                 </Button.Group>
                 <Modal.Description>
                   <Header style={textStyle}>{this.props.itemName}</Header>
-                  <p style={textStyle}>{`Quantity: ${quantity}`}</p>
-                  <p style={textStyle}>{this.props.itemDescription}</p>
+                  {
+                    (this.state.quantities["boxOfFour"]>=0) && <p> {`4入: ${this.state.quantities["boxOfFour"]}`} </p>
+                  }
+                  {
+                    (this.state.quantities["boxOfSix"]>=0) && <p> {`6入: ${this.state.quantities["boxOfSix"]}`} </p>
+                  }
+                  {
+                    (this.state.quantities["one"]>=0) && <p> {`1份: ${this.state.quantities["one"]}`} </p>
+                  }
                 </Modal.Description>
                 <Divider />
                 <Button onClick={this.closeModal}> Close </Button>

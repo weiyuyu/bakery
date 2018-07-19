@@ -17,19 +17,22 @@ export default class Main extends React.Component {
     this.removeItemFromCart = this.removeItemFromCart.bind(this);
   }
 
-  addItemToCart(newItem) {
+  addItemToCart(newItem, bundle) {
     let cart = this.state.cart;
     if(!cart[newItem]) {
-      cart[newItem] = 0;
+      cart[newItem] = {};
     }
-    cart[newItem] += 1;
+    if(!cart[newItem][bundle]) {
+      cart[newItem][bundle] = 0;
+    }
+    cart[newItem][bundle] += 1;
     this.setState({cart: cart});
   }
 
-  removeItemFromCart(oldItem) {
+  removeItemFromCart(oldItem, bundle) {
     let cart = this.state.cart;
-    if(cart[oldItem] && cart[oldItem] > 0) {
-      cart[oldItem] -= 1;
+    if(cart[oldItem][bundle] && cart[oldItem][bundle] > 0) {
+      cart[oldItem][bundle] -= 1;
     }
     this.setState({cart: cart})
   }
