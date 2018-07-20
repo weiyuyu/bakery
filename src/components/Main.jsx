@@ -3,7 +3,6 @@ import { Switch, Route } from 'react-router-dom';
 import Home from './Home';
 import About from './About';
 import Order from './Order';
-import Social from './Social';
 import Cart from './Cart';
 
 export default class Main extends React.Component {
@@ -44,7 +43,6 @@ export default class Main extends React.Component {
           <Route exact path='/' component={Home}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/order' render={(props) => <Order addItemToCart={this.addItemToCart} removeItemFromCart={this.removeItemFromCart} cart={this.state.cart}/>} />
-          <Route exact path='/social' component={Social}/>
           <Route exact path='/cart' render={(props) => <Cart cart={this.state.cart}/>} />
         </Switch>
       </main>

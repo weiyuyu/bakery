@@ -59,10 +59,9 @@ export default class Navigation extends Component {
           style={menuStyle}
         />
         <Menu.Item
-          as={Link}
-          to='/social'
-          name='social'
-          active={activeItem === 'social'}
+          href='https://www.instagram.com/janetsbakery/?hl=en'
+          name='instagram'
+          active={activeItem === 'instagram'}
           onClick={this.handleItemClick}
           style={menuStyle}
         />
