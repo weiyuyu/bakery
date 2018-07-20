@@ -15,7 +15,7 @@ const styles = {
   introStyle: {
     'marginTop': 'auto',
     'marginBottom': 'auto',
-    'padding': 30,
+    'padding': 20,
     'textAlign' : 'left'
   },
   paragraphStyle: {
