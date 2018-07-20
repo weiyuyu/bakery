@@ -1,8 +1,8 @@
 {
   "main.css": "static/css/main.2112b34b.css",
   "main.css.map": "static/css/main.2112b34b.css.map",
-  "main.js": "static/js/main.94ebd080.js",
-  "main.js.map": "static/js/main.94ebd080.js.map",
+  "main.js": "static/js/main.73f05a26.js",
+  "main.js.map": "static/js/main.73f05a26.js.map",
   "static/media/1 肉桂卷封面照.JPG": "static/media/1 肉桂卷封面照.4f8f38dd.JPG",
   "static/media/180B6A17-7FFD-4B02-8B4B-CF3D5B5F8AD8.JPG": "static/media/180B6A17-7FFD-4B02-8B4B-CF3D5B5F8AD8.795e4938.JPG",
   "static/media/1A07991F-9369-454A-90F6-097B04A59EFA.JPG": "static/media/1A07991F-9369-454A-90F6-097B04A59EFA.9452839a.JPG",
@@ -31,5 +31,7 @@
   "static/media/outline-icons.svg": "static/media/outline-icons.82f60bd0.svg",
   "static/media/outline-icons.ttf": "static/media/outline-icons.ad97afd3.ttf",
   "static/media/outline-icons.woff": "static/media/outline-icons.ef60a4f6.woff",
-  "static/media/outline-icons.woff2": "static/media/outline-icons.cd6c777f.woff2"
+  "static/media/outline-icons.woff2": "static/media/outline-icons.cd6c777f.woff2",
+  "static/media/pickup_location.png": "static/media/pickup_location.c55c1670.png",
+  "static/media/pickup_location_streetview.png": "static/media/pickup_location_streetview.fa0234ea.png"
 }
