@@ -6,17 +6,18 @@ import logo from './../img/伯爵茶司康/CE8AFA52-06CB-403C-A8C9-07DCFBFD2FCC.
 const styles = {
   containerStyle: {
     'padding': 0,
-    'display': 'flex',
+    'display': 'inlineFlex',
     'justifyContent': 'center'
   },
   gridStyle: {
     marginTop: 30
   },
   introStyle: {
-    'marginTop': 'auto',
-    'marginBottom': 'auto',
+    'margin': 'auto',
     'padding': 20,
-    'textAlign' : 'left'
+    'textAlign' : 'left',
+    'height': '50%',
+    'width': 'auto'
   },
   paragraphStyle: {
     'fontWeight': 500,
@@ -24,9 +25,7 @@ const styles = {
   imageStyle: {
     'display': 'block',
     'margin': 'auto',
-    'width': '80%',
-    'height': 'auto',
-    'boxShadow': '20px 20px 1px #cbd0d4'
+    'border': '20px rgba(215,225,227,0.3) solid'
   }
 }
 
@@ -45,13 +44,13 @@ export default class Home extends React.Component {
   render() {
     const { containerStyle, gridStyle, introStyle, paragraphStyle, imageStyle } = styles;
     return (
-      <Container>
+      <Container fluid>
         <Grid stackable columns={2} style={gridStyle}>
           <Grid.Row>
             <Grid.Column style={containerStyle}>
               <Container>
                 <Fade left>
-                  <Image src={logo} style={imageStyle} size='medium' rounded bordered/>
+                  <Image src={logo} style={imageStyle} size='medium' />
                 </Fade>
               </Container>
             </Grid.Column>

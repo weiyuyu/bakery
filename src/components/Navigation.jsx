@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Menu, Image } from 'semantic-ui-react';
+import { Menu, Image, Container, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import logo from './../img/logo/logo_black_sm.png';
 
@@ -8,8 +8,21 @@ const styles = {
     'height': 40,
     'width': 'auto'
   },
+  menuItemStyle: {
+    'justifyContent': 'center',
+    'flex': 1,
+    'border': 'none',
+  },
+  brandStyle: {
+    'justifyContent': 'center',
+    'flex': 10
+  },
   menuStyle: {
-    'justifyContent': 'center'
+    margin: 0,
+    'borderTop': 'none',
+  },
+  brandMenuStyle: {
+     'marginBottom': 50
   }
 };
 
@@ -27,53 +40,60 @@ export default class Navigation extends Component {
 
   render() {
     const { activeItem } = this.state
-    const { logoStyle, menuStyle } = styles;
+    const { logoStyle, menuItemStyle, brandStyle, menuStyle, brandMenuStyle } = styles;
     return (
-      <Menu stackable>
-        <Menu.Item
-          header
-          as={Link}
-          to='/'
-          name="home"
-          active={activeItem === 'gome'}
-          onClick={this.handleItemClick}
-          style={menuStyle}
-        >
-          <Image src={logo} style={logoStyle}/>
-        </Menu.Item>
-        <Menu.Item
-          as={Link}
-          to='/about'
-          name='about'
-          active={activeItem === 'about'}
-          onClick={this.handleItemClick}
-          style={menuStyle}
-        />
+      <Container fluid style={{'marginTop': 0}}>
+        <Menu secondary style={brandMenuStyle}>
+          <Menu.Item style={menuItemStyle}></Menu.Item>
+          <Menu.Item
+            header
+            as={Link}
+            to='/'
+            name="home"
+            active={activeItem === 'gome'}
+            onClick={this.handleItemClick}
+            style={brandStyle}
+          >
+            <Image src={logo} style={logoStyle}/>
+          </Menu.Item>
+          <Menu.Item
+            as={Link}
+            to='/cart'
+            name='cart'
+            active={activeItem === 'cart'}
+            onClick={this.handleItemClick}
+            style={menuItemStyle}
+          >
+            <Icon name='shopping cart'/>
+          </Menu.Item>
+        </Menu>
+        <Menu style={menuStyle}>
+          <Menu.Item
+            as={Link}
+            to='/about'
+            name='about'
+            active={activeItem === 'about'}
+            onClick={this.handleItemClick}
+            style={menuItemStyle}
+          />
 
-        <Menu.Item
-          as={Link}
-          to='/order'
-          name='order'
-          active={activeItem === 'order'}
-          onClick={this.handleItemClick}
-          style={menuStyle}
-        />
-        <Menu.Item
-          href='https://www.instagram.com/janetsbakery/?hl=en'
-          name='instagram'
-          active={activeItem === 'instagram'}
-          onClick={this.handleItemClick}
-          style={menuStyle}
-        />
-        <Menu.Item
-          as={Link}
-          to='/cart'
-          name='cart'
-          active={activeItem === 'cart'}
-          onClick={this.handleItemClick}
-          style={menuStyle}
-        />
-      </Menu>
+          <Menu.Item
+            as={Link}
+            to='/order'
+            name='order'
+            active={activeItem === 'order'}
+            onClick={this.handleItemClick}
+            style={menuItemStyle}
+          />
+          <Menu.Item
+            href='https://www.instagram.com/janetsbakery/?hl=en'
+            name='instagram'
+            active={activeItem === 'instagram'}
+            onClick={this.handleItemClick}
+            style={menuItemStyle}
+          />
+        </Menu>
+      </Container>
     )
   }
 };
