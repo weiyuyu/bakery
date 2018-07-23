@@ -25,6 +25,7 @@ const styles = {
      'marginBottom': 50
   },
   containerStyle: {
+    'position': '-webkit-sticky',
     'position': 'sticky',
     'top': 0,
     'zIndex': 100,
