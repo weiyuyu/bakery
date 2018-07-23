@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Button, Image } from 'semantic-ui-react';
+import { Container, Button, Image, Header, Divider } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import logo from './../img/伯爵茶司康/CE8AFA52-06CB-403C-A8C9-07DCFBFD2FCC.JPG';
@@ -48,7 +48,7 @@ export default class Home extends React.Component {
             </Fade>
             <Fade right>
               <div>
-                <h2>
+                <h2 style={{'fontWeight': 400}}>
                   用為女兒烘焙的雙手<br/>
                   秉持著初衷與熱情<br/>
                   嚴選最天然、頂級的素材<br/>
@@ -57,6 +57,11 @@ export default class Home extends React.Component {
               </div>
             </Fade>
           </div>
+        </Container>
+        <Container text style={containerStyle}>
+          <Header size='medium' as='a' href='mailto:janetsbakerytw@gmail.com' style={{'fontWeight': 400}}> Contact Us </Header>
+          <Divider hidden />
+          <Header size='medium' as={Link} to='/about' style={{'fontWeight': 400}}> Shipping </Header>
         </Container>
       </Container>
     );
