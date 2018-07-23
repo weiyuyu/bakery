@@ -23,6 +23,12 @@ const styles = {
   },
   brandMenuStyle: {
      'marginBottom': 50
+  },
+  containerStyle: {
+    'position': 'sticky',
+    'top': 0,
+    'zIndex': 100,
+    'background': '#FFF'
   }
 };
 
@@ -40,9 +46,9 @@ export default class Navigation extends Component {
 
   render() {
     const { activeItem } = this.state
-    const { logoStyle, menuItemStyle, brandStyle, menuStyle, brandMenuStyle } = styles;
+    const { logoStyle, menuItemStyle, brandStyle, menuStyle, brandMenuStyle, containerStyle } = styles;
     return (
-      <Container fluid style={{'marginTop': 0}}>
+      <Container fluid style={containerStyle}>
         <Menu secondary style={brandMenuStyle}>
           <Menu.Item style={menuItemStyle}></Menu.Item>
           <Menu.Item

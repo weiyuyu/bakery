@@ -190,7 +190,7 @@ export default class ShopItem extends React.Component {
     const { options, modalOpen } = this.state;
     return (
       <Animated animationIn="bounceInUp" isVisible={true}>
-        <Card style={cardStyle}>
+        <Card style={cardStyle} onClick={this.openModal}>
           <Card.Content>
             <Image src={images[this.props.id-1][0]["file"]} alt="Placeholder" rounded style={thumbnailStyle}/>
             <Card.Header style={textStyle}> {this.props.itemName} </Card.Header>
@@ -199,45 +199,41 @@ export default class ShopItem extends React.Component {
               {this.props.itemDescription}
             </Card.Description>
           </Card.Content>
-          <Card.Content extra>
-            <div className="ui two buttons">
-              <Button color='pink' onClick={this.openModal}> View </Button>
-            </div>
-            <TransitionablePortal open={modalOpen}  transition={{ animation:'scale', duration: 300 }}>
-              <Modal
-                open={true}
-                dimmer={true}
-              >
-                <Modal.Header>
-                  <span style={textStyle}> {this.props.itemName} </span>
-                </Modal.Header>
-                <Modal.Content style={modalContentStyle}>
-                  {/* <Image wrapped rounded size='medium' src={thumbnails[this.props.id-1]} style={thumbnailStyle}/> */}
-                  <ItemCarousel items={images[this.props.id-1]}/>
-                  <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange}/>
-                  <Button.Group>
-                    <Button disabled={removeDisabled} icon='minus' onClick={this.handleRemove} />
-                    <Button icon='plus' onClick={this.handleAdd} />
-                  </Button.Group>
-                  <Modal.Description>
-                    <Header style={textStyle}>{this.props.itemName}</Header>
-                    {
-                      (this.state.quantities["boxOfFour"]>=0) && <p> {`4入: ${this.state.quantities["boxOfFour"]}`} </p>
-                    }
-                    {
-                      (this.state.quantities["boxOfSix"]>=0) && <p> {`6入: ${this.state.quantities["boxOfSix"]}`} </p>
-                    }
-                    {
-                      (this.state.quantities["one"]>=0) && <p> {`1份: ${this.state.quantities["one"]}`} </p>
-                    }
-                  </Modal.Description>
-                  <Divider />
-                  <Button onClick={this.closeModal}> Add to Cart </Button>
-                </Modal.Content>
-              </Modal>
-            </TransitionablePortal>
-          </Card.Content>
         </Card>
+        <TransitionablePortal open={modalOpen}  transition={{ animation:'scale', duration: 300 }}>
+          <Modal
+            onClose={this.closeModal}
+            open={true}
+            dimmer={true}
+          >
+            <Modal.Header>
+              <span style={textStyle}> {this.props.itemName} </span>
+            </Modal.Header>
+            <Modal.Content style={modalContentStyle}>
+              {/* <Image wrapped rounded size='medium' src={thumbnails[this.props.id-1]} style={thumbnailStyle}/> */}
+              <ItemCarousel items={images[this.props.id-1]}/>
+              <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange}/>
+              <Button.Group>
+                <Button disabled={removeDisabled} icon='minus' onClick={this.handleRemove} />
+                <Button icon='plus' onClick={this.handleAdd} />
+              </Button.Group>
+              <Modal.Description>
+                <Header style={textStyle}>{this.props.itemName}</Header>
+                {
+                  (this.state.quantities["boxOfFour"]>=0) && <p> {`4入: ${this.state.quantities["boxOfFour"]}`} </p>
+                }
+                {
+                  (this.state.quantities["boxOfSix"]>=0) && <p> {`6入: ${this.state.quantities["boxOfSix"]}`} </p>
+                }
+                {
+                  (this.state.quantities["one"]>=0) && <p> {`1份: ${this.state.quantities["one"]}`} </p>
+                }
+              </Modal.Description>
+              <Divider />
+              <Button onClick={this.closeModal}> Add to Cart </Button>
+            </Modal.Content>
+          </Modal>
+        </TransitionablePortal>
       </Animated>
     );
   }
