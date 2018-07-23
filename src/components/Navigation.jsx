@@ -71,9 +71,10 @@ export default class Navigation extends Component {
             style={menuItemStyle}
           >
             <Icon name='shopping cart'/>
+            {this.props.cartTotal}
           </Menu.Item>
         </Menu>
-        <Menu style={menuStyle}>
+        <Menu secondary pointing style={menuStyle}>
           <Menu.Item
             as={Link}
             to='/about'

@@ -4,11 +4,31 @@ import Navigation from './components/Navigation';
 import Main from './components/Main';
 import './App.css';
 
-const App = () => (
-  <div className="App">
-    <Navigation />
-    <Main />
-  </div>
-)
+export default class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      cartTotal: 0
+    };
 
-export default App;
+    this.addCartTotal = this.addCartTotal.bind(this);
+    this.removeCartTotal = this.removeCartTotal.bind(this);
+  }
+
+  addCartTotal = () => {
+    this.setState({cartTotal: this.state.cartTotal+1});
+  }
+
+  removeCartTotal = () => {
+    this.setState({cartTotal: this.state.cartTotal-1});
+  }
+
+  render() {
+    return(
+      <div className="App">
+        <Navigation cartTotal={this.state.cartTotal}/>
+        <Main addCartTotal={this.addCartTotal} removeCartTotal={this.removeCartTotal}/>
+      </div>
+    );
+  }
+}

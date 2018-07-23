@@ -171,7 +171,7 @@ export default class ShopItem extends React.Component {
   };
 
   closeModal = () => {
-    this.setState({modalOpen: false});
+    this.setState({modalOpen: false, bundle: null});
   }
 
   handleDropdownChange = (e, data) => {
@@ -187,7 +187,7 @@ export default class ShopItem extends React.Component {
       }
     }
     const { cardStyle, thumbnailStyle, modalContentStyle, textStyle } = styles;
-    const { options, modalOpen } = this.state;
+    const { options, modalOpen, bundle } = this.state;
     return (
       <Animated animationIn="bounceInUp" isVisible={true}>
         <Card style={cardStyle} onClick={this.openModal}>
@@ -214,8 +214,8 @@ export default class ShopItem extends React.Component {
               <ItemCarousel items={images[this.props.id-1]}/>
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange}/>
               <Button.Group>
-                <Button disabled={removeDisabled} icon='minus' onClick={this.handleRemove} />
-                <Button icon='plus' onClick={this.handleAdd} />
+                <Button disabled={removeDisabled || bundle===null } icon='minus' onClick={this.handleRemove} />
+                <Button icon='plus' disabled={bundle===null} onClick={this.handleAdd} />
               </Button.Group>
               <Modal.Description>
                 <Header style={textStyle}>{this.props.itemName}</Header>
