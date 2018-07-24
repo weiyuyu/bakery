@@ -8,3 +8,10 @@ body {
 .ui.secondary.menu .active.item {
   background: #FFF;
 }
+
+@media screen and (min-width: 800px) {
+  #imageContainer {
+    width: 27%;
+    height: 27%;
+  }
+}

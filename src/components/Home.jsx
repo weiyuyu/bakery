@@ -28,9 +28,9 @@ export default class Home extends React.Component {
     const { containerStyle, imageStyle, buttonStyle } = styles;
     return (
       <Container fluid style={{'marginBottom': 50}}>
-        <Container style={containerStyle}>
+        <Container id="imageContainer" style={containerStyle}>
           <Fade left>
-            <Image src={logo} style={imageStyle} size='large' />
+            <Image id="landingImage" src={logo} style={imageStyle} size='large' />
             <Button
               style={buttonStyle}
               size='large'
