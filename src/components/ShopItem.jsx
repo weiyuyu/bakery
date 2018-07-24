@@ -6,8 +6,8 @@ import { Animated } from 'react-animated-css';
 import cinnamon1 from './../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG';
 import cinnamon2 from './../img/肉桂捲/1 肉桂卷封面照.JPG';
 
-import cream1 from './../img/奶油乳酪抹醬/6A92216A-EB85-4B97-9F53-BF1356EDE851.JPG';
-import cream2 from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F394F.JPG';
+import cream1 from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F394F.JPG';
+import cream2 from './../img/奶油乳酪抹醬/6A92216A-EB85-4B97-9F53-BF1356EDE851.JPG';
 
 import standard_scone1 from './../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG';
 import standard_scone2 from './../img/原味司康/180B6A17-7FFD-4B02-8B4B-CF3D5B5F8AD8.JPG';
@@ -57,12 +57,12 @@ const cinnamon = [
 const cream = [
   {
     "id": 2,
-    "file": cream2,
+    "file": cream1,
     "legend": "奶油乳酪抹醬"
   },
   {
     "id": 3,
-    "file": cream1,
+    "file": cream2,
     "legend": "奶油乳酪抹醬"
   }
 ];
@@ -144,7 +144,7 @@ export default class ShopItem extends React.Component {
   };
 
   closeModal = () => {
-    this.setState({modalOpen: false, bundle: null});
+    this.setState({modalOpen: false, bundle: null, quantity: 0});
   }
 
   handleDropdownChange = (e, data) => {
@@ -180,7 +180,7 @@ export default class ShopItem extends React.Component {
           <Card.Content>
             <Image src={images[this.props.id-1][0]["file"]} alt="Placeholder" rounded style={thumbnailStyle}/>
             <Card.Header style={textStyle}> {this.props.itemName} </Card.Header>
-            <Card.Description style={{'fontFamily': 'Cormorant', 'fontWeight': 600, 'fontSize': 18}}> Cinnamon Roll </Card.Description>
+            <Card.Description style={{'fontFamily': 'Cormorant', 'fontWeight': 600, 'fontSize': 18}}> {this.props.itemNameEnglish} </Card.Description>
             <Card.Description style={{'fontFamily': 'Cormorant', 'fontSize': 16}}> {this.props.itemPrice} </Card.Description>
             {/* <Card.Description style={textStyle}>
 
@@ -194,22 +194,23 @@ export default class ShopItem extends React.Component {
             dimmer={true}
           >
             <Modal.Header>
-              <span style={textStyle}> {this.props.itemName} </span>
+              <span style={{'margin': 5, 'fontFamily': 'cwTexMing', 'fontWeight': 400, 'fontSize': 20}}> {this.props.itemName} </span>
+              <span style={{'margin': 5, 'fontFamily': 'Cormorant', 'fontWeight': 400, 'fontSize': 20}}> {this.props.itemNameEnglish} </span>
             </Modal.Header>
             <Modal.Content style={modalContentStyle}>
               {/* <Image wrapped rounded size='medium' src={thumbnails[this.props.id-1]} style={thumbnailStyle}/> */}
               <ItemCarousel items={images[this.props.id-1]}/>
-              <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange}/>
+              <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>
               <div style={{'display': 'flex', 'justifyContent': 'center', 'marginTop': 20}}>
                 <Button disabled={removeDisabled} icon='minus' onClick={this.handleRemove}/>
-                <Form.Input placeholder='數量' readOnly value={this.state.quantity} style={{'marginLeft': 5, 'marginRight': 8, 'width': 196}}/>
+                <Form.Input placeholder='數量' readOnly value={this.state.quantity} style={{'marginLeft': 5, 'marginRight': 8, 'width': 196, 'fontFamily': 'Cormorant'}}/>
                 <Button icon='plus' disabled={bundle===null} onClick={this.handleAdd}/>
               </div>
               <Divider />
               <Button.Group>
                 <Popup
-                  trigger={<Button onClick={this.addToCart} disabled={bundle === null || quantity === 0} style={{'margin': 5}}> Add to Cart </Button>}
+                  trigger={<Button onClick={this.addToCart} disabled={bundle === null || quantity === 0} style={{'margin': 5, 'fontFamily': 'cwTexMing'}}> 放入購物車 </Button>}
                   content={`成功放入購物車！`}
                   on='click'
                   open={this.state.popUpIsOpen}
@@ -217,7 +218,7 @@ export default class ShopItem extends React.Component {
                   onOpen={this.handlePopUpOpen}
                   position='top right'
                 />
-                <Button onClick={this.closeModal} style={{'margin': 5}}> Close </Button>
+                <Button onClick={this.closeModal} style={{'margin': 5, 'fontFamily': 'cwTexMing'}}> 關閉 </Button>
               </Button.Group>
             </Modal.Content>
           </Modal>

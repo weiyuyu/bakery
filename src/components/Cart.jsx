@@ -1,15 +1,15 @@
 import React from 'react';
 import { Card, Image, Container } from 'semantic-ui-react';
 
-import cinnamon from './../img/肉桂捲/1 肉桂卷封面照.JPG';
-import cream from './../img/奶油乳酪抹醬/6A92216A-EB85-4B97-9F53-BF1356EDE851.JPG';
-import standard_scone from './../img/原味司康/180B6A17-7FFD-4B02-8B4B-CF3D5B5F8AD8.JPG';
-import tea_scone from './../img/伯爵茶司康/6173911E-419F-4847-B18E-FD7B93C62492.JPG';
-import mixed_scone from './../img/綜合司康/D3669B97-9551-40E1-82D1-AF420076F5E2.JPG';
+import cinnamon from './../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG';
+import cream from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F394F.JPG';
+import standard_scone from './../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG';
+import tea_scone from './../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94D1DE.JPG';
+import mixed_scone from './../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG';
 
 const thumbnails = {
   "肉桂捲": cinnamon,
-  "奶油乳酪抹醬 (一份)": cream,
+  "奶油乳酪抹醬": cream,
   "原味司康": standard_scone,
   "伯爵茶司康": tea_scone,
   "綜合司康": mixed_scone

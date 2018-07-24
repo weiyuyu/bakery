@@ -13,6 +13,7 @@ const items = [
   {
     "id": 1,
     "name": "肉桂捲",
+    "nameEnglish": "Cinnamon Roll",
     "price": {
       "boxOfFour": 800,
       "boxOfSix": 1200
@@ -20,12 +21,14 @@ const items = [
   },
   {
     "id": 2,
-    "name": "奶油乳酪抹醬 (一份)",
+    "name": "奶油乳酪抹醬",
+    "nameEnglish": "Cream Cheese Spread",
     "price": 40
   },
   {
     "id": 3,
     "name": "原味司康",
+    "nameEnglish": "Standard Scone",
     "price": {
       "boxOfFour": 340,
       "boxOfSix": 480
@@ -34,6 +37,7 @@ const items = [
   {
     "id": 4,
     "name": "伯爵茶司康",
+    "nameEnglish": "Earl Grey Scone",
     "price": {
       "boxOfFour": 360,
       "boxOfSix": 510
@@ -42,6 +46,7 @@ const items = [
   {
     "id": 5,
     "name": "綜合司康",
+    "nameEnglish": "Assorted Scone",
     "price": {
       "boxOfFour": 350,
       "boxOfSix": 510
@@ -67,6 +72,7 @@ export default class ShopGrid extends React.Component {
               return (
                 <ShopItem
                   itemName={item["name"]}
+                  itemNameEnglish={item["nameEnglish"]}
                   itemPrice={`$${item["price"]["boxOfFour"]}/4 pcs . $${item["price"]["boxOfSix"]}/6 pcs`}
                   itemType="multi"
                   itemDescription="itemDescription"
@@ -74,13 +80,14 @@ export default class ShopGrid extends React.Component {
                   removeItemFromCart={this.props.removeItemFromCart}
                   cart={this.props.cart}
                   id={item["id"]}
-                  options={[{text: '4入組', value: 'boxOfFour'},{text: '6入組', value: 'boxOfSix'}]}
+                  options={[{text: `4入組 . $${item["price"]["boxOfFour"]}`, value: 'boxOfFour'},{text: `6入組 . $${item["price"]["boxOfSix"]}`, value: 'boxOfSix'}]}
                   key={item["id"]}
                 />
               );
             } else return (
               <ShopItem
                 itemName={item["name"]}
+                itemNameEnglish={item["nameEnglish"]}
                 itemPrice={`$${item["price"]}/1 srv.`}
                 itemType="single"
                 itemDescription="itemDescription"
@@ -88,7 +95,7 @@ export default class ShopGrid extends React.Component {
                 removeItemFromCart={this.props.removeItemFromCart}
                 cart={this.props.cart}
                 id={item["id"]}
-                options={[{text: '1份', value: 'one'}]}
+                options={[{text: `1份 . $${item["price"]}`, value: 'one'}]}
                 key={item["id"]}
               />
             );
