@@ -15,8 +15,8 @@ export default class App extends React.Component {
     this.removeCartTotal = this.removeCartTotal.bind(this);
   }
 
-  addCartTotal = () => {
-    this.setState({cartTotal: this.state.cartTotal+1});
+  addCartTotal = (quantity) => {
+    this.setState({cartTotal: this.state.cartTotal + quantity});
   }
 
   removeCartTotal = () => {
@@ -27,7 +27,7 @@ export default class App extends React.Component {
     return(
       <div className="App">
         <Navigation cartTotal={this.state.cartTotal}/>
-        <Main addCartTotal={this.addCartTotal} removeCartTotal={this.removeCartTotal}/>
+        <Main addCartTotal={this.addCartTotal} removeCartTotal={this.removeCartTotal} cartTotal={this.state.cartTotal}/>
       </div>
     );
   }

@@ -16,7 +16,7 @@ export default class Main extends React.Component {
     this.removeItemFromCart = this.removeItemFromCart.bind(this);
   }
 
-  addItemToCart(newItem, bundle) {
+  addItemToCart(newItem, bundle, quantity) {
     let cart = this.state.cart;
     if(!cart[newItem]) {
       cart[newItem] = {};
@@ -24,8 +24,8 @@ export default class Main extends React.Component {
     if(!cart[newItem][bundle]) {
       cart[newItem][bundle] = 0;
     }
-    cart[newItem][bundle] += 1;
-    this.props.addCartTotal();
+    cart[newItem][bundle] += quantity;
+    this.props.addCartTotal(quantity);
     this.setState({cart: cart});
   }
 
@@ -45,7 +45,7 @@ export default class Main extends React.Component {
           <Route exact path='/' component={Home}/>
           <Route exact path='/about' component={About}/>
           <Route exact path='/order' render={(props) => <Order addItemToCart={this.addItemToCart} removeItemFromCart={this.removeItemFromCart} cart={this.state.cart} addCartTotal={this.props.addCartTotal} removeCartTotal={this.props.removeCartTotal}/>} />
-          <Route exact path='/cart' render={(props) => <Cart cart={this.state.cart}/>} />
+          <Route exact path='/cart' render={(props) => <Cart cart={this.state.cart} cartTotal={this.props.cartTotal}/>} />
         </Switch>
       </main>
     );

@@ -6,3 +6,11 @@ ul.control-dots, ul.thumbs.animated {
     margin-left: 0 !important;
     margin-right: 0 !important;
 }
+
+#navbar {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #FFF;
+}

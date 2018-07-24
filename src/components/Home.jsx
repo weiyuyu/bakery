@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Button, Image, Header, Divider } from 'semantic-ui-react';
+import { Container, Button, Image, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
-import logo from './../img/伯爵茶司康/CE8AFA52-06CB-403C-A8C9-07DCFBFD2FCC.JPG';
+import logo from './../img/肉桂捲/774AD308-AAF4-41B3-B707-81315258E4D1.JPG';
 
 const styles = {
   containerStyle: {
@@ -11,12 +11,14 @@ const styles = {
   imageStyle: {
     'display': 'block',
     'margin': 'auto',
-    'border': '20px rgba(215,225,227,0.3) solid'
+    'width': '80%',
+    'height': 'auto'
   },
   buttonStyle: {
     'marginLeft': 'auto',
     'marginRight': 'auto',
-    'marginTop': 50
+    'marginTop': 50,
+    'fontFamily': 'Cormorant'
   }
 }
 
@@ -25,12 +27,13 @@ export default class Home extends React.Component {
   render() {
     const { containerStyle, imageStyle, buttonStyle } = styles;
     return (
-      <Container fluid>
+      <Container fluid style={{'marginBottom': 50}}>
         <Container style={containerStyle}>
           <Fade left>
             <Image src={logo} style={imageStyle} size='large' />
             <Button
               style={buttonStyle}
+              size='large'
               as={Link}
               to='/order'
             >
@@ -39,29 +42,29 @@ export default class Home extends React.Component {
           </Fade>
         </Container>
         <Container text>
-          <div style={{'display': 'block', 'marginLeft': 'auto', 'marginRight': 'auto'}}>
-            <Fade left>
-              <h1>
-                Janet’s Bakery <br/> 成立於2018年
-              </h1>
-              <p style={{'fontSize': 25}}> / </p>
-            </Fade>
+          <div style={{'marginLeft': 'auto', 'marginRight': 'auto'}}>
             <Fade right>
-              <div>
-                <h2 style={{'fontWeight': 400}}>
-                  用為女兒烘焙的雙手<br/>
-                  秉持著初衷與熱情<br/>
-                  嚴選最天然、頂級的素材<br/>
-                  呈現出最健康的美味
-                </h2>
+              <div style={{'textAlign': 'center'}}>
+                <div style={{'display': 'inline-block', 'textAlign': 'left'}}>
+                  <h2 style={{'fontFamily': 'cwTexMing', 'fontSize': 20}}>
+                    <span style={{'fontFamily': 'Cormorant', 'fontSize': 25}}> Janet’s Bakery </span>  <br/> 成立於<span style={{'fontFamily': 'Cormorant'}}>2018</span>年
+                  </h2>
+                  <p style={{'fontSize': 15}}> － </p>
+                  <h3 style={{'fontWeight': 400, 'fontFamily': 'cwTexMing'}}>
+                    用為女兒烘焙的雙手<br/>
+                    秉持著初衷與熱情<br/>
+                    嚴選最天然、頂級的素材<br/>
+                    呈現出最健康的美味
+                  </h3>
+                </div>
               </div>
             </Fade>
           </div>
         </Container>
-        <Container text style={containerStyle}>
-          <Header size='medium' as='a' href='mailto:janetsbakerytw@gmail.com' style={{'fontWeight': 400}}> Contact Us </Header>
-          <Divider hidden />
-          <Header size='medium' as={Link} to='/about' style={{'fontWeight': 400}}> Shipping </Header>
+        <Container text style={{'marginTop': 100, 'marginBottom': 30}}>
+          <Header size='medium' as='a' href='mailto:janetsbakerytw@gmail.com' style={{'fontWeight': 400, 'fontFamily': 'Cormorant', 'fontSize': 15}}> Contact Us </Header>
+          <p style={{'fontSize': 15}} />
+          <Header size='medium' as={Link} to='/about' style={{'fontWeight': 400, 'fontFamily': 'Cormorant', 'fontSize': 15}}> Shipping </Header>
         </Container>
       </Container>
     );

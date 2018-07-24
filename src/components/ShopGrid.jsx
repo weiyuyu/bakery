@@ -67,7 +67,7 @@ export default class ShopGrid extends React.Component {
               return (
                 <ShopItem
                   itemName={item["name"]}
-                  itemPrice={`$${item["price"]["boxOfFour"]}/4入 | $${item["price"]["boxOfSix"]}/6入`}
+                  itemPrice={`$${item["price"]["boxOfFour"]}/4 pcs . $${item["price"]["boxOfSix"]}/6 pcs`}
                   itemType="multi"
                   itemDescription="itemDescription"
                   addItemToCart={this.props.addItemToCart}
@@ -81,7 +81,7 @@ export default class ShopGrid extends React.Component {
             } else return (
               <ShopItem
                 itemName={item["name"]}
-                itemPrice={`$${item["price"]}/1份`}
+                itemPrice={`$${item["price"]}/1 srv.`}
                 itemType="single"
                 itemDescription="itemDescription"
                 addItemToCart={this.props.addItemToCart}
