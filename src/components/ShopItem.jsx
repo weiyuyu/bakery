@@ -194,8 +194,8 @@ export default class ShopItem extends React.Component {
             dimmer={true}
           >
             <Modal.Header>
-              <span style={{'margin': 5, 'fontFamily': 'cwTexMing', 'fontWeight': 400, 'fontSize': 20}}> {this.props.itemName} </span>
-              <span style={{'margin': 5, 'fontFamily': 'Cormorant', 'fontWeight': 400, 'fontSize': 20}}> {this.props.itemNameEnglish} </span>
+              <span style={{'margin': 3, 'fontFamily': 'cwTexMing', 'fontWeight': 400, 'fontSize': 20}}> {this.props.itemName} </span>
+              <span style={{'margin': 3, 'fontFamily': 'Cormorant', 'fontWeight': 400, 'fontSize': 20}}> {this.props.itemNameEnglish} </span>
             </Modal.Header>
             <Modal.Content style={modalContentStyle}>
               {/* <Image wrapped rounded size='medium' src={thumbnails[this.props.id-1]} style={thumbnailStyle}/> */}

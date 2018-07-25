@@ -15,3 +15,10 @@ body {
     height: 27%;
   }
 }
+
+@media screen and (min-width: 800px) {
+  .ui.modal {
+    width: 450px;
+    margin: 0;
+  }
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Image, Container } from 'semantic-ui-react';
+import { Image, Container, Table, Header } from 'semantic-ui-react';
 
 import cinnamon from './../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG';
 import cream from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F394F.JPG';
@@ -17,31 +17,46 @@ const thumbnails = {
 
 const styles = {
   containerStyle: {
-    'textAlign': 'center',
+    'justifyContent': 'center',
     'padding': 20,
     'paddingBottom': 5
   },
-  cardStyle: {
-    'display': 'block',
-    'marginTop': 20,
-    'marginBottom': 20,
-    'marginLeft': 'auto',
-    'marginRight': 'auto'
-  },
-  textStyle: {
-    'margin': 10,
-  },
-  thumbnailStyle: {
-    'display': 'block',
-    'marginBottom': 20,
-    'marginLeft': 'auto',
-    'marginRight': 'auto'
-  },
 };
+
+const nameEnglish = {
+  '肉桂捲': 'Cinnamon Roll',
+  '奶油乳酪抹醬': 'Cream Cheese Spread',
+  '原味司康': 'Standard Scone',
+  '伯爵茶司康': 'Earl Grey Scone',
+  '綜合司康': 'Assorted Scone',
+};
+
+const prices = {
+    "肉桂捲": {
+      "boxOfFour": 800,
+      "boxOfSix": 1200
+    },
+    "奶油乳酪抹醬": {
+      "one": 40
+    },
+    "原味司康": {
+      "boxOfFour": 340,
+      "boxOfSix": 480
+    },
+    "伯爵茶司康": {
+      "boxOfFour": 360,
+      "boxOfSix": 510
+    },
+    "綜合司康": {
+      "boxOfFour": 350,
+      "boxOfSix": 510
+    },
+}
+
 
 export default class Cart extends React.Component {
   render() {
-    const { containerStyle, cardStyle, textStyle, thumbnailStyle } = styles;
+    const { containerStyle } = styles;
 
     let cart = this.props.cart;
     let cartItems = Object.keys(cart).map(function(key) {
@@ -49,47 +64,76 @@ export default class Cart extends React.Component {
     });
     console.log(cartItems.length);
 
-    if(cartItems.length === 0) {
+    if(this.props.cartTotal === 0) {
       return (
         <Container style={containerStyle}>
-          <h2 style={textStyle}> Your cart is empty! Time to fill it with baked goods!</h2>
+          <h2 style={{'margin': 10, 'fontFamily': 'Cormorant'}}> Your cart is empty! Time to pick up some baked goods!</h2>
         </Container>
       );
     } else {
       return (
-        <Container style={containerStyle}>
-          {
-            cartItems
-            .filter(item => {
-              let willRender = false;
-              let quantities = item[1];
-              if(quantities["boxOfFour"] > 0 || quantities["boxOfSix"] || quantities["one"] > 0) {
-                willRender = true;
+        <Container style={containerStyle} fluid>
+          <Table basic='very' celled collapsing style={{'fontFamily': 'cwTexMing', 'fontSize': 16, 'marginLeft': 'auto', 'marginRight': 'auto', 'width': '100%'}}>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>商品</Table.HeaderCell>
+                <Table.HeaderCell>數量</Table.HeaderCell>
+                <Table.HeaderCell>總額</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {
+                cartItems
+                .filter(item => {
+                  let willRender = false;
+                  let quantities = item[1];
+                  if(quantities["boxOfFour"] > 0 || quantities["boxOfSix"] || quantities["one"] > 0) {
+                    willRender = true;
+                  }
+                  return willRender;
+                }).map((item) => {
+                  let itemTotal = 0;
+                  if(item[1]["boxOfFour"]) {
+                    itemTotal += prices[item[0]]["boxOfFour"]*item[1]["boxOfFour"];
+                  }
+                  if(item[1]["boxOfSix"]) {
+                    itemTotal += prices[item[0]]["boxOfSix"]*item[1]["boxOfSix"];
+                  }
+                  if(item[1]["one"]) {
+                    itemTotal += prices[item[0]]["one"]*item[1]["one"];
+                  }
+                  return (
+                    <Table.Row key={item[0]}>
+                      <Table.Cell>
+                        <Header as='h2' image>
+                          <Image src={thumbnails[item[0]]} size='medium' />
+                          <Header.Content style={{'fontFamily': 'cwTexMing', 'fontSize': 16}}>
+                            {`${item[0]}`}
+                            <Header.Subheader style={{'fontFamily': 'Cormorant', 'fontSize': 16}}>{nameEnglish[item[0]]}</Header.Subheader>
+                          </Header.Content>
+                        </Header>
+                      </Table.Cell>
+                      <Table.Cell style={{'fontFamily': 'Cormorant'}}>
+                        {
+                          (item[1]["boxOfFour"]) && <p>4<span style={{'fontFamily': 'cwTexMing'}}>入組</span>： {`${item[1]["boxOfFour"]}`}</p>
+                        }
+                        {
+                          (item[1]["boxOfSix"]) && <p>6<span style={{'fontFamily': 'cwTexMing'}}>入組</span>： {`${item[1]["boxOfSix"]}`}</p>
+                        }
+                        {
+                          (item[1]["one"]) && <p><span style={{'fontFamily': 'cwTexMing'}}>份數</span>： {`${item[1]["one"]}`}</p>
+                        }
+                      </Table.Cell>
+                      <Table.Cell style={{'textAlign': 'right', 'fontFamily': 'Cormorant'}}>
+                        <span style={{'marginRight': 3}}>$</span>{itemTotal}
+                      </Table.Cell>
+                    </Table.Row>
+                  );
+                  }
+                )
               }
-              return willRender;
-            }).map((item, index) => {
-                return (
-                  <Card style={cardStyle} key={index}>
-                    <Card.Header style={containerStyle}>
-                      <Image src={thumbnails[item[0]]} size='small' rounded style={thumbnailStyle}/>
-                      <span> {`商品： ${item[0]}`} </span>
-                    </Card.Header>
-                    <Card.Meta style={textStyle}>
-                      {
-                        (item[1]["boxOfFour"]>0) && <p style={textStyle}> {`4入: ${item[1]["boxOfFour"]}`} </p>
-                      }
-                      {
-                        (item[1]["boxOfSix"]>0) && <p style={textStyle}> {`6入: ${item[1]["boxOfSix"]}`} </p>
-                      }
-                      {
-                        (item[1]["one"]>0) && <p style={textStyle}> {`1份: ${item[1]["one"]}`} </p>
-                      }
-                    </Card.Meta>
-                  </Card>
-                );
-              }
-            )
-          }
+            </Table.Body>
+          </Table>
         </Container>
       );
     }

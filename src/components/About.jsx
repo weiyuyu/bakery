@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container, Header, Image, Icon, List } from 'semantic-ui-react';
-import ShippingTable from './ShippingTable';
 import Zoom from 'react-reveal/Zoom';
 import pickupLocation from './../img/pickup_location.png';
 import pickupLocationStreetView from './../img/pickup_location_streetview.png';
