@@ -149,7 +149,7 @@ export default class Cart extends React.Component {
             <Button
               as={Link}
               to='/checkout'
-              style={{'margin': 50}}
+              style={{'margin': 50, 'fontFamily': 'Cormorant'}}
             >
               Checkout
             </Button>

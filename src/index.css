@@ -9,6 +9,10 @@ body {
   background: #FFF;
 }
 
+#pickupDropdown, #pickupTimeDropdown {
+  margin-top: 10px;
+}
+
 @media screen and (min-width: 800px) {
   #imageContainer {
     width: 27%;
