@@ -4,6 +4,7 @@ import Home from './Home';
 import About from './About';
 import Order from './Order';
 import Cart from './Cart';
+import Checkout from './Checkout';
 
 export default class Main extends React.Component {
   constructor(){
@@ -46,6 +47,7 @@ export default class Main extends React.Component {
           <Route exact path='/about' component={About}/>
           <Route exact path='/order' render={(props) => <Order addItemToCart={this.addItemToCart} removeItemFromCart={this.removeItemFromCart} cart={this.state.cart} addCartTotal={this.props.addCartTotal} removeCartTotal={this.props.removeCartTotal}/>} />
           <Route exact path='/cart' render={(props) => <Cart cart={this.state.cart} cartTotal={this.props.cartTotal}/>} />
+          <Route exact path='/checkout' component={Checkout}/>
         </Switch>
       </main>
     );
