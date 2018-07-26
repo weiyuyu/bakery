@@ -5886,6 +5886,12 @@ react-error-overlay@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/react-error-overlay/-/react-error-overlay-4.0.0.tgz#d198408a85b4070937a98667f500c832f86bd5d4"
 
+react-html-email@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/react-html-email/-/react-html-email-3.0.0.tgz#a5a51b78271a33daf9b14638e9e4c5df93f691aa"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-placeholder@^3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/react-placeholder/-/react-placeholder-3.0.1.tgz#fa6e915f41ce8da66eb10a4aa6d87d31e50aeaaa"
