@@ -33,10 +33,10 @@ export default class Main extends React.Component {
   removeItemFromCart(oldItem, bundle) {
     let cart = this.state.cart;
     if(cart[oldItem][bundle] && cart[oldItem][bundle] > 0) {
-      cart[oldItem][bundle] -= 1;
-      this.props.removeCartTotal();
+      this.props.removeCartTotal(cart[oldItem][bundle]);
+      cart[oldItem][bundle] = 0;
     }
-    this.setState({cart: cart})
+    this.setState({cart: cart});
   }
 
   render() {
@@ -45,8 +45,8 @@ export default class Main extends React.Component {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route exact path='/about' component={About}/>
-          <Route exact path='/order' render={(props) => <Order addItemToCart={this.addItemToCart} removeItemFromCart={this.removeItemFromCart} cart={this.state.cart} addCartTotal={this.props.addCartTotal} removeCartTotal={this.props.removeCartTotal}/>} />
-          <Route exact path='/cart' render={(props) => <Cart cart={this.state.cart} cartTotal={this.props.cartTotal}/>} />
+          <Route exact path='/order' render={(props) => <Order addItemToCart={this.addItemToCart} cart={this.state.cart} addCartTotal={this.props.addCartTotal} removeCartTotal={this.props.removeCartTotal}/>} />
+          <Route exact path='/cart' render={(props) => <Cart cart={this.state.cart} cartTotal={this.props.cartTotal} removeItemFromCart={this.removeItemFromCart}/>} />
           <Route exact path='/checkout' render={(props) => <Checkout cart={this.state.cart} />} />
         </Switch>
       </main>

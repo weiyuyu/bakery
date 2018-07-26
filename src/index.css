@@ -13,6 +13,10 @@ body {
   margin-top: 10px;
 }
 
+.cartRemoveIcon:hover {
+  opacity: 0.3;
+}
+
 @media screen and (min-width: 800px) {
   #imageContainer {
     width: 27%;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, Container, Table, Header, Button } from 'semantic-ui-react';
+import { Image, Container, Table, Header, Button, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 
@@ -57,6 +57,21 @@ const prices = {
 
 
 export default class Cart extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      refresh: false
+    };
+  }
+
+  handleRemoveClick = (name, bundle) => {
+    console.log('[Removing]');
+    console.log(name);
+    console.log(bundle);
+    this.props.removeItemFromCart(name, bundle);
+    this.setState(this.state);
+  }
+
   render() {
     const { containerStyle } = styles;
 
@@ -122,13 +137,25 @@ export default class Cart extends React.Component {
                         </Table.Cell>
                         <Table.Cell style={{'fontFamily': 'Cormorant'}}>
                           {
-                            (item[1]["boxOfFour"]) && <p>4<span style={{'fontFamily': 'cwTexMing'}}>入組</span>： {`${item[1]["boxOfFour"]}`}</p>
+                            (item[1]["boxOfFour"]>0) &&
+                            <div style={{'display': 'flex'}}>
+                              <p style={{'flex': 5}}>4<span style={{'fontFamily': 'cwTexMing'}}>入組</span>： {`${item[1]["boxOfFour"]}`}</p>
+                              <Icon className="cartRemoveIcon" name='remove' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "boxOfFour")}/>
+                            </div>
                           }
                           {
-                            (item[1]["boxOfSix"]) && <p>6<span style={{'fontFamily': 'cwTexMing'}}>入組</span>： {`${item[1]["boxOfSix"]}`}</p>
+                            (item[1]["boxOfSix"]>0) &&
+                            <div style={{'display': 'flex'}}>
+                              <p style={{'flex': 5}}>6<span style={{'fontFamily': 'cwTexMing'}}>入組</span>： {`${item[1]["boxOfSix"]}`}</p>
+                              <Icon className="cartRemoveIcon" name='remove' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "boxOfSix")}/>
+                            </div>
                           }
                           {
-                            (item[1]["one"]) && <p><span style={{'fontFamily': 'cwTexMing'}}>份數</span>： {`${item[1]["one"]}`}</p>
+                            (item[1]["one"]>0) &&
+                            <div style={{'display': 'flex'}}>
+                              <p style={{'flex': 5}}><span style={{'fontFamily': 'cwTexMing'}}>份數</span>： {`${item[1]["one"]}`}</p>
+                              <Icon className="cartRemoveIcon" name='remove' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "one")}/>
+                            </div>
                           }
                         </Table.Cell>
                         <Table.Cell style={{'textAlign': 'right', 'fontFamily': 'Cormorant'}}>

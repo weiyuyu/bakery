@@ -18,8 +18,8 @@ export default class App extends React.Component {
     this.setState({cartTotal: this.state.cartTotal + quantity});
   }
 
-  removeCartTotal = () => {
-    this.setState({cartTotal: this.state.cartTotal-1});
+  removeCartTotal = (quantity) => {
+    this.setState({cartTotal: this.state.cartTotal - quantity});
   }
 
   render() {

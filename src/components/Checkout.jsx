@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button, Message } from 'semantic-ui-react';
 import Moment from 'react-moment';
+import Confirm from './Confirm';
 
 const styles = {
   formStyle: {
@@ -96,9 +97,11 @@ export default class Checkout extends React.Component {
       error: false,
       shippingSelected: null
     }
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleConfirmClick = this.handleConfirmClick.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.sendEmail = this.sendEmail.bind(this);
   }
 
   handleConfirmClick = (e) => {
@@ -386,7 +389,7 @@ export default class Checkout extends React.Component {
 
     if(isConfirm) {
       return (
-        <h1> Confirm </h1>
+        <Confirm />
       );
     } else {
       return (
