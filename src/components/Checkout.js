@@ -88,6 +88,9 @@ export default class Checkout extends React.Component {
       phone: null,
       comments: '無',
       shippingTime: null,
+      shippingAddress: null,
+      recipientPhone: null,
+      recipientName: null,
       loading: false,
       success: false,
       error: false,
@@ -99,8 +102,25 @@ export default class Checkout extends React.Component {
   }
 
   handleConfirmClick = (e) => {
-    e.preventDefault();
-    this.setState({isConfirm: true});
+    let formCompleted = true;
+    if(!this.state.name || !this.state.email || !this.state.phone) {
+      formCompleted = false;
+    }
+    if(this.state.shippingSelected === null && this.state.pickupSelected === null) {
+      formCompleted = false
+    }
+
+    if(this.state.shippingSelected === true ) {
+      if(!this.state.shippingTime || !this.state.shippingAddress || !this.state.recipientName || !this.state.recipientPhone) {
+        formCompleted = false;
+      }
+    }
+
+    if(formCompleted){
+      this.setState({isConfirm: true});
+    } else{
+      this.setState({error: true});
+    }
   };
 
   handleNameInput = (e) => {
@@ -117,6 +137,18 @@ export default class Checkout extends React.Component {
 
   handleCommentsInput = (e) => {
     this.setState({comments: e.target.value});
+  };
+
+  handleShippingAddressChange = (e) => {
+    this.setState({shippingAddress: e.target.value});
+  };
+
+  handleRecipientNameChange = (e) => {
+    this.setState({recipientName: e.target.value});
+  };
+
+  handleRecipientPhoneChange = (e) => {
+    this.setState({recipientPhone: e.target.value});
   };
 
   handlePickupDropdownChange = (e, selection) => {
@@ -147,8 +179,10 @@ export default class Checkout extends React.Component {
       formCompleted = false
     }
 
-    if(this.state.shippingSelected === true && this.state.shippingTime === null) {
-      formCompleted = false;
+    if(this.state.shippingSelected === true ) {
+      if(!this.state.shippingTime || !this.state.shippingAddress || !this.state.recipientName || !this.state.recipientPhone) {
+        formCompleted = false;
+      }
     }
 
     if(formCompleted) {
@@ -365,7 +399,16 @@ export default class Checkout extends React.Component {
           <Form.Group widths='equal' style={formGroupStyle}>
             <Form.Input required label='聯絡電話' placeholder='0912-345-678' onChange={this.handlePhoneInput}/>
             {
-              (shippingSelected) && <Form.Dropdown id="shippingTimeDropdown" required label='宅配時間' placeholder='宅配時間' options={shippingTimeOptions} onChange={this.handleShippingTimeDropdownChange}/>
+              (shippingSelected) && <Form.Input required label='收件地址' placeholder='臺北市大安區信義路5段999號10F' onChange={this.handleShippingAddressChange}/>
+            }
+            {
+              (shippingSelected) && <Form.Input required label='收件人姓名' placeholder='劉人語' onChange={this.handleRecipientNameChange}/>
+            }
+            {
+              (shippingSelected) && <Form.Input required label='收件人電話' placeholder='0912-345-678' onChange={this.handleRecipientPhoneChange}/>
+            }
+            {
+              (shippingSelected) && <Form.Dropdown id="shippingTimeDropdown" required label='收件時間' placeholder='收件時間' options={shippingTimeOptions} onChange={this.handleShippingTimeDropdownChange}/>
             }
             <Form.Input label='備註/其他' placeholder="想對Janet's Bakery說些什麼？" onChange={this.handleCommentsInput}/>
           </Form.Group>

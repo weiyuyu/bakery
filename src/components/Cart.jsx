@@ -28,7 +28,7 @@ const styles = {
 const nameEnglish = {
   '肉桂捲': 'Cinnamon Roll',
   '奶油乳酪抹醬': 'Cream Cheese Spread',
-  '原味司康': 'Standard Scone',
+  '原味司康': 'Original Scone',
   '伯爵茶司康': 'Earl Grey Scone',
   '綜合司康': 'Assorted Scone',
 };

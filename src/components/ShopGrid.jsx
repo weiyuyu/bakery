@@ -28,7 +28,7 @@ const items = [
   {
     "id": 3,
     "name": "原味司康",
-    "nameEnglish": "Standard Scone",
+    "nameEnglish": "Original Scone",
     "price": {
       "boxOfFour": 340,
       "boxOfSix": 480
