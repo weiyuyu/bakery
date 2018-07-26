@@ -2,9 +2,9 @@ import React from 'react';
 import CustomerForm from './CustomerForm';
 import Zoom from 'react-reveal/Zoom';
 
-const Checkout = () => (
+const Checkout = (props) => (
   <Zoom>
-    <CustomerForm />
+    <CustomerForm cart={props.cart}/>
   </Zoom>
 );
 

@@ -53,7 +53,7 @@ const prices = {
       "boxOfFour": 350,
       "boxOfSix": 510
     },
-}
+};
 
 
 export default class Cart extends React.Component {
