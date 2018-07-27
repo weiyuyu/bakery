@@ -5,7 +5,7 @@ import Confirm from './Confirm';
 
 const styles = {
   formStyle: {
-    'margin': 50,
+    'margin': 30,
     'textAlign': 'center'
   },
   messageStyle: {
@@ -32,26 +32,26 @@ const styles = {
 
 const pickupOptions = [
   {
-    text: '自取｜Pickup (限台南 / Tainan only)',
+    text: '自取 (限台南)',
     value: 'pickup'
   },
   {
-    text: '宅配｜Delivery',
+    text: '宅配',
     value: 'shipping'
   }
 ];
 
 const shippingTimeOptions = [
   {
-    text: '早上 (13:00前)｜Morning',
+    text: '早上 (13:00前)',
     value: 'morning'
   },
   {
-    text: '下午 (14:00 — 18:00)｜Afternoon',
+    text: '下午 (14:00 - 18:00)',
     value: 'afternoon'
   },
   {
-    text: '不指定｜No Preference',
+    text: '不指定',
     value: 'nopreference'
   }
 ];
@@ -90,6 +90,7 @@ export default class Checkout extends React.Component {
       comments: '無',
       shippingTime: null,
       shippingAddress: null,
+      pickupSelected: null,
       recipientPhone: null,
       recipientName: null,
       loading: false,
@@ -123,6 +124,9 @@ export default class Checkout extends React.Component {
       this.setState({isConfirm: true});
     } else{
       this.setState({error: true});
+      this.timeout = setTimeout(() => {
+        this.setState({error: false});
+      }, 3000);
     }
   };
 
@@ -158,9 +162,11 @@ export default class Checkout extends React.Component {
     switch(selection.value) {
     case 'pickup':
       this.setState({shippingSelected: false});
+      this.setState({pickupSelected: true});
       break;
     case 'shipping':
       this.setState({shippingSelected: true});
+      this.setState({pickupSelected: false});
       break;
     default:
       break;
@@ -384,7 +390,7 @@ export default class Checkout extends React.Component {
 
   render() {
     const date = new Date();
-    const { loading, success, error, shippingSelected, isConfirm } = this.state;
+    const { loading, success, error, shippingSelected, pickupSelected, isConfirm } = this.state;
     const { formStyle, messageStyle, buttonStyle, formGroupStyle } = styles;
 
     if(isConfirm) {
@@ -396,11 +402,11 @@ export default class Checkout extends React.Component {
         <Form loading={loading} success={success} error={error} style={formStyle}>
           <Form.Group widths='equal' style={formGroupStyle}>
             <Form.Input required label='姓名' placeholder='劉人語' onChange={this.handleNameInput}/>
-            <Form.Input required label='Email' placeholder='janetsbakery@gmail.com' onChange={this.handleEmailInput}/>
+            <Form.Input required label='聯絡電話' placeholder='0912-345-678' onChange={this.handlePhoneInput}/>
+            <Form.Input required label='Email' placeholder='janetsbakerytw@gmail.com' onChange={this.handleEmailInput}/>
             <Form.Dropdown id="pickupDropdown" required label='取貨方式' placeholder='取貨方式' options={pickupOptions} onChange={this.handlePickupDropdownChange}/>
           </Form.Group>
           <Form.Group widths='equal' style={formGroupStyle}>
-            <Form.Input required label='聯絡電話' placeholder='0912-345-678' onChange={this.handlePhoneInput}/>
             {
               (shippingSelected) && <Form.Input required label='收件地址' placeholder='臺北市大安區信義路5段999號10F' onChange={this.handleShippingAddressChange}/>
             }
@@ -412,6 +418,9 @@ export default class Checkout extends React.Component {
             }
             {
               (shippingSelected) && <Form.Dropdown id="shippingTimeDropdown" required label='收件時間' placeholder='收件時間' options={shippingTimeOptions} onChange={this.handleShippingTimeDropdownChange}/>
+            }
+            {
+              (pickupSelected) && <h5 style={{'marginLeft': 'auto', 'marginRight': 'auto', 'marginBottom': 30}}> 取貨地點請見「About」</h5>
             }
             <Form.Input label='備註/其他' placeholder="想對Janet's Bakery說些什麼？" onChange={this.handleCommentsInput}/>
           </Form.Group>

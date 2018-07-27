@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, Button, Image, Modal, Divider, Dropdown, TransitionablePortal, Form, Popup } from 'semantic-ui-react';
+import { Card, Button, Image, Modal, Divider, Dropdown, TransitionablePortal, Form, Popup, Header } from 'semantic-ui-react';
 import ItemCarousel from './ItemCarousel';
 import { Animated } from 'react-animated-css';
 
@@ -157,7 +157,7 @@ export default class ShopItem extends React.Component {
 
     this.timeout = setTimeout(() => {
       this.setState({ popUpIsOpen: false })
-    }, 2000)
+    }, 1000)
   }
 
   handlePopUpClose = () => {
@@ -200,6 +200,12 @@ export default class ShopItem extends React.Component {
             <Modal.Content style={modalContentStyle}>
               {/* <Image wrapped rounded size='medium' src={thumbnails[this.props.id-1]} style={thumbnailStyle}/> */}
               <ItemCarousel items={images[this.props.id-1]}/>
+              {
+                this.props.itemName === '肉桂捲' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個捲捲都會附上一份自製奶油乳酪抹醬 </Header>
+              }
+              {
+                this.props.itemName === '綜合司康' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個組合裡面都是一半原味司康、一半伯爵茶司康 </Header>
+              }
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>
               <div style={{'display': 'flex', 'justifyContent': 'center', 'marginTop': 20}}>

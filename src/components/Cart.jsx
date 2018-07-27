@@ -85,7 +85,13 @@ export default class Cart extends React.Component {
     if(this.props.cartTotal === 0) {
       return (
         <Container style={containerStyle}>
-          <h2 style={{'margin': 10, 'fontFamily': 'Cormorant'}}> Your cart is empty! Time to pick up some baked goods!</h2>
+          <h2 style={{'margin': 10, 'fontFamily': 'Cormorant', 'fontSize': '1.5rem'}}>
+            Your cart is empty! Time for some
+            <Link to='/order' style={{'color': 'black'}}>
+              <span style={{'textDecoration': 'underline'}}> cinnamon rolls and scones</span>
+            </Link>
+            !
+          </h2>
         </Container>
       );
     } else {
@@ -139,22 +145,22 @@ export default class Cart extends React.Component {
                           {
                             (item[1]["boxOfFour"]>0) &&
                             <div style={{'display': 'flex'}}>
-                              <p style={{'flex': 5}}>4<span style={{'fontFamily': 'cwTexMing'}}>入組</span>： {`${item[1]["boxOfFour"]}`}</p>
-                              <Icon className="cartRemoveIcon" name='remove' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "boxOfFour")}/>
+                              <p style={{'flex': 5}}>4<span style={{'fontFamily': 'cwTexMing'}}>入組</span> <span style={{'fontFamily': 'Cormorant'}}>{`($${prices[item[0]]["boxOfFour"]})`}</span>： {`${item[1]["boxOfFour"]}`}</p>
+                              <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "boxOfFour")}/>
                             </div>
                           }
                           {
                             (item[1]["boxOfSix"]>0) &&
                             <div style={{'display': 'flex'}}>
-                              <p style={{'flex': 5}}>6<span style={{'fontFamily': 'cwTexMing'}}>入組</span>： {`${item[1]["boxOfSix"]}`}</p>
-                              <Icon className="cartRemoveIcon" name='remove' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "boxOfSix")}/>
+                              <p style={{'flex': 5}}>6<span style={{'fontFamily': 'cwTexMing'}}>入組</span> <span style={{'fontFamily': 'Cormorant'}}>{`($${prices[item[0]]["boxOfSix"]})`}</span> ： {`${item[1]["boxOfSix"]}`}</p>
+                              <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "boxOfSix")}/>
                             </div>
                           }
                           {
                             (item[1]["one"]>0) &&
                             <div style={{'display': 'flex'}}>
-                              <p style={{'flex': 5}}><span style={{'fontFamily': 'cwTexMing'}}>份數</span>： {`${item[1]["one"]}`}</p>
-                              <Icon className="cartRemoveIcon" name='remove' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "one")}/>
+                              <p style={{'flex': 5}}><span style={{'fontFamily': 'cwTexMing'}}>份數</span> <span style={{'fontFamily': 'Cormorant'}}>{`($${prices[item[0]]["one"]})`}</span> ： {`${item[1]["one"]}`}</p>
+                              <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "one")}/>
                             </div>
                           }
                         </Table.Cell>

@@ -61,10 +61,10 @@ export default class Home extends React.Component {
             </Fade>
           </div>
         </Container>
-        <Container text style={{'marginTop': 100, 'marginBottom': 30}}>
+        <Container text style={{'marginTop': 100, 'marginBottom': 100}}>
           <Header size='medium' as='a' href='mailto:janetsbakerytw@gmail.com' style={{'fontWeight': 400, 'fontFamily': 'Cormorant', 'fontSize': 15}}> Contact Us </Header>
           <p style={{'fontSize': 15}} />
-          <Header size='medium' as={Link} to='/about' style={{'fontWeight': 400, 'fontFamily': 'Cormorant', 'fontSize': 15}}> Shipping </Header>
+          <Header size='medium' as={Link} to='/about' style={{'fontWeight': 400, 'fontFamily': 'Cormorant', 'fontSize': 15, 'marginBottom': 30}}> Shipping </Header>
         </Container>
       </Container>
     );
