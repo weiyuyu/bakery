@@ -17,6 +17,12 @@ body {
   opacity: 0.3;
 }
 
+#tr-footer{
+  height: 100px;
+  width:100%;
+  background:transparent;
+}
+
 @media screen and (min-width: 800px) {
   #imageContainer {
     width: 27%;
@@ -28,5 +34,11 @@ body {
   .ui.modal {
     width: 450px;
     margin: 0;
+  }
+
+  #tr-footer{
+    height: 20px;
+    width:100%;
+    background:transparent;
   }
 }

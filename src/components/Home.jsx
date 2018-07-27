@@ -27,7 +27,7 @@ export default class Home extends React.Component {
   render() {
     const { containerStyle, imageStyle, buttonStyle } = styles;
     return (
-      <Container fluid style={{'marginBottom': 50}}>
+      <Container fluid>
         <Container id="imageContainer" style={containerStyle}>
           <Fade left>
             <Image id="landingImage" src={logo} style={imageStyle} size='large' />
@@ -66,6 +66,7 @@ export default class Home extends React.Component {
           <p style={{'fontSize': 15}} />
           <Header size='medium' as={Link} to='/about' style={{'fontWeight': 400, 'fontFamily': 'Cormorant', 'fontSize': 15, 'marginBottom': 30}}> Shipping </Header>
         </Container>
+        <div id='tr-footer'></div>
       </Container>
     );
   }
