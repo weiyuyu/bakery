@@ -102,8 +102,6 @@ export default class Checkout extends React.Component {
     this.handleConfirmClick = this.handleConfirmClick.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
     this.handleEmailInput = this.handleEmailInput.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.sendEmail = this.sendEmail.bind(this);
   }
 
   handleConfirmClick = (e) => {
@@ -123,7 +121,11 @@ export default class Checkout extends React.Component {
     }
 
     if(formCompleted){
-      this.setState({isConfirm: true});
+      this.setState({loading: true});
+      this.timeout = setTimeout(() => {
+        this.setState({loading: false});
+        this.setState({isConfirm: true});
+      }, 1000);
     } else{
       this.setState({error: true});
       this.timeout = setTimeout(() => {
@@ -177,32 +179,6 @@ export default class Checkout extends React.Component {
 
   handleShippingTimeDropdownChange = (e, selection) => {
     this.setState({shippingTime: selection.value});
-  };
-
-  handleSubmit = (e) => {
-    e.preventDefault();
-
-    let formCompleted = true;
-    if(!this.state.name || !this.state.email || !this.state.phone) {
-      formCompleted = false;
-    }
-    if(this.state.shippingSelected === null && this.state.pickupSelected === null) {
-      formCompleted = false
-    }
-
-    if(this.state.shippingSelected === true ) {
-      if(!this.state.shippingTime || !this.state.shippingAddress || !this.state.recipientName || !this.state.recipientPhone) {
-        formCompleted = false;
-      }
-    }
-
-    if(formCompleted) {
-      this.setState({error: false});
-      this.setState({loading: true});
-      this.sendEmail('confirmation_email', this.state.email, this.getDetails(), this.state.comments, this.state.phone, this.state.name, this.getCostString(), this.getShippingCost(), this.getTotalCost(this.getShippingCost()));
-    } else {
-      this.setState({error: true});
-    }
   };
 
   getCostString() {
@@ -365,31 +341,6 @@ export default class Checkout extends React.Component {
     return details;
   }
 
-  sendEmail(templateId, email, details, comments, phone, customerName, costString, shippingCost, totalCost) {
-    let paymentDate = this.refs.paymentDate.state.content;
-    window.emailjs.send(
-      'default_service',
-      templateId,
-      {
-        email,
-        details,
-        comments,
-        phone,
-        customerName,
-        costString,
-        shippingCost,
-        totalCost,
-        paymentDate
-      })
-      .then(res => {
-        this.setState({loading: false});
-        this.setState({success: true});
-        console.log('Email sent');
-      })
-      // Handle errors here however you like, or use a React error boundary
-      .catch(err => console.error('Failed to send email. Error: ', err))
-  }
-
   render() {
     console.log(this.getShippingCost());
     console.log(this.getTotalCost());
@@ -397,25 +348,28 @@ export default class Checkout extends React.Component {
     const { loading, success, error, shippingSelected, pickupSelected, isConfirm } = this.state;
     const { formStyle, messageStyle, buttonStyle, formGroupStyle } = styles;
 
-    // if(isConfirm) {
-    //   return (
-    //     <Fade bottom>
-    //       <Confirm
-    //         cart={this.props.cart}
-    //         shippingCost={this.getShippingCost()}
-    //         totalCost={this.getTotalCost()}
-    //         shippingSelected={this.state.shippingSelected}
-    //         pickupSelected={this.state.pickupSelected}
-    //         name={this.state.name}
-    //         email={this.state.email}
-    //         phone={this.state.phone}
-    //         shippingTime={this.state.shippingTime}
-    //         recipientName={this.state.recipientName}
-    //         recipientPhone={this.state.recipientPhone}
-    //       />
-    //     </Fade>
-    //   );
-    // } else {
+    if(isConfirm) {
+      return (
+        <Confirm
+          cart={this.props.cart}
+          shippingCost={this.getShippingCost()}
+          totalCost={this.getTotalCost()}
+          shippingSelected={this.state.shippingSelected}
+          pickupSelected={this.state.pickupSelected}
+          name={this.state.name}
+          email={this.state.email}
+          phone={this.state.phone}
+          shippingTime={this.state.shippingTime}
+          recipientName={this.state.recipientName}
+          recipientPhone={this.state.recipientPhone}
+          comments={this.state.comments}
+          handleSubmit={this.handleSubmit}
+          success={this.state.success}
+          costString={this.getCostString()}
+          details={this.getDetails()}
+        />
+      );
+    } else {
       return (
         <Fade bottom>
           <Form loading={loading} success={success} error={error} style={formStyle}>
@@ -449,12 +403,6 @@ export default class Checkout extends React.Component {
             <Button style={buttonStyle} onClick={this.handleConfirmClick}> Confirm </Button>
             <Moment ref="paymentDate" format="YYYY/MM/DD" add={{ days: 5 }} style={{'display': 'block', 'color': 'transparent'}}>{date}</Moment>
             <Message
-              success
-              header='Order Completed'
-              content="We've placed your order! Check your inbox for a confirmation email."
-              style={messageStyle}
-            />
-            <Message
               error
               header='Fields Incomplete'
               content="Please fill in all required fields."
@@ -464,5 +412,5 @@ export default class Checkout extends React.Component {
         </Fade>
       );
     }
-  // }
+  }
 };
