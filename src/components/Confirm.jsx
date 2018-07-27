@@ -2,6 +2,7 @@ import React from 'react';
 import { Image, Container, Table, Header, List, Icon, Button } from 'semantic-ui-react';
 import Fade from 'react-reveal/Fade';
 import Moment from 'react-moment';
+import uniqid from 'uniqid';
 
 import cinnamon from './../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG';
 import cream from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F394F.JPG';
@@ -82,6 +83,7 @@ class Confirm extends React.Component {
     this.state = {
       loading: false,
       isComplete: false,
+      isFailed: false
     };
   }
 
@@ -93,11 +95,13 @@ class Confirm extends React.Component {
 
   sendEmail(templateId, email, details, comments, phone, customerName, costString, shippingCost, totalCost) {
     let paymentDate = this.refs.paymentDate.state.content;
+    let id = uniqid('reyi-');
     window.emailjs.send(
       'default_service',
       templateId,
       {
         email,
+        id,
         details,
         comments,
         phone,
@@ -113,12 +117,16 @@ class Confirm extends React.Component {
         console.log('Email sent');
       })
       // Handle errors here however you like, or use a React error boundary
-      .catch(err => console.error('Failed to send email. Error: ', err))
+      .catch(err => {
+        this.setState({loading: false});
+        this.setState({isFailed: true});
+        console.error('Failed to send email. Error: ', err)
+      });
   }
 
   render() {
     const { containerStyle, headerStyle, listItemStyle, buttonStyle } = styles;
-    const { loading, isComplete } = this.state;
+    const { loading, isComplete, isFailed } = this.state;
     const date = new Date();
 
     let totalPrice = 0;
@@ -133,6 +141,15 @@ class Confirm extends React.Component {
           <h2 style={{'margin': 10, 'fontFamily': 'cwTexMing', 'fontSize': '1.3rem'}}>
             訂購成功！<br/>
             請至您的信箱中收取確認信件及匯款資訊！
+          </h2>
+        </Fade>
+      );
+    } else if(isFailed) {
+      return (
+        <Fade style={{'justifyContent': 'center', 'padding': 20, 'paddingBottom': 5}}>
+          <h2 style={{'margin': 10, 'fontFamily': 'cwTexMing', 'fontSize': '1.3rem'}}>
+            訂購失敗！<br/>
+            請確認各欄位是否填寫正確並重試！
           </h2>
         </Fade>
       );
