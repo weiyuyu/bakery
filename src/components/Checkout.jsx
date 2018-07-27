@@ -1,6 +1,7 @@
 import React from 'react';
 import { Form, Button, Message } from 'semantic-ui-react';
 import Moment from 'react-moment';
+import Fade from 'react-reveal/Fade';
 import Confirm from './Confirm';
 
 const styles = {
@@ -91,12 +92,12 @@ export default class Checkout extends React.Component {
       shippingTime: null,
       shippingAddress: null,
       pickupSelected: null,
+      shippingSelected: null,
       recipientPhone: null,
       recipientName: null,
       loading: false,
       success: false,
-      error: false,
-      shippingSelected: null
+      error: false
     }
     this.handleConfirmClick = this.handleConfirmClick.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
@@ -106,6 +107,7 @@ export default class Checkout extends React.Component {
   }
 
   handleConfirmClick = (e) => {
+    e.preventDefault();
     let formCompleted = true;
     if(!this.state.name || !this.state.email || !this.state.phone) {
       formCompleted = false;
@@ -303,7 +305,7 @@ export default class Checkout extends React.Component {
     return shippingCost;
   }
 
-  getTotalCost(shippingCost) {
+  getTotalCost() {
     let totalItemCost = 0;
     let cart = this.props.cart;
     let cartItems = Object.keys(cart).map(function(key) {
@@ -329,7 +331,7 @@ export default class Checkout extends React.Component {
       }
     });
 
-    let totalCost = totalItemCost + shippingCost;
+    let totalCost = totalItemCost + this.getShippingCost();
     return totalCost;
   }
 
@@ -389,57 +391,78 @@ export default class Checkout extends React.Component {
   }
 
   render() {
+    console.log(this.getShippingCost());
+    console.log(this.getTotalCost());
     const date = new Date();
     const { loading, success, error, shippingSelected, pickupSelected, isConfirm } = this.state;
     const { formStyle, messageStyle, buttonStyle, formGroupStyle } = styles;
 
-    if(isConfirm) {
+    // if(isConfirm) {
+    //   return (
+    //     <Fade bottom>
+    //       <Confirm
+    //         cart={this.props.cart}
+    //         shippingCost={this.getShippingCost()}
+    //         totalCost={this.getTotalCost()}
+    //         shippingSelected={this.state.shippingSelected}
+    //         pickupSelected={this.state.pickupSelected}
+    //         name={this.state.name}
+    //         email={this.state.email}
+    //         phone={this.state.phone}
+    //         shippingTime={this.state.shippingTime}
+    //         recipientName={this.state.recipientName}
+    //         recipientPhone={this.state.recipientPhone}
+    //       />
+    //     </Fade>
+    //   );
+    // } else {
       return (
-        <Confirm />
-      );
-    } else {
-      return (
-        <Form loading={loading} success={success} error={error} style={formStyle}>
-          <Form.Group widths='equal' style={formGroupStyle}>
-            <Form.Input required label='姓名' placeholder='劉人語' onChange={this.handleNameInput}/>
-            <Form.Input required label='聯絡電話' placeholder='0912-345-678' onChange={this.handlePhoneInput}/>
-            <Form.Input required label='Email' placeholder='janetsbakerytw@gmail.com' onChange={this.handleEmailInput}/>
-            <Form.Dropdown id="pickupDropdown" required label='取貨方式' placeholder='取貨方式' options={pickupOptions} onChange={this.handlePickupDropdownChange}/>
-          </Form.Group>
-          <Form.Group widths='equal' style={formGroupStyle}>
-            {
-              (shippingSelected) && <Form.Input required label='收件地址' placeholder='臺北市大安區信義路5段999號10F' onChange={this.handleShippingAddressChange}/>
-            }
-            {
-              (shippingSelected) && <Form.Input required label='收件人姓名' placeholder='劉人語' onChange={this.handleRecipientNameChange}/>
-            }
-            {
-              (shippingSelected) && <Form.Input required label='收件人電話' placeholder='0912-345-678' onChange={this.handleRecipientPhoneChange}/>
-            }
-            {
-              (shippingSelected) && <Form.Dropdown id="shippingTimeDropdown" required label='收件時間' placeholder='收件時間' options={shippingTimeOptions} onChange={this.handleShippingTimeDropdownChange}/>
-            }
-            {
-              (pickupSelected) && <h5 style={{'marginLeft': 'auto', 'marginRight': 'auto', 'marginBottom': 30}}> 取貨地點請見「About」</h5>
-            }
-            <Form.Input label='備註/其他' placeholder="想對Janet's Bakery說些什麼？" onChange={this.handleCommentsInput}/>
-          </Form.Group>
-          <Button style={buttonStyle} onClick={this.handleConfirmClick}> Confirm </Button>
-          <Moment ref="paymentDate" format="YYYY/MM/DD" add={{ days: 5 }} style={{'display': 'block', 'color': 'transparent'}}>{date}</Moment>
-          <Message
-            success
-            header='Order Completed'
-            content="We've placed your order! Check your inbox for a confirmation email."
-            style={messageStyle}
-          />
-          <Message
-            error
-            header='Fields Incomplete'
-            content="Please fill in all required fields."
-            style={messageStyle}
-          />
-        </Form>
+        <Fade bottom>
+          <Form loading={loading} success={success} error={error} style={formStyle}>
+            <Form.Group widths='equal' style={formGroupStyle}>
+              <Form.Input required label='姓名' placeholder='劉人語' onChange={this.handleNameInput}/>
+              <Form.Input required label='聯絡電話' placeholder='0912-345-678' onChange={this.handlePhoneInput}/>
+              <Form.Input required label='Email' placeholder='janetsbakerytw@gmail.com' onChange={this.handleEmailInput}/>
+              <Form.Dropdown id="pickupDropdown" required label='取貨方式' placeholder='取貨方式' options={pickupOptions} onChange={this.handlePickupDropdownChange}/>
+            </Form.Group>
+            <Form.Group widths='equal' style={formGroupStyle}>
+              {
+                (shippingSelected) && <Form.Input required label='收件地址' placeholder='臺北市大安區信義路5段999號10F' onChange={this.handleShippingAddressChange}/>
+              }
+              {
+                (shippingSelected) && <Form.Input required label='收件人姓名' placeholder='劉人語' onChange={this.handleRecipientNameChange}/>
+              }
+              {
+                (shippingSelected) && <Form.Input required label='收件人電話' placeholder='0912-345-678' onChange={this.handleRecipientPhoneChange}/>
+              }
+              {
+                (shippingSelected) && <Form.Dropdown id="shippingTimeDropdown" required label='收件時間' placeholder='收件時間' options={shippingTimeOptions} onChange={this.handleShippingTimeDropdownChange}/>
+              }
+              {
+                (pickupSelected) &&
+                <div id="pickupLocationInstructions" style={{'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center', 'width': '100%'}}>
+                  <h5 style={{'marginLeft': 'auto', 'marginRight': 'auto', 'marginTop': 'auto', 'marginBottom': 'auto', 'flex': 1}}> 取貨地點請見「About」</h5>
+                </div>
+              }
+              <Form.Input label='備註/其他' placeholder="想對Janet's Bakery說些什麼？" onChange={this.handleCommentsInput}/>
+            </Form.Group>
+            <Button style={buttonStyle} onClick={this.handleConfirmClick}> Confirm </Button>
+            <Moment ref="paymentDate" format="YYYY/MM/DD" add={{ days: 5 }} style={{'display': 'block', 'color': 'transparent'}}>{date}</Moment>
+            <Message
+              success
+              header='Order Completed'
+              content="We've placed your order! Check your inbox for a confirmation email."
+              style={messageStyle}
+            />
+            <Message
+              error
+              header='Fields Incomplete'
+              content="Please fill in all required fields."
+              style={messageStyle}
+            />
+          </Form>
+        </Fade>
       );
     }
-  }
+  // }
 };

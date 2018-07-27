@@ -23,14 +23,21 @@ body {
   background:transparent;
 }
 
+#pickupLocationInstructions {
+  margin-bottom: 30px;
+}
+
+
 @media screen and (min-width: 800px) {
   #imageContainer {
     width: 27%;
     height: 27%;
   }
-}
 
-@media screen and (min-width: 800px) {
+  #pickupLocationInstructions {
+    margin-bottom: 0px;
+  }
+
   .ui.modal {
     width: 450px;
     margin: 0;
@@ -40,5 +47,9 @@ body {
     height: 20px;
     width:100%;
     background:transparent;
+  }
+
+  #confirmContainer {
+    margin-top: 20px;
   }
 }

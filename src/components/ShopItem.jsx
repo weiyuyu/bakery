@@ -204,7 +204,7 @@ export default class ShopItem extends React.Component {
                 this.props.itemName === '肉桂捲' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個捲捲都會附上一份自製奶油乳酪抹醬 </Header>
               }
               {
-                this.props.itemName === '綜合司康' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個組合裡面都是一半原味司康、一半伯爵茶司康 </Header>
+                this.props.itemName === '綜合司康' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個組合都是一半原味司康、一半伯爵茶司康 </Header>
               }
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>
