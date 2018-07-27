@@ -130,8 +130,9 @@ class Confirm extends React.Component {
     if(isComplete) {
       return (
         <Fade style={{'justifyContent': 'center', 'padding': 20, 'paddingBottom': 5}}>
-          <h2 style={{'margin': 10, 'fontFamily': 'cwTexMing', 'fontSize': '1.5rem'}}>
-            訂購完成，請至您的信箱中收取確認信件！
+          <h2 style={{'margin': 10, 'fontFamily': 'cwTexMing', 'fontSize': '1.3rem'}}>
+            訂購成功！<br/>
+            請至您的信箱中收取確認信件及匯款資訊！
           </h2>
         </Fade>
       );
