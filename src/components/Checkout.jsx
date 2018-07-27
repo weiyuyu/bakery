@@ -211,6 +211,9 @@ export default class Checkout extends React.Component {
 
   getShippingCost() {
     let shippingCost = 0;
+    if(this.state.pickupSelected) {
+      return 0;
+    }
     let boxesOfFour = 0;
     let boxesOfSix = 0;
     let count = 0;
