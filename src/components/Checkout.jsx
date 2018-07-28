@@ -87,6 +87,7 @@ export default class Checkout extends React.Component {
       isConfirm: false,
       name: null,
       email: null,
+      instagram: null,
       phone: null,
       comments: '無',
       shippingTime: null,
@@ -107,7 +108,7 @@ export default class Checkout extends React.Component {
   handleConfirmClick = (e) => {
     e.preventDefault();
     let formCompleted = true;
-    if(!this.state.name || !this.state.email || !this.state.phone) {
+    if(!this.state.name || !this.state.email || !this.state.instagram || !this.state.phone) {
       formCompleted = false;
     }
     if(this.state.shippingSelected === null && this.state.pickupSelected === null) {
@@ -140,6 +141,10 @@ export default class Checkout extends React.Component {
 
   handleEmailInput = (e) => {
     this.setState({email: e.target.value});
+  };
+
+  handleInstagramInput = (e) => {
+    this.setState({instagram: e.target.value});
   };
 
   handlePhoneInput = (e) => {
@@ -380,6 +385,7 @@ export default class Checkout extends React.Component {
               <Form.Input required label='姓名' placeholder='劉人語' onChange={this.handleNameInput}/>
               <Form.Input required label='聯絡電話' placeholder='0912-345-678' onChange={this.handlePhoneInput}/>
               <Form.Input required label='Email' placeholder='janetsbakerytw@gmail.com' onChange={this.handleEmailInput}/>
+              <Form.Input required label='Instagram' placeholder='@janetsbakery' onChange={this.handleInstagramInput}/>
               <Form.Dropdown id="pickupDropdown" required label='取貨方式' placeholder='取貨方式' options={pickupOptions} onChange={this.handlePickupDropdownChange}/>
             </Form.Group>
             <Form.Group widths='equal' style={formGroupStyle}>
@@ -401,7 +407,7 @@ export default class Checkout extends React.Component {
                   <h5 style={{'marginLeft': 'auto', 'marginRight': 'auto', 'marginTop': 'auto', 'marginBottom': 'auto', 'flex': 1}}> 取貨地點請見「About」</h5>
                 </div>
               }
-              <Form.Input label='備註/其他' placeholder="想對Janet's Bakery說些什麼？" onChange={this.handleCommentsInput}/>
+              <Form.Input label='備註/其他' placeholder="關於此次訂單的特別叮嚀" onChange={this.handleCommentsInput}/>
             </Form.Group>
             <Button style={buttonStyle} onClick={this.handleConfirmClick}> Confirm </Button>
             <Moment ref="paymentDate" format="YYYY/MM/DD" add={{ days: 5 }} style={{'display': 'block', 'color': 'transparent'}}>{date}</Moment>
