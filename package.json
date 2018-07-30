@@ -3,9 +3,11 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.18.0",
     "eslint": "^5.1.0",
     "gh-pages": "^1.2.0",
     "google-maps-react": "^2.0.2",
+    "google-spreadsheet": "^2.0.5",
     "moment": "^2.22.2",
     "moment-timezone": "^0.5.21",
     "react": "^16.4.1",
@@ -38,5 +40,5 @@
     "eslint-plugin-react": "^7.10.0",
     "react-dev-utils": "^5.0.1"
   },
-  "homepage": "http://weiyuyu.github.io/bakery"
+  "homepage": "https://weiyuyu.github.io/bakery"
 }

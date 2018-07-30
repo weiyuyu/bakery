@@ -3,6 +3,7 @@ import { Form, Button, Message } from 'semantic-ui-react';
 import Moment from 'react-moment';
 import Fade from 'react-reveal/Fade';
 import Confirm from './Confirm';
+import { Link } from 'react-router-dom';
 
 const styles = {
   formStyle: {
@@ -77,6 +78,9 @@ const prices = {
       "boxOfFour": 350,
       "boxOfSix": 510
     },
+    "檸檬優格生乳酪蛋糕": {
+      "one": 700
+    }
 };
 
 
@@ -349,6 +353,11 @@ export default class Checkout extends React.Component {
     return details;
   }
 
+  getPickupOption() {
+    if(this.state.pickupSelected) return 'pickup';
+    if(this.state.shippingSelected) return 'shipping';
+  }
+
   render() {
     console.log(this.getShippingCost());
     console.log(this.getTotalCost());
@@ -375,6 +384,9 @@ export default class Checkout extends React.Component {
           success={this.state.success}
           costString={this.getCostString()}
           details={this.getDetails()}
+          instagram={this.state.instagram}
+          pickupOption={this.getPickupOption()}
+          shippingAddress={this.state.shippingAddress}
         />
       );
     } else {
@@ -404,7 +416,12 @@ export default class Checkout extends React.Component {
               {
                 (pickupSelected) &&
                 <div id="pickupLocationInstructions" style={{'display': 'flex', 'justifyContent': 'center', 'alignItems': 'center', 'width': '100%'}}>
-                  <h5 style={{'marginLeft': 'auto', 'marginRight': 'auto', 'marginTop': 'auto', 'marginBottom': 'auto', 'flex': 1}}> 取貨地點請見「About」</h5>
+                  <h5 style={{'marginLeft': 'auto', 'marginRight': 'auto', 'marginTop': 'auto', 'marginBottom': 'auto', 'flex': 1}}>
+                    <span>取貨地點請見 </span>
+                    <Link to='about' style={{'color': 'black'}}>
+                      <span style={{'textDecoration': 'underline'}}>About</span>
+                    </Link>
+                  </h5>
                 </div>
               }
               <Form.Input label='備註/其他' placeholder="關於此次訂單的特別叮嚀" onChange={this.handleCommentsInput}/>

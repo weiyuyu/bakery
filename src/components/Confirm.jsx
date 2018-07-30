@@ -3,19 +3,22 @@ import { Image, Container, Table, Header, List, Icon, Button } from 'semantic-ui
 import Fade from 'react-reveal/Fade';
 import Moment from 'react-moment';
 import uniqid from 'uniqid';
+import axios from 'axios';
 
 import cinnamon from './../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG';
 import cream from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F394F.JPG';
 import standard_scone from './../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG';
 import tea_scone from './../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94D1DE.JPG';
 import mixed_scone from './../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG';
+import lemon_yogurt_cake from './../img/檸檬優格生乳酪蛋糕/1.JPG';
 
 const thumbnails = {
   "肉桂捲": cinnamon,
   "奶油乳酪抹醬": cream,
   "原味司康": standard_scone,
   "伯爵茶司康": tea_scone,
-  "綜合司康": mixed_scone
+  "綜合司康": mixed_scone,
+  "檸檬優格生乳酪蛋糕": lemon_yogurt_cake
 };
 
 const styles = {
@@ -47,6 +50,7 @@ const nameEnglish = {
   '原味司康': 'Original Scone',
   '伯爵茶司康': 'Earl Grey Scone',
   '綜合司康': 'Assorted Scone',
+  "檸檬優格生乳酪蛋糕": "Lemon Yogurt Cheesecake"
 };
 
 const prices = {
@@ -69,6 +73,9 @@ const prices = {
       "boxOfFour": 350,
       "boxOfSix": 510
     },
+    "檸檬優格生乳酪蛋糕": {
+      "one": 700
+    }
 };
 
 const shippingTimes = {
@@ -85,15 +92,27 @@ class Confirm extends React.Component {
       isComplete: false,
       isFailed: false
     };
+
+    this.sendEmail = this.sendEmail.bind(this);
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.setState({loading: true});
-    this.sendEmail('confirmation_email', this.props.email, this.props.details, this.props.comments, this.props.phone, this.props.name, this.props.costString, this.props.shippingCost, this.props.totalCost);
+    this.sendEmail('confirmation_email', this.props.email, this.props.details, this.props.comments, this.props.name, this.props.costString, this.props.shippingCost, this.props.totalCost);
   };
 
-  sendEmail(templateId, email, details, comments, phone, customerName, costString, shippingCost, totalCost) {
+  getSpreadsheetValue = (item, bundle) => {
+    if(!this.props.cart[item]) {
+      return 0;
+    } else if(!this.props.cart[item][bundle]) {
+      return 0;
+    } else {
+      return this.props.cart[item][bundle];
+    }
+  };
+
+  sendEmail(templateId, email, details, comments, customerName, costString, shippingCost, totalCost) {
     let paymentDate = this.refs.paymentDate.state.content;
     let id = uniqid('reyi-');
     window.emailjs.send(
@@ -104,7 +123,6 @@ class Confirm extends React.Component {
         id,
         details,
         comments,
-        phone,
         customerName,
         costString,
         shippingCost,
@@ -116,7 +134,39 @@ class Confirm extends React.Component {
         this.setState({isComplete: true});
         console.log('Email sent');
       })
-      // Handle errors here however you like, or use a React error boundary
+      .then(() => {
+        axios.post('https://janetsbakeryapi.herokuapp.com/', {
+          id: id || '',
+          name: this.props.name || '',
+          phone: this.props.phone || '',
+          instagram: this.props.instagram || '',
+          cinnamonRollFour: this.getSpreadsheetValue("肉桂捲","boxOfFour"),
+          cinnamonRollSix: this.getSpreadsheetValue("肉桂捲","boxOfSix"),
+          creamCheese: this.getSpreadsheetValue("奶油乳酪抹醬","one"),
+          originalSconeFour: this.getSpreadsheetValue("原味司康","boxOfFour"),
+          originalSconeSix: this.getSpreadsheetValue("原味司康","boxOfSix"),
+          teaSconeFour: this.getSpreadsheetValue("伯爵茶司康","boxOfFour"),
+          teaSconeSix: this.getSpreadsheetValue("伯爵茶司康","boxOfSix"),
+          mixedSconeFour: this.getSpreadsheetValue("綜合司康","boxOfFour"),
+          mixedSconeSix: this.getSpreadsheetValue("綜合司康","boxOfSix"),
+          lemonYogurtCake: this.getSpreadsheetValue("檸檬優格生乳酪蛋糕","one"),
+          pickupOption: this.props.pickupOption || '',
+          shippingAddress: this.props.shippingAddress || '',
+          shippingTime: this.props.shippingTime || '',
+          recipientName: this.props.recipientName || '',
+          recipientPhone: this.props.recipientPhone || '',
+          shippingCost: this.props.shippingCost || 0,
+          totalCost: this.props.totalCost || 0,
+          comments: this.props.comments || ''
+        })
+        .then(function (response) {
+          console.log(response);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      })
+      // Handle errors here
       .catch(err => {
         this.setState({loading: false});
         this.setState({isFailed: true});

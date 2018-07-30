@@ -76,6 +76,7 @@ const About = () => {
           <Image src={pickupLocationStreetView} style={mapStyle} rounded bordered/>
         </Zoom>
       </Container>
+      <div id='tr-footer'></div>
     </Container>
   )
 };

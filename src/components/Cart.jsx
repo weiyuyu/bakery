@@ -8,13 +8,15 @@ import cream from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F3
 import standard_scone from './../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG';
 import tea_scone from './../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94D1DE.JPG';
 import mixed_scone from './../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG';
+import lemon_yogurt_cake from './../img/檸檬優格生乳酪蛋糕/1.JPG';
 
 const thumbnails = {
   "肉桂捲": cinnamon,
   "奶油乳酪抹醬": cream,
   "原味司康": standard_scone,
   "伯爵茶司康": tea_scone,
-  "綜合司康": mixed_scone
+  "綜合司康": mixed_scone,
+  "檸檬優格生乳酪蛋糕": lemon_yogurt_cake
 };
 
 const styles = {
@@ -31,6 +33,7 @@ const nameEnglish = {
   '原味司康': 'Original Scone',
   '伯爵茶司康': 'Earl Grey Scone',
   '綜合司康': 'Assorted Scone',
+  "檸檬優格生乳酪蛋糕": "Lemon Yogurt Cheesecake"
 };
 
 const prices = {
@@ -53,6 +56,9 @@ const prices = {
       "boxOfFour": 350,
       "boxOfSix": 510
     },
+    "檸檬優格生乳酪蛋糕": {
+      "one": 700
+    }
 };
 
 
@@ -86,9 +92,9 @@ export default class Cart extends React.Component {
       return (
         <Container style={containerStyle}>
           <h2 style={{'margin': 10, 'fontFamily': 'Cormorant', 'fontSize': '1.5rem'}}>
-            Your cart is empty! Time for some
+            <span>Your cart is empty! Time for some </span>
             <Link to='/order' style={{'color': 'black'}}>
-              <span style={{'textDecoration': 'underline'}}> cinnamon rolls and scones</span>
+              <span style={{'textDecoration': 'underline'}}>cinnamon rolls and scones</span>
             </Link>
             !
           </h2>
@@ -145,21 +151,47 @@ export default class Cart extends React.Component {
                           {
                             (item[1]["boxOfFour"]>0) &&
                             <div style={{'display': 'flex'}}>
-                              <p style={{'flex': 5}}>4<span style={{'fontFamily': 'cwTexMing'}}>入組</span> <span style={{'fontFamily': 'Cormorant'}}>{`($${prices[item[0]]["boxOfFour"]})`}</span>： {`${item[1]["boxOfFour"]}`}</p>
+                              <p style={{'flex': 5}}>
+                                4
+                                <span style={{'fontFamily': 'cwTexMing'}}>入組</span>
+                                <span style={{'fontFamily': 'Cormorant'}}>{` ($${prices[item[0]]["boxOfFour"]})`}</span>
+                                ： {`${item[1]["boxOfFour"]}`}
+                              </p>
                               <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "boxOfFour")}/>
                             </div>
                           }
                           {
                             (item[1]["boxOfSix"]>0) &&
                             <div style={{'display': 'flex'}}>
-                              <p style={{'flex': 5}}>6<span style={{'fontFamily': 'cwTexMing'}}>入組</span> <span style={{'fontFamily': 'Cormorant'}}>{`($${prices[item[0]]["boxOfSix"]})`}</span> ： {`${item[1]["boxOfSix"]}`}</p>
+                              <p style={{'flex': 5}}>
+                                6
+                                <span style={{'fontFamily': 'cwTexMing'}}>入組</span>
+                                <span style={{'fontFamily': 'Cormorant'}}>{` ($${prices[item[0]]["boxOfSix"]})`}</span>
+                                ： {`${item[1]["boxOfSix"]}`}
+                              </p>
                               <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "boxOfSix")}/>
                             </div>
                           }
                           {
-                            (item[1]["one"]>0) &&
+                            (item[1]["one"]>0 && item[0] === "奶油乳酪抹醬") &&
                             <div style={{'display': 'flex'}}>
-                              <p style={{'flex': 5}}><span style={{'fontFamily': 'cwTexMing'}}>份數</span> <span style={{'fontFamily': 'Cormorant'}}>{`($${prices[item[0]]["one"]})`}</span> ： {`${item[1]["one"]}`}</p>
+                              <p style={{'flex': 5}}>
+                                <span style={{'fontFamily': 'cwTexMing'}}>份數</span>
+                                <span style={{'fontFamily': 'Cormorant'}}>{` ($${prices[item[0]]["one"]})`}</span>
+                                ： {`${item[1]["one"]}`}
+                              </p>
+                              <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "one")}/>
+                            </div>
+                          }
+                          {
+                            (item[1]["one"]>0 && item[0] === "檸檬優格生乳酪蛋糕") &&
+                            <div style={{'display': 'flex'}}>
+                              <p style={{'flex': 5}}>
+                                6
+                                <span style={{'fontFamily': 'cwTexMing'}}>吋</span>
+                                <span style={{'fontFamily': 'Cormorant'}}>{` ($${prices[item[0]]["one"]})`}</span>
+                                ： {`${item[1]["one"]}`}
+                              </p>
                               <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "one")}/>
                             </div>
                           }

@@ -18,6 +18,10 @@ import tea_scone3 from './../img/伯爵茶司康/113EECCC-B5DF-43C6-B3EB-DFE9AC9
 
 import mixed_scone1 from './../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG';
 
+import lemon_yogurt_cake1 from './../img/檸檬優格生乳酪蛋糕/1.JPG';
+import lemon_yogurt_cake2 from './../img/檸檬優格生乳酪蛋糕/2.JPG';
+import lemon_yogurt_cake3 from './../img/檸檬優格生乳酪蛋糕/3.JPG';
+
 const styles = {
   cardStyle: {
     'margin': 30,
@@ -106,7 +110,25 @@ const mixed_scone = [
   },
 ];
 
-const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone];
+const lemon_yogurt_cake = [
+  {
+    "id": 10,
+    "file": lemon_yogurt_cake1,
+    "legend": "檸檬優格生乳酪蛋糕"
+  },
+  {
+    "id": 11,
+    "file": lemon_yogurt_cake2,
+    "legend": "檸檬優格生乳酪蛋糕"
+  },
+  {
+    "id": 12,
+    "file": lemon_yogurt_cake3,
+    "legend": "檸檬優格生乳酪蛋糕"
+  },
+];
+
+const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, lemon_yogurt_cake];
 
 export default class ShopItem extends React.Component {
   constructor(props) {

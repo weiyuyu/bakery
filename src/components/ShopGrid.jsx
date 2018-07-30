@@ -51,6 +51,12 @@ const items = [
       "boxOfFour": 350,
       "boxOfSix": 510
     }
+  },
+  {
+    "id": 6,
+    "name": "檸檬優格生乳酪蛋糕",
+    "nameEnglish": "Lemon Yogurt Cheesecake",
+    "price": 700
   }
 ];
 
@@ -81,6 +87,22 @@ export default class ShopGrid extends React.Component {
                   cart={this.props.cart}
                   id={item["id"]}
                   options={[{text: `4入組 . $${item["price"]["boxOfFour"]}`, value: 'boxOfFour'},{text: `6入組 . $${item["price"]["boxOfSix"]}`, value: 'boxOfSix'}]}
+                  key={item["id"]}
+                />
+              );
+            } else if(item["id"] === 6) {
+              return (
+                <ShopItem
+                  itemName={item["name"]}
+                  itemNameEnglish={item["nameEnglish"]}
+                  itemPrice={`$${item["price"]}/1 srv.`}
+                  itemType="single"
+                  itemDescription="itemDescription"
+                  addItemToCart={this.props.addItemToCart}
+                  removeItemFromCart={this.props.removeItemFromCart}
+                  cart={this.props.cart}
+                  id={item["id"]}
+                  options={[{text: `1盒/6吋 . $${item["price"]}`, value: 'one'}]}
                   key={item["id"]}
                 />
               );

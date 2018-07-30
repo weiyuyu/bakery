@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from './components/Navigation';
 import Main from './components/Main';
 import './App.css';
+import axios from 'axios';
 
 export default class App extends React.Component {
   constructor() {
@@ -12,6 +13,19 @@ export default class App extends React.Component {
 
     this.addCartTotal = this.addCartTotal.bind(this);
     this.removeCartTotal = this.removeCartTotal.bind(this);
+  }
+
+  componentDidMount() {
+    axios.get('https://janetsbakeryapi.herokuapp.com/')
+      .then(res => res.data)
+      .then(data => {
+        // handle success
+        console.log(data);
+      })
+      .catch(function (error) {
+        // handle error
+        console.log(error);
+      })
   }
 
   addCartTotal = (quantity) => {

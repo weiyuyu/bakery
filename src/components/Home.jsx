@@ -23,7 +23,6 @@ const styles = {
 }
 
 export default class Home extends React.Component {
-
   render() {
     const { containerStyle, imageStyle, buttonStyle } = styles;
     return (
