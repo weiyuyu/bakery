@@ -218,6 +218,21 @@ export default class Checkout extends React.Component {
     return costString;
   }
 
+  onlyCake() {
+    let cart = this.props.cart;
+    let onlyCake = true;
+
+    if(!cart["檸檬優格生乳酪蛋糕"]) {
+      onlyCake = false;
+    }
+
+    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"]) {
+      onlyCake = false;
+    }
+
+    return onlyCake;
+  }
+
   getShippingCost() {
     let shippingCost = 0;
     if(this.state.pickupSelected) {
@@ -226,6 +241,17 @@ export default class Checkout extends React.Component {
     let boxesOfFour = 0;
     let boxesOfSix = 0;
     let count = 0;
+
+    console.log('[Only Cake]');
+    console.log(this.onlyCake());
+
+    if(this.props.cart["檸檬優格生乳酪蛋糕"]) {
+      let boxesofCake = this.props.cart["檸檬優格生乳酪蛋糕"]["one"];
+      if(this.onlyCake() && boxesofCake <= 2 && boxesofCake > 0) {
+        return 150;
+      }
+    }
+
     let cart = this.props.cart;
     let cartItems = Object.keys(cart).map(function(key) {
       return [key, Object(cart[key])];
@@ -244,6 +270,9 @@ export default class Checkout extends React.Component {
       }
       if(item[1]["boxOfSix"]) {
         boxesOfSix += item[1]["boxOfSix"];
+      }
+      if(item[1]["one"] && item[0]==="檸檬優格生乳酪蛋糕") {
+        boxesOfFour += item[1]["one"];
       }
     });
 

@@ -3,8 +3,9 @@ import { Card, Button, Image, Modal, Divider, Dropdown, TransitionablePortal, Fo
 import ItemCarousel from './ItemCarousel';
 import { Animated } from 'react-animated-css';
 
-import cinnamon1 from './../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG';
-import cinnamon2 from './../img/肉桂捲/1 肉桂卷封面照.JPG';
+import cinnamon1 from './../img/肉桂捲/newCover.JPG';
+import cinnamon2 from './../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG';
+import cinnamon3 from './../img/肉桂捲/1 肉桂卷封面照.JPG';
 
 import cream1 from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F394F.JPG';
 import cream2 from './../img/奶油乳酪抹醬/6A92216A-EB85-4B97-9F53-BF1356EDE851.JPG';
@@ -55,17 +56,22 @@ const cinnamon = [
     "id": 1,
     "file": cinnamon2,
     "legend": "肉桂捲"
+  },
+  {
+    "id": 2,
+    "file": cinnamon3,
+    "legend": "肉桂捲"
   }
 ];
 
 const cream = [
   {
-    "id": 2,
+    "id": 3,
     "file": cream1,
     "legend": "奶油乳酪抹醬"
   },
   {
-    "id": 3,
+    "id": 4,
     "file": cream2,
     "legend": "奶油乳酪抹醬"
   }
@@ -73,12 +79,12 @@ const cream = [
 
 const standard_scone = [
   {
-    "id": 4,
+    "id": 5,
     "file": standard_scone1,
     "legend": "原味司康"
   },
   {
-    "id": 5,
+    "id": 6,
     "file": standard_scone2,
     "legend": "原味司康"
   },
@@ -86,17 +92,17 @@ const standard_scone = [
 
 const tea_scone = [
   {
-    "id": 6,
+    "id": 7,
     "file": tea_scone1,
     "legend": "伯爵茶司康"
   },
   {
-    "id": 7,
+    "id": 8,
     "file": tea_scone2,
     "legend": "伯爵茶司康"
   },
   {
-    "id": 8,
+    "id": 9,
     "file": tea_scone3,
     "legend": "伯爵茶司康"
   },
@@ -104,7 +110,7 @@ const tea_scone = [
 
 const mixed_scone = [
   {
-    "id": 9,
+    "id": 10,
     "file": mixed_scone1,
     "legend": "綜合司康"
   },
@@ -112,17 +118,17 @@ const mixed_scone = [
 
 const lemon_yogurt_cake = [
   {
-    "id": 10,
+    "id": 11,
     "file": lemon_yogurt_cake1,
     "legend": "檸檬優格生乳酪蛋糕"
   },
   {
-    "id": 11,
+    "id": 12,
     "file": lemon_yogurt_cake2,
     "legend": "檸檬優格生乳酪蛋糕"
   },
   {
-    "id": 12,
+    "id": 13,
     "file": lemon_yogurt_cake3,
     "legend": "檸檬優格生乳酪蛋糕"
   },
@@ -227,6 +233,9 @@ export default class ShopItem extends React.Component {
               }
               {
                 this.props.itemName === '綜合司康' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個組合都是一半原味司康、一半伯爵茶司康 </Header>
+              }
+              {
+                this.props.itemName === '檸檬優格生乳酪蛋糕' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 6吋 (約4-5人食用) </Header>
               }
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>
