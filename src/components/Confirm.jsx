@@ -114,7 +114,7 @@ class Confirm extends React.Component {
 
   sendEmail(templateId, email, details, comments, customerName, costString, shippingCost, totalCost) {
     let paymentDate = this.refs.paymentDate.state.content;
-    let id = uniqid('reyi-');
+    let id = uniqid().slice(0,5);
     window.emailjs.send(
       'default_service',
       templateId,
