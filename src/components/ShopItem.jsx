@@ -7,7 +7,7 @@ import cinnamon1 from './../img/肉桂捲/newCover.JPG';
 import cinnamon2 from './../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG';
 import cinnamon3 from './../img/肉桂捲/1 肉桂卷封面照.JPG';
 
-import cream1 from './../img/奶油乳酪抹醬/A7DF2924-D347-4741-8F8E-B7D2B64F394F.JPG';
+import cream1 from './../img/奶油乳酪抹醬/6919182F-0F7A-4FE9-9D91-16AF36DAE911.JPG';
 import cream2 from './../img/奶油乳酪抹醬/6A92216A-EB85-4B97-9F53-BF1356EDE851.JPG';
 
 import standard_scone1 from './../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG';
