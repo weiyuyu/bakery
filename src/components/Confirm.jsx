@@ -139,6 +139,7 @@ class Confirm extends React.Component {
           id: id || '',
           name: this.props.name || '',
           phone: this.props.phone || '',
+          email: this.props.email || '',
           instagram: this.props.instagram || '',
           cinnamonRollFour: this.getSpreadsheetValue("肉桂捲","boxOfFour"),
           cinnamonRollSix: this.getSpreadsheetValue("肉桂捲","boxOfSix"),
