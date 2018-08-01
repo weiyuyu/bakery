@@ -4,6 +4,7 @@ import Moment from 'react-moment';
 import Fade from 'react-reveal/Fade';
 import Confirm from './Confirm';
 import { Link } from 'react-router-dom';
+import validator from 'email-validator';
 
 const styles = {
   formStyle: {
@@ -102,7 +103,8 @@ export default class Checkout extends React.Component {
       recipientName: null,
       loading: false,
       success: false,
-      error: false
+      error: false,
+      emailInvalid: false
     }
     this.handleConfirmClick = this.handleConfirmClick.bind(this);
     this.handleNameInput = this.handleNameInput.bind(this);
@@ -115,6 +117,15 @@ export default class Checkout extends React.Component {
     if(!this.state.name || !this.state.email || !this.state.instagram || !this.state.phone) {
       formCompleted = false;
     }
+
+    let emailValid = validator.validate(this.state.email);
+    if(!emailValid) {
+      this.setState({emailInvalid: true});
+      this.timeout = setTimeout(() => {
+        this.setState({emailInvalid: false});
+      }, 3000);
+    }
+
     if(this.state.shippingSelected === null && this.state.pickupSelected === null) {
       formCompleted = false
     }
@@ -125,13 +136,15 @@ export default class Checkout extends React.Component {
       }
     }
 
-    if(formCompleted){
+    console.log('{EMAIL}: '+emailValid);
+
+    if(formCompleted && emailValid){
       this.setState({loading: true});
       this.timeout = setTimeout(() => {
         this.setState({loading: false});
         this.setState({isConfirm: true});
       }, 1000);
-    } else{
+    } else if(!formCompleted){
       this.setState({error: true});
       this.timeout = setTimeout(() => {
         this.setState({error: false});
@@ -391,7 +404,7 @@ export default class Checkout extends React.Component {
     console.log(this.getShippingCost());
     console.log(this.getTotalCost());
     const date = new Date();
-    const { loading, success, error, shippingSelected, pickupSelected, isConfirm } = this.state;
+    const { loading, success, error, shippingSelected, pickupSelected, isConfirm, emailInvalid } = this.state;
     const { formStyle, messageStyle, buttonStyle, formGroupStyle } = styles;
 
     if(isConfirm) {
@@ -457,12 +470,22 @@ export default class Checkout extends React.Component {
             </Form.Group>
             <Button style={buttonStyle} onClick={this.handleConfirmClick}> Confirm </Button>
             <Moment ref="paymentDate" format="YYYY/MM/DD" add={{ days: 5 }} style={{'display': 'block', 'color': 'transparent'}}>{date}</Moment>
-            <Message
-              error
-              header='Fields Incomplete'
-              content="Please fill in all required fields."
-              style={messageStyle}
-            />
+            {
+              error && <Message
+                error
+                header='Fields Incomplete'
+                content="Please fill in all required fields."
+                style={messageStyle}
+              />
+            }
+            {
+              emailInvalid && <Message
+                color='yellow'
+                header='Email Invalid'
+                content='Please fill in a valid email address'
+                style={messageStyle}
+              />
+            }
           </Form>
         </Fade>
       );
