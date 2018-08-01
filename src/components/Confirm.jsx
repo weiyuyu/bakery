@@ -112,6 +112,23 @@ class Confirm extends React.Component {
     }
   };
 
+  getShippingTime = (time) => {
+    switch(time) {
+      case 'morning':
+        return '下午13:00前';
+        break;
+      case 'afternoon':
+        return '14:00-18:00';
+        break;
+      case 'nopreference':
+        return '不指定';
+        break;
+      default:
+        return '';
+        break;
+    }
+  };
+
   sendEmail(templateId, email, details, comments, customerName, costString, shippingCost, totalCost) {
     let paymentDate = this.refs.paymentDate.state.content;
     let id = uniqid().slice(0,5);
@@ -153,7 +170,7 @@ class Confirm extends React.Component {
           lemonYogurtCake: this.getSpreadsheetValue("檸檬優格生乳酪蛋糕","one"),
           pickupOption: this.props.pickupOption || '',
           shippingAddress: this.props.shippingAddress || '',
-          shippingTime: this.props.shippingTime || '',
+          shippingTime: this.getShippingTime(this.props.shippingTime) || '',
           recipientName: this.props.recipientName || '',
           recipientPhone: this.props.recipientPhone || '',
           shippingCost: this.props.shippingCost || 0,

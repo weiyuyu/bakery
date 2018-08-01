@@ -396,8 +396,8 @@ export default class Checkout extends React.Component {
   }
 
   getPickupOption() {
-    if(this.state.pickupSelected) return 'pickup';
-    if(this.state.shippingSelected) return 'shipping';
+    if(this.state.pickupSelected) return '自取';
+    if(this.state.shippingSelected) return '宅配';
   }
 
   render() {
