@@ -62,7 +62,7 @@ const items = [
     "id": 7,
     "name": "德文郡奶油",
     "nameEnglish": "Devon English Luxury Clotted Cream",
-    "price": 350
+    "price": 330
   }
 ];
 
