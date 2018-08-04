@@ -57,6 +57,12 @@ const items = [
     "name": "檸檬優格生乳酪蛋糕",
     "nameEnglish": "Lemon Yogurt Cheesecake",
     "price": 700
+  },
+  {
+    "id": 7,
+    "name": "德文郡奶油",
+    "nameEnglish": "Devon English Luxury Clotted Cream",
+    "price": 350
   }
 ];
 

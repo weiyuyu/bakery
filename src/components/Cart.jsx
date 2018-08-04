@@ -9,6 +9,7 @@ import standard_scone from './../img/原味司康/AEAE7506-FD0F-446B-97CE-DD8725
 import tea_scone from './../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94D1DE.JPG';
 import mixed_scone from './../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG';
 import lemon_yogurt_cake from './../img/檸檬優格生乳酪蛋糕/1.JPG';
+import devon_cream from './../img/德文郡奶油/Devon English Clotted Cream.JPG';
 
 const thumbnails = {
   "肉桂捲": cinnamon,
@@ -16,7 +17,8 @@ const thumbnails = {
   "原味司康": standard_scone,
   "伯爵茶司康": tea_scone,
   "綜合司康": mixed_scone,
-  "檸檬優格生乳酪蛋糕": lemon_yogurt_cake
+  "檸檬優格生乳酪蛋糕": lemon_yogurt_cake,
+  "德文郡奶油": devon_cream
 };
 
 const styles = {
@@ -33,7 +35,8 @@ const nameEnglish = {
   '原味司康': 'Original Scone',
   '伯爵茶司康': 'Earl Grey Scone',
   '綜合司康': 'Assorted Scone',
-  "檸檬優格生乳酪蛋糕": "Lemon Yogurt Cheesecake"
+  "檸檬優格生乳酪蛋糕": "Lemon Yogurt Cheesecake",
+  "德文郡奶油": "Devon English Luxury Clotted Cream"
 };
 
 const prices = {
@@ -58,6 +61,9 @@ const prices = {
     },
     "檸檬優格生乳酪蛋糕": {
       "one": 700
+    },
+    "德文郡奶油": {
+      "one": 350
     }
 };
 

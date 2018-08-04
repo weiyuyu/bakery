@@ -23,6 +23,8 @@ import lemon_yogurt_cake1 from './../img/檸檬優格生乳酪蛋糕/1.JPG';
 import lemon_yogurt_cake2 from './../img/檸檬優格生乳酪蛋糕/2.JPG';
 import lemon_yogurt_cake3 from './../img/檸檬優格生乳酪蛋糕/3.JPG';
 
+import devon_cream1 from './../img/德文郡奶油/Devon English Clotted Cream.JPG';
+
 const styles = {
   cardStyle: {
     'margin': 30,
@@ -134,7 +136,15 @@ const lemon_yogurt_cake = [
   },
 ];
 
-const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, lemon_yogurt_cake];
+const devon_cream = [
+  {
+    "id": 14,
+    "file": devon_cream1,
+    "legend": "德文郡奶油"
+  },
+];
+
+const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, lemon_yogurt_cake, devon_cream];
 
 export default class ShopItem extends React.Component {
   constructor(props) {
@@ -236,6 +246,9 @@ export default class ShopItem extends React.Component {
               }
               {
                 this.props.itemName === '檸檬優格生乳酪蛋糕' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 6吋 (約4-6人食用) </Header>
+              }
+              {
+                this.props.itemName === '德文郡奶油' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 一罐的份量約可搭配6個司康 </Header>
               }
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>
