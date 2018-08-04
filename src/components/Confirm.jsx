@@ -177,6 +177,7 @@ class Confirm extends React.Component {
           mixedSconeFour: this.getSpreadsheetValue("綜合司康","boxOfFour"),
           mixedSconeSix: this.getSpreadsheetValue("綜合司康","boxOfSix"),
           lemonYogurtCake: this.getSpreadsheetValue("檸檬優格生乳酪蛋糕","one"),
+          devonCream: this.getSpreadsheetValue("德文郡奶油","one"),
           pickupOption: this.props.pickupOption || '',
           shippingAddress: this.props.shippingAddress || '',
           shippingTime: this.getShippingTime(this.props.shippingTime) || '',
