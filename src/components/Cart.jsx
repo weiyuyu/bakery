@@ -201,6 +201,17 @@ export default class Cart extends React.Component {
                               <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "one")}/>
                             </div>
                           }
+                          {
+                            (item[1]["one"]>0 && item[0] === "德文郡奶油") &&
+                            <div style={{'display': 'flex'}}>
+                              <p style={{'flex': 5}}>
+                                <span style={{'fontFamily': 'cwTexMing'}}>份數</span>
+                                <span style={{'fontFamily': 'Cormorant'}}>{` ($${prices[item[0]]["one"]})`}</span>
+                                ： {`${item[1]["one"]}`}
+                              </p>
+                              <Icon className="cartRemoveIcon" name='minus' style={{'flex': 1}} onClick={() => this.handleRemoveClick(item[0], "one")}/>
+                            </div>
+                          }
                         </Table.Cell>
                         <Table.Cell style={{'textAlign': 'right', 'fontFamily': 'Cormorant'}}>
                           <span style={{'marginRight': 3}}>$</span>{itemTotal}
