@@ -248,7 +248,7 @@ export default class ShopItem extends React.Component {
                 this.props.itemName === '檸檬優格生乳酪蛋糕' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 6吋 (約4-6人食用) </Header>
               }
               {
-                this.props.itemName === '德文郡奶油' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 一罐的份量約可搭配6個司康 </Header>
+                this.props.itemName === '德文郡奶油' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 一罐的份量<span style={{'fontFamily': 'Cormorant'}}>170g</span>， 約可搭配6個司康 </Header>
               }
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>
