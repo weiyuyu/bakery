@@ -82,7 +82,7 @@ const prices = {
     "檸檬優格生乳酪蛋糕": {
       "one": 700
     },
-    "檸檬優格乳酪4杯裝": {
+    "檸檬優格生乳酪蛋糕4杯裝": {
       "one": 700
     },
     "德文郡奶油": {
@@ -296,7 +296,7 @@ export default class Checkout extends React.Component {
       if(item[1]["one"] && item[0]==="檸檬優格生乳酪蛋糕") {
         boxesOfFour += item[1]["one"];
       }
-      if(item[1]["one"] && item[0]==="檸檬優格乳酪4杯裝") {
+      if(item[1]["one"] && item[0]==="檸檬優格生乳酪蛋糕4杯裝") {
         boxesOfFour += item[1]["one"];
       }
       if(item[1]["one"] && item[0]==="香蕉磅蛋糕") {

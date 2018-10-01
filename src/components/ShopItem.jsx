@@ -25,9 +25,9 @@ import lemon_yogurt_cake3 from './../img/檸檬優格生乳酪蛋糕/3.JPG';
 
 import devon_cream1 from './../img/德文郡奶油/Devon English Clotted Cream.JPG';
 
-import lemon_yogurt_cake_cup1 from './../img/檸檬優格乳酪4杯裝/封面.JPG';
-import lemon_yogurt_cake_cup2 from './../img/檸檬優格乳酪4杯裝/pic1.JPG';
-import lemon_yogurt_cake_cup3 from './../img/檸檬優格乳酪4杯裝/pic2.JPG';
+import lemon_yogurt_cake_cup1 from './../img/檸檬優格生乳酪蛋糕4杯裝/封面.JPG';
+import lemon_yogurt_cake_cup2 from './../img/檸檬優格生乳酪蛋糕4杯裝/pic1.JPG';
+import lemon_yogurt_cake_cup3 from './../img/檸檬優格生乳酪蛋糕4杯裝/pic2.JPG';
 
 import banana_pound_cake1 from './../img/香蕉磅蛋糕/封面.JPG';
 import banana_pound_cake2 from './../img/香蕉磅蛋糕/圖1.JPG';
@@ -157,17 +157,17 @@ const lemon_yogurt_cake_cup = [
   {
     "id": 15,
     "file": lemon_yogurt_cake_cup1,
-    "legend": "檸檬優格乳酪4杯裝"
+    "legend": "檸檬優格生乳酪蛋糕4杯裝"
   },
   {
     "id": 16,
     "file": lemon_yogurt_cake_cup2,
-    "legend": "檸檬優格乳酪4杯裝"
+    "legend": "檸檬優格生乳酪蛋糕4杯裝"
   },
   {
     "id": 17,
     "file": lemon_yogurt_cake_cup3,
-    "legend": "檸檬優格乳酪4杯裝"
+    "legend": "檸檬優格生乳酪蛋糕4杯裝"
   }
 ];
 
@@ -194,7 +194,7 @@ const banana_pound_cake = [
   },
 ];
 
-const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, lemon_yogurt_cake, devon_cream, lemon_yogurt_cake_cup, banana_pound_cake];
+const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, devon_cream, lemon_yogurt_cake, lemon_yogurt_cake_cup, banana_pound_cake];
 
 export default class ShopItem extends React.Component {
   constructor(props) {
@@ -302,6 +302,12 @@ export default class ShopItem extends React.Component {
               }
               {
                 this.props.itemName === '德文郡奶油' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 一罐的份量<span style={{'fontFamily': 'Cormorant'}}>170g</span>， 約可搭配6個司康 </Header>
+              }
+              {
+                this.props.itemName === '檸檬優格生乳酪蛋糕4杯裝' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 份量與盒裝的蛋糕相同 </Header>
+              }
+              {
+                this.props.itemName === '香蕉磅蛋糕' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 一整條(約 <span style={{'fontFamily': 'Cormorant'}}>710g</span>)切成<span style={{'fontFamily': 'Cormorant'}}>8</span>片，盒裝 </Header>
               }
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>

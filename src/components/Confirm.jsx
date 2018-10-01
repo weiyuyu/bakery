@@ -11,7 +11,7 @@ import standard_scone from './../img/原味司康/AEAE7506-FD0F-446B-97CE-DD8725
 import tea_scone from './../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94D1DE.JPG';
 import mixed_scone from './../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG';
 import lemon_yogurt_cake from './../img/檸檬優格生乳酪蛋糕/1.JPG';
-import lemon_yogurt_cake_cup from './../img/檸檬優格乳酪4杯裝/封面.JPG';
+import lemon_yogurt_cake_cup from './../img/檸檬優格生乳酪蛋糕4杯裝/封面.JPG';
 import devon_cream from './../img/德文郡奶油/Devon English Clotted Cream.JPG';
 import banana_pound_cake from './../img/香蕉磅蛋糕/封面.JPG';
 
@@ -22,7 +22,7 @@ const thumbnails = {
   "伯爵茶司康": tea_scone,
   "綜合司康": mixed_scone,
   "檸檬優格生乳酪蛋糕": lemon_yogurt_cake,
-  "檸檬優格乳酪4杯裝": lemon_yogurt_cake_cup,
+  "檸檬優格生乳酪蛋糕4杯裝": lemon_yogurt_cake_cup,
   "德文郡奶油": devon_cream,
   "香蕉磅蛋糕": banana_pound_cake
 };
@@ -57,7 +57,7 @@ const nameEnglish = {
   '伯爵茶司康': 'Earl Grey Scone',
   '綜合司康': 'Assorted Scone',
   "檸檬優格生乳酪蛋糕": "Lemon Yogurt Cheesecake",
-  "檸檬優格乳酪4杯裝": "Lemon Yogurt Cheesecake (4 cups)",
+  "檸檬優格生乳酪蛋糕4杯裝": "Lemon Yogurt Cheesecake (4 cups)",
   "德文郡奶油": "Devon English Luxury Clotted Cream",
   "香蕉磅蛋糕": "Banana Pound Cake"
 };
@@ -85,7 +85,7 @@ const prices = {
     "檸檬優格生乳酪蛋糕": {
       "one": 700
     },
-    "檸檬優格乳酪4杯裝": {
+    "檸檬優格生乳酪蛋糕4杯裝": {
       "one": 700
     },
     "德文郡奶油": {
@@ -189,7 +189,7 @@ class Confirm extends React.Component {
           mixedSconeFour: this.getSpreadsheetValue("綜合司康","boxOfFour"),
           mixedSconeSix: this.getSpreadsheetValue("綜合司康","boxOfSix"),
           lemonYogurtCake: this.getSpreadsheetValue("檸檬優格生乳酪蛋糕","one"),
-          lemonYogurtCakeCup: this.getSpreadsheetValue("檸檬優格乳酪4杯裝","one"),
+          lemonYogurtCakeCup: this.getSpreadsheetValue("檸檬優格生乳酪蛋糕4杯裝","one"),
           devonCream: this.getSpreadsheetValue("德文郡奶油","one"),
           bananaPoundCake: this.getSpreadsheetValue("香蕉磅蛋糕", "one"),
           pickupOption: this.props.pickupOption || '',
