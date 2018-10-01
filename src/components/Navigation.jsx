@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Menu, Image, Container, Icon } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
-import logo from './../img/logo/logo_black_sm.png';
+import logo from './../img/logo/jbbb.png';
 
 const styles = {
   logoStyle: {

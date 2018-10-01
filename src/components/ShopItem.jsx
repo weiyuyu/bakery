@@ -25,6 +25,15 @@ import lemon_yogurt_cake3 from './../img/檸檬優格生乳酪蛋糕/3.JPG';
 
 import devon_cream1 from './../img/德文郡奶油/Devon English Clotted Cream.JPG';
 
+import lemon_yogurt_cake_cup1 from './../img/檸檬優格乳酪4杯裝/封面.JPG';
+import lemon_yogurt_cake_cup2 from './../img/檸檬優格乳酪4杯裝/pic1.JPG';
+import lemon_yogurt_cake_cup3 from './../img/檸檬優格乳酪4杯裝/pic2.JPG';
+
+import banana_pound_cake1 from './../img/香蕉磅蛋糕/封面.JPG';
+import banana_pound_cake2 from './../img/香蕉磅蛋糕/圖1.JPG';
+import banana_pound_cake3 from './../img/香蕉磅蛋糕/圖2.JPG';
+import banana_pound_cake4 from './../img/香蕉磅蛋糕/圖3.JPG';
+
 const styles = {
   cardStyle: {
     'margin': 30,
@@ -144,7 +153,48 @@ const devon_cream = [
   },
 ];
 
-const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, lemon_yogurt_cake, devon_cream];
+const lemon_yogurt_cake_cup = [
+  {
+    "id": 15,
+    "file": lemon_yogurt_cake_cup1,
+    "legend": "檸檬優格乳酪4杯裝"
+  },
+  {
+    "id": 16,
+    "file": lemon_yogurt_cake_cup2,
+    "legend": "檸檬優格乳酪4杯裝"
+  },
+  {
+    "id": 17,
+    "file": lemon_yogurt_cake_cup3,
+    "legend": "檸檬優格乳酪4杯裝"
+  }
+];
+
+const banana_pound_cake = [
+  {
+    "id": 18,
+    "file": banana_pound_cake1,
+    "legend": "香蕉磅蛋糕"
+  },
+  {
+    "id": 19,
+    "file": banana_pound_cake2,
+    "legend": "香蕉磅蛋糕"
+  },
+  {
+    "id": 20,
+    "file": banana_pound_cake3,
+    "legend": "香蕉磅蛋糕"
+  },
+  {
+    "id": 21,
+    "file": banana_pound_cake4,
+    "legend": "香蕉磅蛋糕"
+  },
+];
+
+const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, lemon_yogurt_cake, devon_cream, lemon_yogurt_cake_cup, banana_pound_cake];
 
 export default class ShopItem extends React.Component {
   constructor(props) {
@@ -240,6 +290,9 @@ export default class ShopItem extends React.Component {
               <ItemCarousel items={images[this.props.id-1]}/>
               {
                 this.props.itemName === '肉桂捲' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個捲捲都會附上一份自製奶油乳酪抹醬 </Header>
+              }
+              {
+                this.props.itemName === '奶油乳酪抹醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 搭配捲捲專用。也很適合搭配bagel食用！ </Header>
               }
               {
                 this.props.itemName === '綜合司康' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個組合都是一半原味司康、一半伯爵茶司康 </Header>

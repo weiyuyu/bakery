@@ -63,6 +63,18 @@ const items = [
     "name": "德文郡奶油",
     "nameEnglish": "Devon English Luxury Clotted Cream",
     "price": 330
+  },
+  {
+    "id": 8,
+    "name": "檸檬優格乳酪4杯裝",
+    "nameEnglish": "Lemon Yogurt Cheesecake (4 cups)",
+    "price": 700
+  },
+  {
+    "id": 9,
+    "name": "香蕉磅蛋糕",
+    "nameEnglish": "Banana Pound Cake",
+    "price": 700
   }
 ];
 
