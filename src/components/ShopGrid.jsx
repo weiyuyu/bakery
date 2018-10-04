@@ -120,6 +120,22 @@ export default class ShopGrid extends React.Component {
                   removeItemFromCart={this.props.removeItemFromCart}
                   cart={this.props.cart}
                   id={item["id"]}
+                  options={[{text: `1罐 . $${item["price"]}`, value: 'one'}]}
+                  key={item["id"]}
+                />
+              );
+            } else if(item["id"] === 7) {
+              return (
+                <ShopItem
+                  itemName={item["name"]}
+                  itemNameEnglish={item["nameEnglish"]}
+                  itemPrice={`$${item["price"]}/1 srv.`}
+                  itemType="single"
+                  itemDescription="itemDescription"
+                  addItemToCart={this.props.addItemToCart}
+                  removeItemFromCart={this.props.removeItemFromCart}
+                  cart={this.props.cart}
+                  id={item["id"]}
                   options={[{text: `1盒/6吋 . $${item["price"]}`, value: 'one'}]}
                   key={item["id"]}
                 />

@@ -248,11 +248,41 @@ export default class Checkout extends React.Component {
       onlyCake = false;
     }
 
-    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"]) {
+    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["德文郡奶油"] || cart["香蕉磅蛋糕"]) {
       onlyCake = false;
     }
 
     return onlyCake;
+  }
+
+  onlyCreamCheese() {
+    let cart = this.props.cart;
+    let onlyCreamCheese = true;
+
+    if(!cart["奶油乳酪抹醬"]) {
+      onlyCreamCheese = false;
+    }
+
+    if(cart["肉桂捲"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["德文郡奶油"] || cart["香蕉磅蛋糕"]) {
+      onlyCreamCheese = false;
+    }
+
+    return onlyCreamCheese;
+  }
+
+  onlyDevonCream() {
+    let cart = this.props.cart;
+    let onlyDevonCream = true;
+
+    if(!cart["德文郡奶油"]) {
+      onlyDevonCream = false;
+    }
+
+    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"]) {
+      onlyDevonCream = false;
+    }
+
+    return onlyDevonCream;
   }
 
   getShippingCost() {
@@ -264,13 +294,32 @@ export default class Checkout extends React.Component {
     let boxesOfSix = 0;
     let count = 0;
 
-    console.log('[Only Cake]');
-    console.log(this.onlyCake());
-
     if(this.props.cart["檸檬優格生乳酪蛋糕"]) {
       let boxesofCake = this.props.cart["檸檬優格生乳酪蛋糕"]["one"];
       if(this.onlyCake() && boxesofCake <= 2 && boxesofCake > 0) {
         return 150;
+      }
+    }
+
+    if(this.props.cart["奶油乳酪抹醬"]) {
+      let creamCheeseCount = this.props.cart["奶油乳酪抹醬"]["one"];
+      if(this.onlyCreamCheese()) {
+        if(creamCheeseCount <= 36) {
+          return 150;
+        } else {
+          return 220;
+        }
+      }
+    }
+
+    if(this.props.cart["德文郡奶油"]) {
+      let devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+      if(this.onlyDevonCream()) {
+        if(devonCreamCount <= 12) {
+          return 150;
+        } else {
+          return 220;
+        }
       }
     }
 
@@ -305,16 +354,43 @@ export default class Checkout extends React.Component {
     });
 
     if(boxesOfFour + boxesOfSix === 1) {
+      let devonCreamCount = 0;
+      if(this.props.cart["德文郡奶油"]) {
+        devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+      }
+      if(boxesOfSix === 1 && devonCreamCount > 0) {
+        shippingCost = 220;
+      }
+
+      if(boxesOfFour === 1 && devonCreamCount > 3) {
+        shippingCost = 220;
+      }
+
       shippingCost = 150;
     } else {
+      let extraCharge = 0;
+      let devonCreamCount = 0;
+      if(this.props.cart["德文郡奶油"]) {
+        devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+      }
+
       while(boxesOfSix !== 0 || boxesOfFour !== 0) {
         if(boxesOfSix >= 4) {
           boxesOfSix -= 4;
           count += 1;
+          if(devonCreamCount > 0) {
+            devonCreamCount = 0;
+            extraCharge += 150;
+          }
         } else if (boxesOfSix === 3) {
           boxesOfSix -= 3;
           if(boxesOfFour <= 1) {
-            boxesOfFour = 0;
+            if(boxesOfFour === 0 && devonCreamCount > 5) {
+              devonCreamCount = 0;
+              extraCharge += 150;
+            } else {
+              boxesOfFour = 0;
+            }
           } else {
             boxesOfFour -= 1;
           }
@@ -322,6 +398,10 @@ export default class Checkout extends React.Component {
         } else if(boxesOfSix === 2) {
           boxesOfSix -= 2;
           if(boxesOfFour <= 3) {
+            if(boxesOfFour <= 2 && devonCreamCount > 6) {
+              devonCreamCount = 0;
+              extraCharge += 150;
+            }
             boxesOfFour = 0;
           } else {
             boxesOfFour -= 3;
@@ -344,7 +424,12 @@ export default class Checkout extends React.Component {
           count += 1;
         }
       }
-      shippingCost = count * 220;
+
+      if(devonCreamCount > 0) {
+        extraCharge += 150;
+      }
+      shippingCost = count * 220 + extraCharge;
+
     }
 
     return shippingCost;
