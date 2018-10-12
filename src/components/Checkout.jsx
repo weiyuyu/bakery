@@ -424,10 +424,6 @@ export default class Checkout extends React.Component {
           count += 1;
         }
       }
-
-      if(devonCreamCount > 0) {
-        extraCharge += 150;
-      }
       shippingCost = count * 220 + extraCharge;
 
     }
