@@ -374,23 +374,39 @@ export default class Checkout extends React.Component {
         devonCreamCount = this.props.cart["德文郡奶油"]["one"];
       }
 
+      switch(6*boxesOfSix + 4*boxesOfFour) {
+        case 16:
+          if(devonCreamCount > 6) {
+            extraCharge = 150;
+          }
+          break;
+        case 18:
+          if(devonCreamCount > 5) {
+            extraCharge = 150;
+          }
+          break;
+        case 20:
+          if(devonCreamCount > 6) {
+            extraCharge = 150;
+          }
+          break;
+        case 24:
+          if(devonCreamCount > 0) {
+            extraCharge = 150;
+          }
+          break;
+        default:
+          break;
+      }
+
       while(boxesOfSix !== 0 || boxesOfFour !== 0) {
         if(boxesOfSix >= 4) {
           boxesOfSix -= 4;
           count += 1;
-          if(devonCreamCount > 0) {
-            devonCreamCount = 0;
-            extraCharge += 150;
-          }
         } else if (boxesOfSix === 3) {
           boxesOfSix -= 3;
           if(boxesOfFour <= 1) {
-            if(boxesOfFour === 0 && devonCreamCount > 5) {
-              devonCreamCount = 0;
-              extraCharge += 150;
-            } else {
-              boxesOfFour = 0;
-            }
+            boxesOfFour = 0;
           } else {
             boxesOfFour -= 1;
           }
@@ -398,10 +414,6 @@ export default class Checkout extends React.Component {
         } else if(boxesOfSix === 2) {
           boxesOfSix -= 2;
           if(boxesOfFour <= 3) {
-            if(boxesOfFour <= 2 && devonCreamCount > 6) {
-              devonCreamCount = 0;
-              extraCharge += 150;
-            }
             boxesOfFour = 0;
           } else {
             boxesOfFour -= 3;
