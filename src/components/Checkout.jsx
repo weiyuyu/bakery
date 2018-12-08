@@ -388,7 +388,7 @@ export default class Checkout extends React.Component {
 
       let souffleAndCreamCount = originalSouffleCount + viennaCreamCount + organicCoconutCount + cranberrySouffleCount;
 
-      if(souffleAndCreamCount > 0 && souffleAndCreamCount < 6) {
+      if(souffleAndCreamCount > 0 && souffleAndCreamCount <= 6) {
         return 150;
       } else {
         return 220;
@@ -419,7 +419,7 @@ export default class Checkout extends React.Component {
 
         let souffleAndCreamCount = originalSouffleCount + viennaCreamCount + organicCoconutCount + cranberrySouffleCount + devonCreamCount;
 
-        if(souffleAndCreamCount > 0 && souffleAndCreamCount < 6) {
+        if(souffleAndCreamCount > 0 && souffleAndCreamCount <= 6) {
           return 150;
         } else {
           return 220;
