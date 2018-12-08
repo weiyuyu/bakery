@@ -90,7 +90,19 @@ const prices = {
     },
     "香蕉磅蛋糕": {
       "one": 700
-    }
+    },
+    "原味奶酥醬": {
+      "one": 520
+    },
+    "維也納奶油醬": {
+      "one": 520
+    },
+    "有機椰子糖奶酥醬": {
+      "one": 650
+    },
+    "蔓越莓奶酥醬": {
+      "one": 500
+    },
 };
 
 
@@ -278,11 +290,41 @@ export default class Checkout extends React.Component {
       onlyDevonCream = false;
     }
 
-    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"]) {
+    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"] || cart["原味奶酥醬"] || cart["維也納奶油醬"] || cart["有機椰子糖奶酥醬"] || cart["蔓越莓奶酥醬"]) {
       onlyDevonCream = false;
     }
 
     return onlyDevonCream;
+  }
+
+  onlySouffleAndCream() {
+    let cart = this.props.cart;
+    let onlySouffleAndCream = true;
+
+    if(!cart["原味奶酥醬"] && !cart["維也納奶油醬"] && !cart["有機椰子糖奶酥醬"] && !cart["蔓越莓奶酥醬"]) {
+      onlySouffleAndCream = false;
+    }
+
+    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"] || cart["德文郡奶油"]) {
+      onlySouffleAndCream = false;
+    }
+
+    return onlySouffleAndCream;
+  }
+
+  onlySouffleAndDevon() {
+    let cart = this.props.cart;
+    let onlySouffleAndDevon = true;
+
+    if(!cart["原味奶酥醬"] && !cart["維也納奶油醬"] && !cart["有機椰子糖奶酥醬"] && !cart["蔓越莓奶酥醬"] && !cart["德文郡奶油"]) {
+      onlySouffleAndDevon = false;
+    }
+
+    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"]) {
+      onlySouffleAndDevon = false;
+    }
+
+    return onlySouffleAndDevon;
   }
 
   getShippingCost() {
@@ -323,124 +365,188 @@ export default class Checkout extends React.Component {
       }
     }
 
-    let cart = this.props.cart;
-    let cartItems = Object.keys(cart).map(function(key) {
-      return [key, Object(cart[key])];
-    });
-    cartItems
-    .filter(item => {
-      let willCalculate = false;
-      let quantities = item[1];
-      if(quantities["boxOfFour"] > 0 || quantities["boxOfSix"] || quantities["one"] > 0) {
-        willCalculate = true;
-      }
-      return willCalculate;
-    }).forEach((item) => {
-      if(item[1]["boxOfFour"]) {
-        boxesOfFour += item[1]["boxOfFour"];
-      }
-      if(item[1]["boxOfSix"]) {
-        boxesOfSix += item[1]["boxOfSix"];
-      }
-      if(item[1]["one"] && item[0]==="檸檬優格生乳酪蛋糕") {
-        boxesOfFour += item[1]["one"];
-      }
-      if(item[1]["one"] && item[0]==="檸檬優格生乳酪蛋糕4杯裝") {
-        boxesOfFour += item[1]["one"];
-      }
-      if(item[1]["one"] && item[0]==="香蕉磅蛋糕") {
-        boxesOfSix += item[1]["one"];
-      }
-    });
-
-    if(boxesOfFour + boxesOfSix === 1) {
-      let devonCreamCount = 0;
-      if(this.props.cart["德文郡奶油"]) {
-        devonCreamCount = this.props.cart["德文郡奶油"]["one"];
-      }
-      if(boxesOfSix === 1 && devonCreamCount > 0) {
-        shippingCost = 220;
+    if(this.onlySouffleAndCream()) {
+      let originalSouffleCount = 0;
+      if(this.props.cart["原味奶酥醬"]) {
+        originalSouffleCount = this.props.cart["原味奶酥醬"]["one"];
       }
 
-      if(boxesOfFour === 1 && devonCreamCount > 3) {
-        shippingCost = 220;
+      let viennaCreamCount = 0;
+      if(this.props.cart["維也納奶油醬"]) {
+        viennaCreamCount = this.props.cart["維也納奶油醬"]["one"];
       }
 
-      shippingCost = 150;
+      let organicCoconutCount = 0;
+      if(this.props.cart["有機椰子糖奶酥醬"]) {
+        organicCoconutCount = this.props.cart["有機椰子糖奶酥醬"]["one"];
+      }
+
+      let cranberrySouffleCount = 0;
+      if(this.props.cart["蔓越莓奶酥醬"]) {
+        cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["one"];
+      }
+
+      let souffleAndCreamCount = originalSouffleCount + viennaCreamCount + organicCoconutCount + cranberrySouffleCount;
+
+      if(souffleAndCreamCount > 0 && souffleAndCreamCount < 6) {
+        return 150;
+      } else {
+        return 220;
+      }
     } else {
-      let extraCharge = 0;
-      let devonCreamCount = 0;
-      if(this.props.cart["德文郡奶油"]) {
-        devonCreamCount = this.props.cart["德文郡奶油"]["one"];
-      }
-
-      switch(6*boxesOfSix + 4*boxesOfFour) {
-        case 16:
-          if(devonCreamCount > 6) {
-            extraCharge = 150;
-          }
-          break;
-        case 18:
-          if(devonCreamCount > 5) {
-            extraCharge = 150;
-          }
-          break;
-        case 20:
-          if(devonCreamCount > 6) {
-            extraCharge = 150;
-          }
-          break;
-        case 24:
-          if(devonCreamCount > 0) {
-            extraCharge = 150;
-          }
-          break;
-        default:
-          break;
-      }
-
-      while(boxesOfSix !== 0 || boxesOfFour !== 0) {
-        if(boxesOfSix >= 4) {
-          boxesOfSix -= 4;
-          count += 1;
-        } else if (boxesOfSix === 3) {
-          boxesOfSix -= 3;
-          if(boxesOfFour <= 1) {
-            boxesOfFour = 0;
-          } else {
-            boxesOfFour -= 1;
-          }
-          count += 1;
-        } else if(boxesOfSix === 2) {
-          boxesOfSix -= 2;
-          if(boxesOfFour <= 3) {
-            boxesOfFour = 0;
-          } else {
-            boxesOfFour -= 3;
-          }
-          count += 1;
-        } else if(boxesOfSix === 1) {
-          boxesOfSix -= 1;
-          if(boxesOfFour <= 4) {
-            boxesOfFour = 0;
-          } else {
-            boxesOfFour -= 4;
-          }
-          count += 1;
-        } else if(boxesOfSix === 0) {
-          if(boxesOfFour <= 6) {
-            boxesOfFour = 0;
-          } else {
-            boxesOfFour -= 6;
-          }
-          count += 1;
+      if(this.onlySouffleAndDevon()) {
+        let originalSouffleCount = 0;
+        if(this.props.cart["原味奶酥醬"]) {
+          originalSouffleCount = this.props.cart["原味奶酥醬"]["one"];
         }
-      }
-      shippingCost = count * 220 + extraCharge;
 
+        let viennaCreamCount = 0;
+        if(this.props.cart["維也納奶油醬"]) {
+          viennaCreamCount = this.props.cart["維也納奶油醬"]["one"];
+        }
+
+        let organicCoconutCount = 0;
+        if(this.props.cart["有機椰子糖奶酥醬"]) {
+          organicCoconutCount = this.props.cart["有機椰子糖奶酥醬"]["one"];
+        }
+
+        let cranberrySouffleCount = 0;
+        if(this.props.cart["蔓越莓奶酥醬"]) {
+          cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["one"];
+        }
+
+        let devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+
+        let souffleAndCreamCount = originalSouffleCount + viennaCreamCount + organicCoconutCount + cranberrySouffleCount + devonCreamCount;
+
+        if(souffleAndCreamCount > 0 && souffleAndCreamCount < 6) {
+          return 150;
+        } else {
+          return 220;
+        }
+      } else {
+        return 220;
+      }
     }
 
-    return shippingCost;
+    // let cart = this.props.cart;
+    // let cartItems = Object.keys(cart).map(function(key) {
+    //   return [key, Object(cart[key])];
+    // });
+    // cartItems
+    // .filter(item => {
+    //   let willCalculate = false;
+    //   let quantities = item[1];
+    //   if(quantities["boxOfFour"] > 0 || quantities["boxOfSix"] || quantities["one"] > 0) {
+    //     willCalculate = true;
+    //   }
+    //   return willCalculate;
+    // }).forEach((item) => {
+    //   if(item[1]["boxOfFour"]) {
+    //     boxesOfFour += item[1]["boxOfFour"];
+    //   }
+    //   if(item[1]["boxOfSix"]) {
+    //     boxesOfSix += item[1]["boxOfSix"];
+    //   }
+    //   if(item[1]["one"] && item[0]==="檸檬優格生乳酪蛋糕") {
+    //     boxesOfFour += item[1]["one"];
+    //   }
+    //   if(item[1]["one"] && item[0]==="檸檬優格生乳酪蛋糕4杯裝") {
+    //     boxesOfFour += item[1]["one"];
+    //   }
+    //   if(item[1]["one"] && item[0]==="香蕉磅蛋糕") {
+    //     boxesOfSix += item[1]["one"];
+    //   }
+    // });
+    //
+    // if(boxesOfFour + boxesOfSix === 1) {
+    //   let devonCreamCount = 0;
+    //   if(this.props.cart["德文郡奶油"]) {
+    //     devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+    //   }
+    //   if(boxesOfSix === 1 && devonCreamCount > 0) {
+    //     shippingCost = 220;
+    //   }
+    //
+    //   if(boxesOfFour === 1 && devonCreamCount > 3) {
+    //     shippingCost = 220;
+    //   }
+    //
+    //   shippingCost = 150;
+    // } else {
+    //   let extraCharge = 0;
+    //   let devonCreamCount = 0;
+    //   if(this.props.cart["德文郡奶油"]) {
+    //     devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+    //   }
+    //
+    //   switch(6*boxesOfSix + 4*boxesOfFour) {
+    //     case 16:
+    //       if(devonCreamCount > 6) {
+    //         extraCharge = 150;
+    //       }
+    //       break;
+    //     case 18:
+    //       if(devonCreamCount > 5) {
+    //         extraCharge = 150;
+    //       }
+    //       break;
+    //     case 20:
+    //       if(devonCreamCount > 6) {
+    //         extraCharge = 150;
+    //       }
+    //       break;
+    //     case 24:
+    //       if(devonCreamCount > 0) {
+    //         extraCharge = 150;
+    //       }
+    //       break;
+    //     default:
+    //       break;
+    //   }
+    //
+    //   while(boxesOfSix !== 0 || boxesOfFour !== 0) {
+    //     if(boxesOfSix >= 4) {
+    //       boxesOfSix -= 4;
+    //       count += 1;
+    //     } else if (boxesOfSix === 3) {
+    //       boxesOfSix -= 3;
+    //       if(boxesOfFour <= 1) {
+    //         boxesOfFour = 0;
+    //       } else {
+    //         boxesOfFour -= 1;
+    //       }
+    //       count += 1;
+    //     } else if(boxesOfSix === 2) {
+    //       boxesOfSix -= 2;
+    //       if(boxesOfFour <= 3) {
+    //         boxesOfFour = 0;
+    //       } else {
+    //         boxesOfFour -= 3;
+    //       }
+    //       count += 1;
+    //     } else if(boxesOfSix === 1) {
+    //       boxesOfSix -= 1;
+    //       if(boxesOfFour <= 4) {
+    //         boxesOfFour = 0;
+    //       } else {
+    //         boxesOfFour -= 4;
+    //       }
+    //       count += 1;
+    //     } else if(boxesOfSix === 0) {
+    //       if(boxesOfFour <= 6) {
+    //         boxesOfFour = 0;
+    //       } else {
+    //         boxesOfFour -= 6;
+    //       }
+    //       count += 1;
+    //     }
+    //   }
+    //   shippingCost = count * 220 + extraCharge;
+    //
+    // }
+    //
+    // return shippingCost;
   }
 
   getTotalCost() {

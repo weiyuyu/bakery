@@ -34,6 +34,22 @@ import banana_pound_cake2 from './../img/香蕉磅蛋糕/圖1.JPG';
 import banana_pound_cake3 from './../img/香蕉磅蛋糕/圖2.JPG';
 import banana_pound_cake4 from './../img/香蕉磅蛋糕/圖3.JPG';
 
+import original_souffle1 from './../img/原味奶酥醬/1 封面.JPG';
+import original_souffle2 from './../img/原味奶酥醬/2.JPG';
+import original_souffle3 from './../img/原味奶酥醬/3.JPG';
+
+import vienna_cream1 from './../img/維也納奶油醬/1 封面.JPG';
+import vienna_cream2 from './../img/維也納奶油醬/2.JPG';
+import vienna_cream3 from './../img/維也納奶油醬/3.JPG';
+
+import organic_coconut1 from './../img/有機椰子糖奶酥醬/1 封面.jpg';
+import organic_coconut2 from './../img/有機椰子糖奶酥醬/2.JPG';
+import organic_coconut3 from './../img/有機椰子糖奶酥醬/3.jpg';
+
+import cranberry_souffle1 from './../img/蔓越莓奶酥醬/1 封面.JPG';
+import cranberry_souffle2 from './../img/蔓越莓奶酥醬/2.JPG';
+import cranberry_souffle3 from './../img/蔓越莓奶酥醬/3.JPG';
+
 const styles = {
   cardStyle: {
     'margin': 30,
@@ -194,7 +210,79 @@ const banana_pound_cake = [
   },
 ];
 
-const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, devon_cream, lemon_yogurt_cake, lemon_yogurt_cake_cup, banana_pound_cake];
+const original_souffle = [
+  {
+    "id": 22,
+    "file": original_souffle1,
+    "legend": "原味奶酥醬"
+  },
+  {
+    "id": 23,
+    "file": original_souffle2,
+    "legend": "原味奶酥醬"
+  },
+  {
+    "id": 24,
+    "file": original_souffle3,
+    "legend": "原味奶酥醬"
+  }
+];
+
+const vienna_cream = [
+  {
+    "id": 25,
+    "file": vienna_cream1,
+    "legend": "維也納奶油醬"
+  },
+  {
+    "id": 26,
+    "file": vienna_cream2,
+    "legend": "維也納奶油醬"
+  },
+  {
+    "id": 27,
+    "file": vienna_cream3,
+    "legend": "維也納奶油醬"
+  }
+];
+
+const organic_coconut = [
+  {
+    "id": 28,
+    "file": organic_coconut1,
+    "legend": "有機椰子糖奶酥醬"
+  },
+  {
+    "id": 29,
+    "file": organic_coconut2,
+    "legend": "有機椰子糖奶酥醬"
+  },
+  {
+    "id": 30,
+    "file": organic_coconut3,
+    "legend": "有機椰子糖奶酥醬"
+  }
+];
+
+const cranberry_souffle = [
+  {
+    "id": 31,
+    "file": cranberry_souffle1,
+    "legend": "蔓越莓奶酥醬"
+  },
+  {
+    "id": 32,
+    "file": cranberry_souffle2,
+    "legend": "蔓越莓奶酥醬"
+  },
+  {
+    "id": 33,
+    "file": cranberry_souffle3,
+    "legend": "蔓越莓奶酥醬"
+  }
+];
+
+const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, devon_cream, lemon_yogurt_cake, lemon_yogurt_cake_cup, banana_pound_cake, original_souffle, vienna_cream, organic_coconut, cranberry_souffle];
 
 export default class ShopItem extends React.Component {
   constructor(props) {
@@ -308,6 +396,18 @@ export default class ShopItem extends React.Component {
               }
               {
                 this.props.itemName === '香蕉磅蛋糕' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 一整條(約 <span style={{'fontFamily': 'Cormorant'}}>710g</span>)切成<span style={{'fontFamily': 'Cormorant'}}>8</span>片，盒裝 </Header>
+              }
+              {
+                this.props.itemName === '原味奶酥醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 約可塗抹 <span style={{'fontFamily': 'Cormorant'}}> 12-15 </span>份厚片吐司 </Header>
+              }
+              {
+                this.props.itemName === '維也納奶油醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 約可塗抹 <span style={{'fontFamily': 'Cormorant'}}> 12-15 </span>份厚片吐司 </Header>
+              }
+              {
+                this.props.itemName === '有機椰子糖奶酥醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 約可塗抹 <span style={{'fontFamily': 'Cormorant'}}> 12-15 </span>份厚片吐司 </Header>
+              }
+              {
+                this.props.itemName === '蔓越莓奶酥醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 約可塗抹 <span style={{'fontFamily': 'Cormorant'}}> 12-15 </span>份厚片吐司 </Header>
               }
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>

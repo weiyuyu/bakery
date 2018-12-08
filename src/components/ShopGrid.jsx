@@ -75,7 +75,31 @@ const items = [
     "name": "香蕉磅蛋糕",
     "nameEnglish": "Banana Pound Cake",
     "price": 700
-  }
+  },
+  {
+    "id": 10,
+    "name": "原味奶酥醬",
+    "nameEnglish": "Original Soufflé Sauce",
+    "price": 520
+  },
+  {
+    "id": 11,
+    "name": "維也納奶油醬",
+    "nameEnglish": "Viennese Cream",
+    "price": 520
+  },
+  {
+    "id": 12,
+    "name": "有機椰子糖奶酥醬",
+    "nameEnglish": "Organic Coconut Soufflé Sauce",
+    "price": 650
+  },
+  {
+    "id": 13,
+    "name": "蔓越莓奶酥醬",
+    "nameEnglish": "Cranberry Soufflé Sauce",
+    "price": 500
+  },
 ];
 
 export default class ShopGrid extends React.Component {
@@ -108,7 +132,7 @@ export default class ShopGrid extends React.Component {
                   key={item["id"]}
                 />
               );
-            } else if(item["id"] === 6) {
+            } else if(item["id"] === 6 || item["id"] === 10 || item["id"] === 11 || item["id"] === 12 || item["id"] === 13) {
               return (
                 <ShopItem
                   itemName={item["name"]}
