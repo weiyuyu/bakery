@@ -94,7 +94,7 @@ const prices = {
     "原味奶酥醬": {
       "one": 520
     },
-    "維也納奶油醬": {
+    "維也納奶油抹醬": {
       "one": 520
     },
     "有機椰子糖奶酥醬": {
@@ -290,7 +290,7 @@ export default class Checkout extends React.Component {
       onlyDevonCream = false;
     }
 
-    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"] || cart["原味奶酥醬"] || cart["維也納奶油醬"] || cart["有機椰子糖奶酥醬"] || cart["蔓越莓奶酥醬"]) {
+    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"] || cart["原味奶酥醬"] || cart["維也納奶油抹醬"] || cart["有機椰子糖奶酥醬"] || cart["蔓越莓奶酥醬"]) {
       onlyDevonCream = false;
     }
 
@@ -301,7 +301,7 @@ export default class Checkout extends React.Component {
     let cart = this.props.cart;
     let onlySouffleAndCream = true;
 
-    if(!cart["原味奶酥醬"] && !cart["維也納奶油醬"] && !cart["有機椰子糖奶酥醬"] && !cart["蔓越莓奶酥醬"]) {
+    if(!cart["原味奶酥醬"] && !cart["維也納奶油抹醬"] && !cart["有機椰子糖奶酥醬"] && !cart["蔓越莓奶酥醬"]) {
       onlySouffleAndCream = false;
     }
 
@@ -316,7 +316,7 @@ export default class Checkout extends React.Component {
     let cart = this.props.cart;
     let onlySouffleAndDevon = true;
 
-    if(!cart["原味奶酥醬"] && !cart["維也納奶油醬"] && !cart["有機椰子糖奶酥醬"] && !cart["蔓越莓奶酥醬"] && !cart["德文郡奶油"]) {
+    if(!cart["原味奶酥醬"] && !cart["維也納奶油抹醬"] && !cart["有機椰子糖奶酥醬"] && !cart["蔓越莓奶酥醬"] && !cart["德文郡奶油"]) {
       onlySouffleAndDevon = false;
     }
 
@@ -372,8 +372,8 @@ export default class Checkout extends React.Component {
       }
 
       let viennaCreamCount = 0;
-      if(this.props.cart["維也納奶油醬"]) {
-        viennaCreamCount = this.props.cart["維也納奶油醬"]["one"];
+      if(this.props.cart["維也納奶油抹醬"]) {
+        viennaCreamCount = this.props.cart["維也納奶油抹醬"]["one"];
       }
 
       let organicCoconutCount = 0;
@@ -401,8 +401,8 @@ export default class Checkout extends React.Component {
         }
 
         let viennaCreamCount = 0;
-        if(this.props.cart["維也納奶油醬"]) {
-          viennaCreamCount = this.props.cart["維也納奶油醬"]["one"];
+        if(this.props.cart["維也納奶油抹醬"]) {
+          viennaCreamCount = this.props.cart["維也納奶油抹醬"]["one"];
         }
 
         let organicCoconutCount = 0;

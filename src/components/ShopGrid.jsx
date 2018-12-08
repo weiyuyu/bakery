@@ -78,27 +78,27 @@ const items = [
   },
   {
     "id": 10,
-    "name": "原味奶酥醬",
-    "nameEnglish": "Original Soufflé Sauce",
-    "price": 520
+    "name": "蔓越莓奶酥醬",
+    "nameEnglish": "Cranberry Butter Biscuit Spread",
+    "price": 500
   },
   {
     "id": 11,
-    "name": "維也納奶油醬",
-    "nameEnglish": "Viennese Cream",
+    "name": "原味奶酥醬",
+    "nameEnglish": "Original Butter Biscuit Spread",
     "price": 520
   },
   {
     "id": 12,
     "name": "有機椰子糖奶酥醬",
-    "nameEnglish": "Organic Coconut Soufflé Sauce",
+    "nameEnglish": "Organic Coconut Sugar Butter Biscuit Spread",
     "price": 650
   },
   {
     "id": 13,
-    "name": "蔓越莓奶酥醬",
-    "nameEnglish": "Cranberry Soufflé Sauce",
-    "price": 500
+    "name": "維也納奶油抹醬",
+    "nameEnglish": "Vienna Butter Cream Spread",
+    "price": 520
   },
 ];
 

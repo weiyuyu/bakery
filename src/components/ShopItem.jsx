@@ -38,9 +38,9 @@ import original_souffle1 from './../img/原味奶酥醬/1 封面.JPG';
 import original_souffle2 from './../img/原味奶酥醬/2.JPG';
 import original_souffle3 from './../img/原味奶酥醬/3.JPG';
 
-import vienna_cream1 from './../img/維也納奶油醬/1 封面.JPG';
-import vienna_cream2 from './../img/維也納奶油醬/2.JPG';
-import vienna_cream3 from './../img/維也納奶油醬/3.JPG';
+import vienna_cream1 from './../img/維也納奶油抹醬/1 封面.JPG';
+import vienna_cream2 from './../img/維也納奶油抹醬/2.JPG';
+import vienna_cream3 from './../img/維也納奶油抹醬/3.JPG';
 
 import organic_coconut1 from './../img/有機椰子糖奶酥醬/1 封面.jpg';
 import organic_coconut2 from './../img/有機椰子糖奶酥醬/2.JPG';
@@ -232,17 +232,17 @@ const vienna_cream = [
   {
     "id": 25,
     "file": vienna_cream1,
-    "legend": "維也納奶油醬"
+    "legend": "維也納奶油抹醬"
   },
   {
     "id": 26,
     "file": vienna_cream2,
-    "legend": "維也納奶油醬"
+    "legend": "維也納奶油抹醬"
   },
   {
     "id": 27,
     "file": vienna_cream3,
-    "legend": "維也納奶油醬"
+    "legend": "維也納奶油抹醬"
   }
 ];
 
@@ -282,7 +282,7 @@ const cranberry_souffle = [
   }
 ];
 
-const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, devon_cream, lemon_yogurt_cake, lemon_yogurt_cake_cup, banana_pound_cake, original_souffle, vienna_cream, organic_coconut, cranberry_souffle];
+const images = [cinnamon, cream, standard_scone, tea_scone, mixed_scone, devon_cream, lemon_yogurt_cake, lemon_yogurt_cake_cup, banana_pound_cake, cranberry_souffle, original_souffle, organic_coconut, vienna_cream];
 
 export default class ShopItem extends React.Component {
   constructor(props) {
@@ -401,7 +401,7 @@ export default class ShopItem extends React.Component {
                 this.props.itemName === '原味奶酥醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 約可塗抹 <span style={{'fontFamily': 'Cormorant'}}> 12-15 </span>份厚片吐司 </Header>
               }
               {
-                this.props.itemName === '維也納奶油醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 約可塗抹 <span style={{'fontFamily': 'Cormorant'}}> 12-15 </span>份厚片吐司 </Header>
+                this.props.itemName === '維也納奶油抹醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 約可塗抹 <span style={{'fontFamily': 'Cormorant'}}> 12-15 </span>份厚片吐司 </Header>
               }
               {
                 this.props.itemName === '有機椰子糖奶酥醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 約可塗抹 <span style={{'fontFamily': 'Cormorant'}}> 12-15 </span>份厚片吐司 </Header>

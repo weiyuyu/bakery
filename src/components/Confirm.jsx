@@ -15,7 +15,7 @@ import lemon_yogurt_cake_cup from './../img/檸檬優格生乳酪蛋糕4杯裝/�
 import devon_cream from './../img/德文郡奶油/Devon English Clotted Cream.JPG';
 import banana_pound_cake from './../img/香蕉磅蛋糕/封面.JPG';
 import original_souffle from './../img/原味奶酥醬/1 封面.JPG';
-import vienna_cream from './../img/維也納奶油醬/1 封面.JPG';
+import vienna_cream from './../img/維也納奶油抹醬/1 封面.JPG';
 import organic_coconut from './../img/有機椰子糖奶酥醬/1 封面.jpg';
 import cranberry_souffle from './../img/蔓越莓奶酥醬/1 封面.JPG';
 
@@ -30,7 +30,7 @@ const thumbnails = {
   "德文郡奶油": devon_cream,
   "香蕉磅蛋糕": banana_pound_cake,
   "原味奶酥醬": original_souffle,
-  "維也納奶油醬": vienna_cream,
+  "維也納奶油抹醬": vienna_cream,
   "有機椰子糖奶酥醬": organic_coconut,
   "蔓越莓奶酥醬": cranberry_souffle
 };
@@ -68,10 +68,10 @@ const nameEnglish = {
   "檸檬優格生乳酪蛋糕4杯裝": "Lemon Yogurt Cheesecake (4 cups)",
   "德文郡奶油": "Devon English Luxury Clotted Cream",
   "香蕉磅蛋糕": "Banana Pound Cake",
-  "原味奶酥醬": "Original Soufflé Sauce",
-  "維也納奶油醬": "Viennese Cream",
-  "有機椰子糖奶酥醬": "organic Coconut Soufflé Sauce",
-  "蔓越莓奶酥醬": "Cranberry Soufflé Sauce"
+  "原味奶酥醬": "Original Butter Biscuit Spread",
+  "維也納奶油抹醬": "Vienna Butter Cream Spread",
+  "有機椰子糖奶酥醬": "Organic Coconut Sugar Butter Biscuit Spread",
+  "蔓越莓奶酥醬": "Cranberry Butter Biscuit Spread"
 };
 
 const prices = {
@@ -109,7 +109,7 @@ const prices = {
     "原味奶酥醬": {
       "one": 520
     },
-    "維也納奶油醬": {
+    "維也納奶油抹醬": {
       "one": 520
     },
     "有機椰子糖奶酥醬": {
@@ -217,7 +217,7 @@ class Confirm extends React.Component {
           devonCream: this.getSpreadsheetValue("德文郡奶油","one"),
           bananaPoundCake: this.getSpreadsheetValue("香蕉磅蛋糕", "one"),
           originalSouffle: this.getSpreadsheetValue("原味奶酥醬", "one"),
-          viennaCream: this.getSpreadsheetValue("維也納奶油醬", "one"),
+          viennaCream: this.getSpreadsheetValue("維也納奶油抹醬", "one"),
           organicCoconut: this.getSpreadsheetValue("有機椰子糖奶酥醬", "one"),
           cranberrySouffle: this.getSpreadsheetValue("蔓越莓奶酥醬", "one"),
           pickupOption: this.props.pickupOption || '',
