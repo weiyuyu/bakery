@@ -380,6 +380,9 @@ export default class ShopItem extends React.Component {
                 this.props.itemName === '肉桂捲' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個捲捲都會附上一份自製奶油乳酪抹醬 </Header>
               }
               {
+                this.props.itemName === '肉桂捲' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 欲訂購請私訊 <span style={{'fontFamily': 'Cormorant'}}>@janetsbakery</span> 詢問 </Header>
+              }
+              {
                 this.props.itemName === '奶油乳酪抹醬' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 搭配捲捲專用。也很適合搭配bagel食用！ </Header>
               }
               {
@@ -411,11 +414,14 @@ export default class ShopItem extends React.Component {
               }
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>
-              <div style={{'display': 'flex', 'justifyContent': 'center', 'marginTop': 20}}>
-                <Button disabled={removeDisabled} icon='minus' onClick={this.handleRemove}/>
-                <Form.Input placeholder='數量' readOnly value={this.state.quantity} style={{'marginLeft': 5, 'marginRight': 8, 'width': 196, 'fontFamily': 'Cormorant'}}/>
-                <Button icon='plus' disabled={bundle===null} onClick={this.handleAdd}/>
-              </div>
+              {
+                this.props.itemName !== '肉桂捲' &&
+                <div style={{'display': 'flex', 'justifyContent': 'center', 'marginTop': 20}}>
+                  <Button disabled={removeDisabled} icon='minus' onClick={this.handleRemove}/>
+                  <Form.Input placeholder='數量' readOnly value={this.state.quantity} style={{'marginLeft': 5, 'marginRight': 8, 'width': 196, 'fontFamily': 'Cormorant'}}/>
+                  <Button icon='plus' disabled={bundle===null} onClick={this.handleAdd}/>
+                </div>
+              }
               <Divider />
               <Button.Group>
                 <Popup
