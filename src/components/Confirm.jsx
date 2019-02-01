@@ -12,7 +12,7 @@ import tea_scone from './../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94
 import mixed_scone from './../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG';
 import lemon_yogurt_cake from './../img/檸檬優格生乳酪蛋糕/1.JPG';
 import lemon_yogurt_cake_cup from './../img/檸檬優格生乳酪蛋糕4杯裝/封面.JPG';
-import devon_cream from './../img/德文郡奶油/Devon English Clotted Cream.JPG';
+import devon_cream from './../img/德文郡奶油/Devon English Clotted Cream.jpg';
 import banana_pound_cake from './../img/香蕉磅蛋糕/封面.JPG';
 import original_souffle from './../img/原味奶酥醬/1 封面.JPG';
 import vienna_cream from './../img/維也納奶油抹醬/1 封面.JPG';
@@ -101,7 +101,7 @@ const prices = {
       "one": 700
     },
     "德文郡奶油": {
-      "one": 330
+      "one": 85
     },
     "香蕉磅蛋糕": {
       "one": 700

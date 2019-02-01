@@ -56,7 +56,7 @@ const items = [
     "id": 6,
     "name": "德文郡奶油",
     "nameEnglish": "Devon English Luxury Clotted Cream",
-    "price": 330
+    "price": 85
   },
   {
     "id": 7,
@@ -124,6 +124,7 @@ export default class ShopGrid extends React.Component {
                   itemPrice={`$${item["price"]["boxOfFour"]}/4 pcs . $${item["price"]["boxOfSix"]}/6 pcs`}
                   itemType="multi"
                   itemDescription="itemDescription"
+                  cinnamonEnabled={this.props.cinnamonEnabled}
                   addItemToCart={this.props.addItemToCart}
                   removeItemFromCart={this.props.removeItemFromCart}
                   cart={this.props.cart}
@@ -140,6 +141,7 @@ export default class ShopGrid extends React.Component {
                   itemPrice={`$${item["price"]}/1 srv.`}
                   itemType="single"
                   itemDescription="itemDescription"
+                  cinnamonEnabled={this.props.cinnamonEnabled}
                   addItemToCart={this.props.addItemToCart}
                   removeItemFromCart={this.props.removeItemFromCart}
                   cart={this.props.cart}
@@ -156,6 +158,7 @@ export default class ShopGrid extends React.Component {
                   itemPrice={`$${item["price"]}/1 srv.`}
                   itemType="single"
                   itemDescription="itemDescription"
+                  cinnamonEnabled={this.props.cinnamonEnabled}
                   addItemToCart={this.props.addItemToCart}
                   removeItemFromCart={this.props.removeItemFromCart}
                   cart={this.props.cart}
@@ -171,6 +174,7 @@ export default class ShopGrid extends React.Component {
                 itemPrice={`$${item["price"]}/1 srv.`}
                 itemType="single"
                 itemDescription="itemDescription"
+                cinnamonEnabled={this.props.cinnamonEnabled}
                 addItemToCart={this.props.addItemToCart}
                 removeItemFromCart={this.props.removeItemFromCart}
                 cart={this.props.cart}

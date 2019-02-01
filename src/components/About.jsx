@@ -64,7 +64,7 @@ const About = () => {
       <Container style={containerStyle}>
         <Zoom>
           <Header style={headerStyle}> <span style={{'fontFamily': 'Cormorant', 'fontSize': 25}}> 2. </span> 自取：僅限台南市 </Header>
-          <Header style={headerStyle}> <Icon name='time' size='small'/> 時間：會安排在週六下午 <span style={{'fontFamily': 'Cormorant', 'fontSize': 20}}> 1:00 - 1:05 </span> </Header>
+          <Header style={headerStyle}> <Icon name='time' size='small'/> 時間：會安排在週六上午 <span style={{'fontFamily': 'Cormorant', 'fontSize': 20}}> 11:00 - 11:05 </span> </Header>
           <Header style={headerStyle}> <Icon name='map pin' /> 取貨地點 : </Header>
         </Zoom>
         <Zoom>

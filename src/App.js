@@ -8,7 +8,8 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      cartTotal: 0
+      cartTotal: 0,
+      cinnamonEnabled: false
     };
 
     this.addCartTotal = this.addCartTotal.bind(this);
@@ -21,6 +22,7 @@ export default class App extends React.Component {
       .then(data => {
         // handle success
         console.log(data);
+        this.setState({cinnamonEnabled: data.cinnamonEnabled});
       })
       .catch(function (error) {
         // handle error
@@ -40,7 +42,7 @@ export default class App extends React.Component {
     return(
       <div className="App">
         <Navigation cartTotal={this.state.cartTotal}/>
-        <Main addCartTotal={this.addCartTotal} removeCartTotal={this.removeCartTotal} cartTotal={this.state.cartTotal}/>
+        <Main addCartTotal={this.addCartTotal} removeCartTotal={this.removeCartTotal} cartTotal={this.state.cartTotal} cinnamonEnabled={this.state.cinnamonEnabled}/>
       </div>
     );
   }

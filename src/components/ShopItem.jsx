@@ -23,7 +23,7 @@ import lemon_yogurt_cake1 from './../img/檸檬優格生乳酪蛋糕/1.JPG';
 import lemon_yogurt_cake2 from './../img/檸檬優格生乳酪蛋糕/2.JPG';
 import lemon_yogurt_cake3 from './../img/檸檬優格生乳酪蛋糕/3.JPG';
 
-import devon_cream1 from './../img/德文郡奶油/Devon English Clotted Cream.JPG';
+import devon_cream1 from './../img/德文郡奶油/Devon English Clotted Cream.jpg';
 
 import lemon_yogurt_cake_cup1 from './../img/檸檬優格生乳酪蛋糕4杯裝/封面.JPG';
 import lemon_yogurt_cake_cup2 from './../img/檸檬優格生乳酪蛋糕4杯裝/pic1.JPG';
@@ -380,6 +380,7 @@ export default class ShopItem extends React.Component {
                 this.props.itemName === '肉桂捲' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 每個捲捲都會附上一份自製奶油乳酪抹醬 </Header>
               }
               {
+                !this.props.cinnamonEnabled &&
                 this.props.itemName === '肉桂捲' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 欲訂購請私訊 <span style={{'fontFamily': 'Cormorant'}}>@janetsbakery</span> 詢問 </Header>
               }
               {
@@ -392,7 +393,7 @@ export default class ShopItem extends React.Component {
                 this.props.itemName === '檸檬優格生乳酪蛋糕' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 6吋 (約4-6人食用) </Header>
               }
               {
-                this.props.itemName === '德文郡奶油' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 一罐的份量<span style={{'fontFamily': 'Cormorant'}}>170g</span>， 約可搭配6個司康 </Header>
+                this.props.itemName === '德文郡奶油' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 一罐的份量<span style={{'fontFamily': 'Cormorant'}}>28g</span>， 約可搭配1個司康 </Header>
               }
               {
                 this.props.itemName === '檸檬優格生乳酪蛋糕4杯裝' && <Header size='small' style={{'fontFamily': 'cwTexMing'}}> 份量與盒裝的蛋糕相同 </Header>
@@ -415,7 +416,7 @@ export default class ShopItem extends React.Component {
               <Dropdown placeholder='Select Bundle' selection options={options} onChange={this.handleDropdownChange} style={{'fontFamily': 'cwTexMing, Cormorant'}}/>
               <br/>
               {
-                this.props.itemName !== '肉桂捲' &&
+                (this.props.itemName !== '肉桂捲' || this.props.cinnamonEnabled) &&
                 <div style={{'display': 'flex', 'justifyContent': 'center', 'marginTop': 20}}>
                   <Button disabled={removeDisabled} icon='minus' onClick={this.handleRemove}/>
                   <Form.Input placeholder='數量' readOnly value={this.state.quantity} style={{'marginLeft': 5, 'marginRight': 8, 'width': 196, 'fontFamily': 'Cormorant'}}/>

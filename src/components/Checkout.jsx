@@ -86,7 +86,7 @@ const prices = {
       "one": 700
     },
     "德文郡奶油": {
-      "one": 330
+      "one": 85
     },
     "香蕉磅蛋糕": {
       "one": 700
@@ -259,9 +259,20 @@ export default class Checkout extends React.Component {
     if(!cart["檸檬優格生乳酪蛋糕"]) {
       onlyCake = false;
     }
-
-    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["德文郡奶油"] || cart["香蕉磅蛋糕"]) {
-      onlyCake = false;
+    const entries = Object.entries(cart);
+    for(const [key, value] of entries) {
+      console.log(key, value);
+      if(value["boxOfFour"] && value["boxOfFour"] > 0) {
+        return false;
+      }
+      if(value["boxOfSix"] && value["boxOfSix"] > 0) {
+        return false;
+      }
+      if(value["one"] && value["one"] > 0) {
+        if(key !== "檸檬優格生乳酪蛋糕") {
+          return false;
+        }
+      }
     }
 
     return onlyCake;
@@ -275,8 +286,22 @@ export default class Checkout extends React.Component {
       onlyCreamCheese = false;
     }
 
-    if(cart["肉桂捲"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["德文郡奶油"] || cart["香蕉磅蛋糕"]) {
-      onlyCreamCheese = false;
+    const entries = Object.entries(cart);
+    for(const [key, value] of entries) {
+      console.log(key, value);
+      console.log(value);
+      console.log(value["boxOfFour"]);
+      if(value["boxOfFour"] && value["boxOfFour"] > 0) {
+        return false;
+      }
+      if(value["boxOfSix"] && value["boxOfSix"] > 0) {
+        return false;
+      }
+      if(value["one"] && value["one"] > 0) {
+        if(key !== "奶油乳酪抹醬") {
+          return false;
+        }
+      }
     }
 
     return onlyCreamCheese;
@@ -290,8 +315,20 @@ export default class Checkout extends React.Component {
       onlyDevonCream = false;
     }
 
-    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"] || cart["原味奶酥醬"] || cart["維也納奶油抹醬"] || cart["有機椰子糖奶酥醬"] || cart["蔓越莓奶酥醬"]) {
-      onlyDevonCream = false;
+    const entries = Object.entries(cart);
+    for(const [key, value] of entries) {
+      console.log(key, value);
+      if(value["boxOfFour"] && value["boxOfFour"] > 0) {
+        return false;
+      }
+      if(value["boxOfSix"] && value["boxOfSix"] > 0) {
+        return false;
+      }
+      if(value["one"] && value["one"] > 0) {
+        if(key !== "德文郡奶油") {
+          return false;
+        }
+      }
     }
 
     return onlyDevonCream;
@@ -305,8 +342,20 @@ export default class Checkout extends React.Component {
       onlySouffleAndCream = false;
     }
 
-    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"] || cart["德文郡奶油"]) {
-      onlySouffleAndCream = false;
+    const entries = Object.entries(cart);
+    for(const [key, value] of entries) {
+      console.log(key, value);
+      if(value["boxOfFour"] && value["boxOfFour"] > 0) {
+        return false;
+      }
+      if(value["boxOfSix"] && value["boxOfSix"] > 0) {
+        return false;
+      }
+      if(value["one"] && value["one"] > 0) {
+        if(key !== "原味奶酥醬" && key !== "維也納奶油抹醬" && key !== "有機椰子糖奶酥醬" && key !== "蔓越莓奶酥醬") {
+          return false;
+        }
+      }
     }
 
     return onlySouffleAndCream;
@@ -320,8 +369,20 @@ export default class Checkout extends React.Component {
       onlySouffleAndDevon = false;
     }
 
-    if(cart["肉桂捲"] || cart["奶油乳酪抹醬"] || cart["原味司康"] || cart["伯爵茶司康"] || cart["綜合司康"] || cart["檸檬優格生乳酪蛋糕"] || cart["檸檬優格生乳酪蛋糕4杯裝"] || cart["香蕉磅蛋糕"]) {
-      onlySouffleAndDevon = false;
+    const entries = Object.entries(cart);
+    for(const [key, value] of entries) {
+      console.log(key, value);
+      if(value["boxOfFour"] && value["boxOfFour"] > 0) {
+        return false;
+      }
+      if(value["boxOfSix"] && value["boxOfSix"] > 0) {
+        return false;
+      }
+      if(value["one"] && value["one"] > 0) {
+        if(key !== "原味奶酥醬" && key !== "維也納奶油抹醬" && key !== "有機椰子糖奶酥醬" && key !== "蔓越莓奶酥醬" && key !== "德文郡奶油") {
+          return false;
+        }
+      }
     }
 
     return onlySouffleAndDevon;
@@ -339,6 +400,7 @@ export default class Checkout extends React.Component {
     if(this.props.cart["檸檬優格生乳酪蛋糕"]) {
       let boxesofCake = this.props.cart["檸檬優格生乳酪蛋糕"]["one"];
       if(this.onlyCake() && boxesofCake <= 2 && boxesofCake > 0) {
+        console.log("Only Cake");
         return 150;
       }
     }
@@ -346,6 +408,7 @@ export default class Checkout extends React.Component {
     if(this.props.cart["奶油乳酪抹醬"]) {
       let creamCheeseCount = this.props.cart["奶油乳酪抹醬"]["one"];
       if(this.onlyCreamCheese()) {
+        console.log("Only Cream Cheese");
         if(creamCheeseCount <= 36) {
           return 150;
         } else {
@@ -357,7 +420,8 @@ export default class Checkout extends React.Component {
     if(this.props.cart["德文郡奶油"]) {
       let devonCreamCount = this.props.cart["德文郡奶油"]["one"];
       if(this.onlyDevonCream()) {
-        if(devonCreamCount <= 12) {
+        console.log("Only Devon Cream");
+        if(devonCreamCount <= 48) {
           return 150;
         } else {
           return 220;
@@ -366,6 +430,7 @@ export default class Checkout extends React.Component {
     }
 
     if(this.onlySouffleAndCream()) {
+      console.log("Only Souffle and Cream");
       let originalSouffleCount = 0;
       if(this.props.cart["原味奶酥醬"]) {
         originalSouffleCount = this.props.cart["原味奶酥醬"]["one"];
@@ -395,6 +460,7 @@ export default class Checkout extends React.Component {
       }
     } else {
       if(this.onlySouffleAndDevon()) {
+        console.log("Only Souffle and Devon");
         let originalSouffleCount = 0;
         if(this.props.cart["原味奶酥醬"]) {
           originalSouffleCount = this.props.cart["原味奶酥醬"]["one"];
@@ -415,7 +481,7 @@ export default class Checkout extends React.Component {
           cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["one"];
         }
 
-        let devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+        let devonCreamCount = this.props.cart["德文郡奶油"]["one"]/4;
 
         let souffleAndCreamCount = originalSouffleCount + viennaCreamCount + organicCoconutCount + cranberrySouffleCount + devonCreamCount;
 
@@ -464,7 +530,7 @@ export default class Checkout extends React.Component {
     if(boxesOfFour + boxesOfSix === 1) {
       let devonCreamCount = 0;
       if(this.props.cart["德文郡奶油"]) {
-        devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+        devonCreamCount = this.props.cart["德文郡奶油"]["one"]/4;
       }
       if(boxesOfSix === 1 && devonCreamCount > 0) {
         shippingCost = 220;
@@ -479,7 +545,7 @@ export default class Checkout extends React.Component {
       let extraCharge = 0;
       let devonCreamCount = 0;
       if(this.props.cart["德文郡奶油"]) {
-        devonCreamCount = this.props.cart["德文郡奶油"]["one"];
+        devonCreamCount = this.props.cart["德文郡奶油"]["one"]/4;
       }
 
       switch(6*boxesOfSix + 4*boxesOfFour) {
