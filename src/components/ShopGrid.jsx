@@ -38,7 +38,7 @@ const items = [
     id: 4,
     name: "檸檬馬鞭草生乳酪蛋糕4杯裝",
     nameEnglish: "Lemon Verbena Yogurt Cheesecake (4 cups)",
-    price: 700,
+    price: 720,
     soldOut: false
   },
   {
