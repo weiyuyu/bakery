@@ -608,7 +608,7 @@ class Confirm extends React.Component {
           <Moment
             ref="paymentDate"
             format="YYYY/MM/DD"
-            add={{ days: 5 }}
+            add={{ days: 3 }}
             style={{ display: "block", color: "transparent" }}
           >
             {date}
