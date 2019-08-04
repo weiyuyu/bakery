@@ -301,6 +301,9 @@ export default class ShopItem extends React.Component {
       quantity: 0,
       popUpIsOpen: false
     };
+    // console.log(this.props.cinnamonEnabled);
+    // console.log(this.props.standardSconeEnabled);
+    // console.log(this.props.devonEnabled);
   }
 
   handleAdd = () => {

@@ -26,7 +26,7 @@ export default class App extends React.Component {
         // handle success
         console.log(data);
         this.setState({ 
-          cinnamonEnabled: data.cinnamonEnable,
+          cinnamonEnabled: data.cinnamonEnabled,
           standardSconeEnabled: data.standardSconeEnabled,
           devonEnabled: data.devonEnabled
         });
@@ -54,8 +54,8 @@ export default class App extends React.Component {
           removeCartTotal={this.removeCartTotal}
           cartTotal={this.state.cartTotal}
           cinnamonEnabled={this.state.cinnamonEnabled}
-          standardSconeEnabled={this.standardSconeEnabled}
-          devonEnabled={this.devonEnabled}
+          standardSconeEnabled={this.state.standardSconeEnabled}
+          devonEnabled={this.state.devonEnabled}
         />
       </div>
     );
