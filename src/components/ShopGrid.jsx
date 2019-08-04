@@ -29,16 +29,19 @@ const items = [
   },
   {
     id: 3,
-    name: "檸檬馬鞭草生乳酪蛋糕",
-    nameEnglish: "Lemon Verbena Yogurt Cheesecake",
-    price: 700,
+    name: "原味司康",
+    nameEnglish: "Original Scone",
+    price: {
+      boxOfFour: 340,
+      boxOfSix: 510
+    },
     soldOut: false
   },
   {
     id: 4,
-    name: "檸檬馬鞭草生乳酪蛋糕4杯裝",
-    nameEnglish: "Lemon Verbena Yogurt Cheesecake (4 cups)",
-    price: 720,
+    name: "德文郡奶油",
+    nameEnglish: "Devon English Luxury Clotted Cream",
+    price: 320,
     soldOut: false
   },
   {
@@ -64,46 +67,43 @@ const items = [
   },
   {
     id: 8,
-    name: "原味司康",
-    nameEnglish: "Original Scone",
+    name: "伯爵茶司康",
+    nameEnglish: "Earl Grey Scone",
     price: {
-      boxOfFour: 340,
-      boxOfSix: 480
+      boxOfFour: 360,
+      boxOfSix: 540
     },
     soldOut: true
   },
   {
     id: 9,
-    name: "伯爵茶司康",
-    nameEnglish: "Earl Grey Scone",
+    name: "綜合司康",
+    nameEnglish: "Assorted Scone",
     price: {
-      boxOfFour: 360,
-      boxOfSix: 510
+      boxOfFour: 350,
+      boxOfSix: 525
     },
     soldOut: true
   },
   {
     id: 10,
-    name: "綜合司康",
-    nameEnglish: "Assorted Scone",
-    price: {
-      boxOfFour: 350,
-      boxOfSix: 510
-    },
+    name: "香蕉磅蛋糕",
+    nameEnglish: "Banana Pound Cake",
+    price: 700,
     soldOut: true
   },
   {
     id: 11,
-    name: "德文郡奶油",
-    nameEnglish: "Devon English Luxury Clotted Cream",
-    price: 320,
+    name: "檸檬馬鞭草生乳酪蛋糕",
+    nameEnglish: "Lemon Verbena Yogurt Cheesecake",
+    price: 700,
     soldOut: true
   },
   {
     id: 12,
-    name: "香蕉磅蛋糕",
-    nameEnglish: "Banana Pound Cake",
-    price: 700,
+    name: "檸檬馬鞭草生乳酪蛋糕4杯裝",
+    nameEnglish: "Lemon Verbena Yogurt Cheesecake (4 cups)",
+    price: 720,
     soldOut: true
   },
   {
@@ -139,6 +139,8 @@ export default class ShopGrid extends React.Component {
                 itemType="multi"
                 itemDescription="itemDescription"
                 cinnamonEnabled={this.props.cinnamonEnabled}
+                standardSconeEnabled={this.props.standardSconeEnabled}
+                devonEnabled={this.props.devonEnabled}
                 addItemToCart={this.props.addItemToCart}
                 removeItemFromCart={this.props.removeItemFromCart}
                 cart={this.props.cart}
@@ -158,10 +160,10 @@ export default class ShopGrid extends React.Component {
               />
             );
           } else if (
+            item["id"] === 4 ||
             item["id"] === 5 ||
             item["id"] === 6 ||
             item["id"] === 7 ||
-            item["id"] === 11 ||
             item["id"] === 13
           ) {
             return (
@@ -172,6 +174,8 @@ export default class ShopGrid extends React.Component {
                 itemType="single"
                 itemDescription="itemDescription"
                 cinnamonEnabled={this.props.cinnamonEnabled}
+                standardSconeEnabled={this.props.standardSconeEnabled}
+                devonEnabled={this.props.devonEnabled}
                 addItemToCart={this.props.addItemToCart}
                 removeItemFromCart={this.props.removeItemFromCart}
                 cart={this.props.cart}
@@ -181,7 +185,7 @@ export default class ShopGrid extends React.Component {
                 soldOut={item["soldOut"]}
               />
             );
-          } else if (item["id"] === 3) {
+          } else if (item["id"] === 11) {
             return (
               <ShopItem
                 itemName={item["name"]}
@@ -190,6 +194,8 @@ export default class ShopGrid extends React.Component {
                 itemType="single"
                 itemDescription="itemDescription"
                 cinnamonEnabled={this.props.cinnamonEnabled}
+                standardSconeEnabled={this.props.standardSconeEnabled}
+                devonEnabled={this.props.devonEnabled}
                 addItemToCart={this.props.addItemToCart}
                 removeItemFromCart={this.props.removeItemFromCart}
                 cart={this.props.cart}
@@ -210,6 +216,8 @@ export default class ShopGrid extends React.Component {
                 itemType="single"
                 itemDescription="itemDescription"
                 cinnamonEnabled={this.props.cinnamonEnabled}
+                standardSconeEnabled={this.props.standardSconeEnabled}
+                devonEnabled={this.props.devonEnabled}
                 addItemToCart={this.props.addItemToCart}
                 removeItemFromCart={this.props.removeItemFromCart}
                 cart={this.props.cart}

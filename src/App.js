@@ -9,7 +9,9 @@ export default class App extends React.Component {
     super();
     this.state = {
       cartTotal: 0,
-      cinnamonEnabled: false
+      cinnamonEnabled: false,
+      standardSconeEnabled: true,
+      devonEnabled: true
     };
 
     this.addCartTotal = this.addCartTotal.bind(this);
@@ -23,7 +25,11 @@ export default class App extends React.Component {
       .then(data => {
         // handle success
         console.log(data);
-        this.setState({ cinnamonEnabled: data.cinnamonEnabled });
+        this.setState({ 
+          cinnamonEnabled: data.cinnamonEnable,
+          standardSconeEnabled: data.standardSconeEnabled,
+          devonEnabled: data.devonEnabled
+        });
       })
       .catch(function(error) {
         // handle error
@@ -48,6 +54,8 @@ export default class App extends React.Component {
           removeCartTotal={this.removeCartTotal}
           cartTotal={this.state.cartTotal}
           cinnamonEnabled={this.state.cinnamonEnabled}
+          standardSconeEnabled={this.standardSconeEnabled}
+          devonEnabled={this.devonEnabled}
         />
       </div>
     );

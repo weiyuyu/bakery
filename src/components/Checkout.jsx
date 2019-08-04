@@ -64,11 +64,12 @@ const prices = {
   奶油乳酪抹醬: {
     one: 40
   },
-  檸檬馬鞭草生乳酪蛋糕: {
-    one: 700
+  原味司康: {
+    boxOfFour: 340,
+    boxOfSix: 510
   },
-  檸檬馬鞭草生乳酪蛋糕4杯裝: {
-    one: 720
+  德文郡奶油: {
+    one: 320
   },
   原味奶酥醬: {
     one: 520
@@ -79,23 +80,22 @@ const prices = {
   蔓越莓奶酥醬: {
     one: 500
   },
-  原味司康: {
-    boxOfFour: 340,
-    boxOfSix: 480
-  },
   伯爵茶司康: {
     boxOfFour: 360,
-    boxOfSix: 510
+    boxOfSix: 540
   },
   綜合司康: {
     boxOfFour: 350,
-    boxOfSix: 510
-  },
-  德文郡奶油: {
-    one: 320
+    boxOfSix: 525
   },
   香蕉磅蛋糕: {
     one: 700
+  },
+  檸檬馬鞭草生乳酪蛋糕: {
+    one: 700
+  },
+  檸檬馬鞭草生乳酪蛋糕4杯裝: {
+    one: 720
   },
   維也納奶油抹醬: {
     one: 520

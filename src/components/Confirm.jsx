@@ -30,8 +30,6 @@ import cranberry_souffle from "./../img/蔓越莓奶酥醬/1 封面.JPG";
 const thumbnails = {
   肉桂捲: cinnamon,
   奶油乳酪抹醬: cream,
-  檸檬馬鞭草生乳酪蛋糕: lemon_yogurt_cake,
-  檸檬馬鞭草生乳酪蛋糕4杯裝: lemon_yogurt_cake_cup,
   原味奶酥醬: original_souffle,
   有機椰子糖奶酥醬: organic_coconut,
   蔓越莓奶酥醬: cranberry_souffle,
@@ -40,6 +38,8 @@ const thumbnails = {
   綜合司康: mixed_scone,
   德文郡奶油: devon_cream,
   香蕉磅蛋糕: banana_pound_cake,
+  檸檬馬鞭草生乳酪蛋糕: lemon_yogurt_cake,
+  檸檬馬鞭草生乳酪蛋糕4杯裝: lemon_yogurt_cake_cup,
   維也納奶油抹醬: vienna_cream
 };
 
@@ -69,8 +69,6 @@ const styles = {
 const nameEnglish = {
   肉桂捲: "Cinnamon Roll",
   奶油乳酪抹醬: "Cream Cheese Spread",
-  檸檬馬鞭草生乳酪蛋糕: "Lemon Verbena Yogurt Cheesecake",
-  檸檬馬鞭草生乳酪蛋糕4杯裝: "Lemon Verbena Yogurt Cheesecake (4 cups)",
   原味奶酥醬: "Original Butter Biscuit Spread",
   有機椰子糖奶酥醬: "Organic Coconut Sugar Butter Biscuit Spread",
   蔓越莓奶酥醬: "Cranberry Butter Biscuit Spread",
@@ -79,6 +77,8 @@ const nameEnglish = {
   綜合司康: "Assorted Scone",
   德文郡奶油: "Devon English Luxury Clotted Cream",
   香蕉磅蛋糕: "Banana Pound Cake",
+  檸檬馬鞭草生乳酪蛋糕: "Lemon Verbena Yogurt Cheesecake",
+  檸檬馬鞭草生乳酪蛋糕4杯裝: "Lemon Verbena Yogurt Cheesecake (4 cups)",
   維也納奶油抹醬: "Vienna Butter Cream Spread"
 };
 
@@ -90,11 +90,12 @@ const prices = {
   奶油乳酪抹醬: {
     one: 40
   },
-  檸檬馬鞭草生乳酪蛋糕: {
-    one: 700
+  原味司康: {
+    boxOfFour: 340,
+    boxOfSix: 510
   },
-  檸檬馬鞭草生乳酪蛋糕4杯裝: {
-    one: 720
+  德文郡奶油: {
+    one: 320
   },
   原味奶酥醬: {
     one: 520
@@ -105,23 +106,22 @@ const prices = {
   蔓越莓奶酥醬: {
     one: 500
   },
-  原味司康: {
-    boxOfFour: 340,
-    boxOfSix: 480
-  },
   伯爵茶司康: {
     boxOfFour: 360,
-    boxOfSix: 510
+    boxOfSix: 540
   },
   綜合司康: {
     boxOfFour: 350,
-    boxOfSix: 510
-  },
-  德文郡奶油: {
-    one: 320
+    boxOfSix: 525
   },
   香蕉磅蛋糕: {
     one: 700
+  },
+  檸檬馬鞭草生乳酪蛋糕: {
+    one: 700
+  },
+  檸檬馬鞭草生乳酪蛋糕4杯裝: {
+    one: 720
   },
   維也納奶油抹醬: {
     one: 520

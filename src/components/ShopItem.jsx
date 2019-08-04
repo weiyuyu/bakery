@@ -278,16 +278,16 @@ const cranberry_souffle = [
 const images = [
   cinnamon,
   cream,
-  lemon_yogurt_cake,
-  lemon_yogurt_cake_cup,
+  standard_scone,
+  devon_cream,
   cranberry_souffle,
   original_souffle,
   organic_coconut,
-  standard_scone,
   tea_scone,
   mixed_scone,
-  devon_cream,
   banana_pound_cake,
+  lemon_yogurt_cake,
+  lemon_yogurt_cake_cup,
   vienna_cream
 ];
 
@@ -443,6 +443,26 @@ export default class ShopItem extends React.Component {
                   詢問{" "}
                 </Header>
               )}
+              {!this.props.standardSconeEnabled && this.props.itemName === "原味司康" && (
+                <Header size="small" style={{ fontFamily: "cwTexMing" }}>
+                  {" "}
+                  欲訂購請私訊{" "}
+                  <span style={{ fontFamily: "Cormorant" }}>
+                    @janetsbakery
+                  </span>{" "}
+                  詢問{" "}
+                </Header>
+              )}
+              {!this.props.devonEnabled && this.props.itemName === "德文郡奶油" && (
+                <Header size="small" style={{ fontFamily: "cwTexMing" }}>
+                  {" "}
+                  欲訂購請私訊{" "}
+                  <span style={{ fontFamily: "Cormorant" }}>
+                    @janetsbakery
+                  </span>{" "}
+                  詢問{" "}
+                </Header>
+              )}
               {this.props.itemName !== "肉桂捲" && this.props.soldOut && (
                 <Header size="small" style={{ fontFamily: "Cormorant" }}>
                   SOLD OUT
@@ -530,7 +550,7 @@ export default class ShopItem extends React.Component {
                 style={{ fontFamily: "cwTexMing, Cormorant" }}
               />
               <br />
-              {this.props.itemName !== "肉桂捲" && !this.props.soldOut && (
+              {this.props.itemName !== "肉桂捲" && this.props.itemName !== "原味司康" && this.props.itemName !== "德文郡奶油" && !this.props.soldOut && (
                 <div
                   style={{
                     display: "flex",
@@ -562,6 +582,68 @@ export default class ShopItem extends React.Component {
                 </div>
               )}
               {this.props.itemName === "肉桂捲" && this.props.cinnamonEnabled && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 20
+                  }}
+                >
+                  <Button
+                    disabled={removeDisabled}
+                    icon="minus"
+                    onClick={this.handleRemove}
+                  />
+                  <Form.Input
+                    placeholder="數量"
+                    readOnly
+                    value={this.state.quantity}
+                    style={{
+                      marginLeft: 5,
+                      marginRight: 8,
+                      width: 196,
+                      fontFamily: "Cormorant"
+                    }}
+                  />
+                  <Button
+                    icon="plus"
+                    disabled={bundle === null}
+                    onClick={this.handleAdd}
+                  />
+                </div>
+              )}
+              {this.props.itemName === "原味司康" && this.props.standardSconeEnabled && (
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    marginTop: 20
+                  }}
+                >
+                  <Button
+                    disabled={removeDisabled}
+                    icon="minus"
+                    onClick={this.handleRemove}
+                  />
+                  <Form.Input
+                    placeholder="數量"
+                    readOnly
+                    value={this.state.quantity}
+                    style={{
+                      marginLeft: 5,
+                      marginRight: 8,
+                      width: 196,
+                      fontFamily: "Cormorant"
+                    }}
+                  />
+                  <Button
+                    icon="plus"
+                    disabled={bundle === null}
+                    onClick={this.handleAdd}
+                  />
+                </div>
+              )}
+              {this.props.itemName === "德文郡奶油" && this.props.devonEnabled && (
                 <div
                   style={{
                     display: "flex",
