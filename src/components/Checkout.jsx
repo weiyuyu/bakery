@@ -441,7 +441,7 @@ export default class Checkout extends React.Component {
       let boxesofCake = this.props.cart["檸檬馬鞭草生乳酪蛋糕"]["one"];
       if (this.onlyCake() && boxesofCake <= 2 && boxesofCake > 0) {
         console.log("Only Cake");
-        return 150;
+        return 160;
       }
     }
 
@@ -450,9 +450,9 @@ export default class Checkout extends React.Component {
       if (this.onlyCreamCheese()) {
         console.log("Only Cream Cheese");
         if (creamCheeseCount <= 36) {
-          return 150;
+          return 160;
         } else {
-          return 220;
+          return 225;
         }
       }
     }
@@ -462,9 +462,9 @@ export default class Checkout extends React.Component {
       if (this.onlyDevonCream()) {
         console.log("Only Devon Cream");
         if (devonCreamCount <= 48) {
-          return 150;
+          return 160;
         } else {
-          return 220;
+          return 225;
         }
       }
     }
@@ -498,9 +498,9 @@ export default class Checkout extends React.Component {
         cranberrySouffleCount;
 
       if (souffleAndCreamCount > 0 && souffleAndCreamCount <= 6) {
-        return 150;
+        return 160;
       } else {
-        return 220;
+        return 225;
       }
     } else {
       if (this.onlySouffleAndDevon()) {
@@ -535,9 +535,9 @@ export default class Checkout extends React.Component {
           devonCreamCount;
 
         if (souffleAndCreamCount > 0 && souffleAndCreamCount <= 6) {
-          return 150;
+          return 160;
         } else {
-          return 220;
+          return 225;
         }
       } else {
         if (
@@ -546,7 +546,7 @@ export default class Checkout extends React.Component {
           this.props.cart["有機椰子糖奶酥醬"] ||
           this.props.cart["蔓越莓奶酥醬"]
         ) {
-          return 220;
+          return 225;
         }
       }
     }
@@ -592,14 +592,14 @@ export default class Checkout extends React.Component {
         devonCreamCount = this.props.cart["德文郡奶油"]["one"] / 4;
       }
       if (boxesOfSix === 1 && devonCreamCount > 0) {
-        shippingCost = 220;
+        shippingCost = 225;
       }
 
       if (boxesOfFour === 1 && devonCreamCount > 3) {
-        shippingCost = 220;
+        shippingCost = 225;
       }
 
-      shippingCost = 150;
+      shippingCost = 160;
     } else {
       let extraCharge = 0;
       let devonCreamCount = 0;
@@ -610,22 +610,22 @@ export default class Checkout extends React.Component {
       switch (6 * boxesOfSix + 4 * boxesOfFour) {
         case 16:
           if (devonCreamCount > 6) {
-            extraCharge = 150;
+            extraCharge = 160;
           }
           break;
         case 18:
           if (devonCreamCount > 5) {
-            extraCharge = 150;
+            extraCharge = 160;
           }
           break;
         case 20:
           if (devonCreamCount > 6) {
-            extraCharge = 150;
+            extraCharge = 160;
           }
           break;
         case 24:
           if (devonCreamCount > 0) {
-            extraCharge = 150;
+            extraCharge = 160;
           }
           break;
         default:
@@ -669,7 +669,7 @@ export default class Checkout extends React.Component {
           count += 1;
         }
       }
-      shippingCost = count * 220 + extraCharge;
+      shippingCost = count * 225 + extraCharge;
     }
 
     return shippingCost;

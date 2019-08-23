@@ -57,7 +57,7 @@ const About = () => {
                 {" "}
                 一盒 <span style={{ fontFamily: "Cormorant" }}>
                   {" "}
-                  $150{" "}
+                  $160{" "}
                 </span>{" "}
               </List.Content>
             </List.Item>
@@ -68,7 +68,7 @@ const About = () => {
               <List.Content>
                 {" "}
                 二盒~六盒{" "}
-                <span style={{ fontFamily: "Cormorant" }}> $220 </span>{" "}
+                <span style={{ fontFamily: "Cormorant" }}> $225 </span>{" "}
                 (具體數量如下){" "}
               </List.Content>
               <List.List>
