@@ -41,7 +41,7 @@ const About = () => {
               {" "}
               1.
             </span>{" "}
-            宅配：配送至全台{" "}
+            宅配：配送至全台，僅限台灣本島{" "}
           </Header>
           <Header style={headerStyle}>
             {" "}
