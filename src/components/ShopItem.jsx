@@ -438,22 +438,21 @@ export default class ShopItem extends React.Component {
               )}
               {!this.props.cinnamonEnabled && this.props.itemName === "肉桂捲" && (
                 <Header size="small" style={{ fontFamily: "cwTexMing" }}>
-                  {" "}
-                  欲訂購請私訊{" "}
+                  肉桂捲採每月初開放「下個月收貨名額」的方式訂購。 <br />
+                  目前名額已滿， 下次肉桂捲開放訂購時間請至 <br />
                   <span style={{ fontFamily: "Cormorant" }}>
                     @janetsbakery
                   </span>{" "}
-                  詢問{" "}
+                  資訊欄或每篇文章底下公告查閱。
                 </Header>
               )}
               {!this.props.standardSconeEnabled && this.props.itemName === "原味司康" && (
                 <Header size="small" style={{ fontFamily: "cwTexMing" }}>
-                  {" "}
-                  欲訂購請私訊{" "}
+                  目前名額已滿， 下次開放訂購時間請至 <br/>
                   <span style={{ fontFamily: "Cormorant" }}>
                     @janetsbakery
                   </span>{" "}
-                  詢問{" "}
+                  資訊欄或每篇文章底下公告查閱。
                 </Header>
               )}
               {!this.props.devonEnabled && this.props.itemName === "德文郡奶油" && (
@@ -545,13 +544,44 @@ export default class ShopItem extends React.Component {
                   份厚片吐司{" "}
                 </Header>
               )}
-              <Dropdown
-                placeholder="Select Bundle"
-                selection
-                options={options}
-                onChange={this.handleDropdownChange}
-                style={{ fontFamily: "cwTexMing, Cormorant" }}
-              />
+              {
+                this.props.itemName !== "肉桂捲" && this.props.itemName !== "原味司康" && this.props.itemName !== "德文郡奶油" && !this.props.soldOut && (
+                  <Dropdown
+                    placeholder="Select Bundle"
+                    selection
+                    options={options}
+                    onChange={this.handleDropdownChange}
+                    style={{ fontFamily: "cwTexMing, Cormorant" }}
+                  />
+                )
+              }
+              {this.props.itemName === "肉桂捲" && this.props.cinnamonEnabled && (
+                <Dropdown
+                  placeholder="Select Bundle"
+                  selection
+                  options={options}
+                  onChange={this.handleDropdownChange}
+                  style={{ fontFamily: "cwTexMing, Cormorant" }}
+                />
+              )}
+              {this.props.itemName === "原味司康" && this.props.standardSconeEnabled && (
+                <Dropdown
+                  placeholder="Select Bundle"
+                  selection
+                  options={options}
+                  onChange={this.handleDropdownChange}
+                  style={{ fontFamily: "cwTexMing, Cormorant" }}
+                />
+              )}
+              {this.props.itemName === "德文郡奶油" && this.props.devonEnabled && (
+                <Dropdown
+                  placeholder="Select Bundle"
+                  selection
+                  options={options}
+                  onChange={this.handleDropdownChange}
+                  style={{ fontFamily: "cwTexMing, Cormorant" }}
+                />
+              )}
               <br />
               {this.props.itemName !== "肉桂捲" && this.props.itemName !== "原味司康" && this.props.itemName !== "德文郡奶油" && !this.props.soldOut && (
                 <div

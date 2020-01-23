@@ -86,7 +86,7 @@ const prices = {
     one: 650
   },
   蔓越莓奶酥醬: {
-    one: 500
+    one: 550
   },
   伯爵茶司康: {
     boxOfFour: 360,

@@ -78,7 +78,7 @@ const prices = {
     one: 650
   },
   蔓越莓奶酥醬: {
-    one: 500
+    one: 550
   },
   伯爵茶司康: {
     boxOfFour: 360,
@@ -113,6 +113,8 @@ export default class Checkout extends React.Component {
       phone: null,
       comments: "無",
       shippingTime: null,
+      shippingCity: null,
+      shippingDistrict: null,
       shippingAddress: null,
       pickupSelected: null,
       shippingSelected: null,
@@ -158,6 +160,8 @@ export default class Checkout extends React.Component {
     if (this.state.shippingSelected === true) {
       if (
         !this.state.shippingTime ||
+        !this.state.shippingCity ||
+        !this.state.shippingDistrict ||
         !this.state.shippingAddress ||
         !this.state.recipientName ||
         !this.state.recipientPhone
@@ -200,6 +204,14 @@ export default class Checkout extends React.Component {
 
   handleCommentsInput = e => {
     this.setState({ comments: e.target.value });
+  };
+
+  handleShippingCityChange = e => {
+    this.setState({ shippingCity: e.target.value });
+  };
+
+  handleShippingDistrictChange = e => {
+    this.setState({ shippingDistrict: e.target.value });
   };
 
   handleShippingAddressChange = e => {
@@ -769,6 +781,9 @@ export default class Checkout extends React.Component {
       return (
         <Confirm
           cart={this.props.cart}
+          cinnamonEnabled={this.props.cinnamonEnabled}
+          standardSconeEnabled={this.props.standardSconeEnabled}
+          devonEnabled={this.props.devonEnabled}
           shippingCost={this.getShippingCost()}
           totalCost={this.getTotalCost()}
           shippingSelected={this.state.shippingSelected}
@@ -786,7 +801,7 @@ export default class Checkout extends React.Component {
           details={this.getDetails()}
           instagram={this.state.instagram}
           pickupOption={this.getPickupOption()}
-          shippingAddress={this.state.shippingAddress}
+          shippingAddress={this.state.shippingCity + this.state.shippingDistrict + this.state.shippingAddress}
         />
       );
     } else {
@@ -832,15 +847,31 @@ export default class Checkout extends React.Component {
                 onChange={this.handlePickupDropdownChange}
               />
             </Form.Group>
+            {
+              shippingSelected && (
+                <Form.Group widths="equal" style={formGroupStyle}>
+                  <Form.Input
+                    required
+                    label="收件縣市"
+                    placeholder="臺北市"
+                    onChange={this.handleShippingCityChange}
+                  />
+                  <Form.Input
+                    required
+                    label="收件區域"
+                    placeholder="大安區"
+                    onChange={this.handleShippingDistrictChange}
+                  />
+                  <Form.Input
+                    required
+                    label="收件地址"
+                    placeholder="信義路5段999號10F"
+                    onChange={this.handleShippingAddressChange}
+                  />
+                </Form.Group>
+              )
+            }
             <Form.Group widths="equal" style={formGroupStyle}>
-              {shippingSelected && (
-                <Form.Input
-                  required
-                  label="收件地址"
-                  placeholder="臺北市大安區信義路5段999號10F"
-                  onChange={this.handleShippingAddressChange}
-                />
-              )}
               {shippingSelected && (
                 <Form.Input
                   required

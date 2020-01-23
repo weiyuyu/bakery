@@ -48,7 +48,7 @@ export default class Main extends React.Component {
           <Route exact path='/about' component={About}/>
           <Route exact path='/order' render={(props) => <Order cinnamonEnabled={this.props.cinnamonEnabled} standardSconeEnabled={this.props.standardSconeEnabled} devonEnabled={this.props.devonEnabled} addItemToCart={this.addItemToCart} cart={this.state.cart} addCartTotal={this.props.addCartTotal} removeCartTotal={this.props.removeCartTotal}/>} />
           <Route exact path='/cart' render={(props) => <Cart cart={this.state.cart} cartTotal={this.props.cartTotal} removeItemFromCart={this.removeItemFromCart}/>} />
-          <Route exact path='/checkout' render={(props) => <Checkout cart={this.state.cart} />} />
+          <Route exact path='/checkout' render={(props) => <Checkout cinnamonEnabled={this.props.cinnamonEnabled} standardSconeEnabled={this.props.standardSconeEnabled} devonEnabled={this.props.devonEnabled} cart={this.state.cart} />} />
         </Switch>
       </main>
     );

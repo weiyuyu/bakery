@@ -48,7 +48,7 @@ const items = [
     id: 5,
     name: "蔓越莓奶酥醬",
     nameEnglish: "Cranberry Butter Biscuit Spread",
-    price: 500,
+    price: 550,
     soldOut: false
   },
   {

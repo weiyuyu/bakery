@@ -10,7 +10,6 @@ import {
 } from "semantic-ui-react";
 import Fade from "react-reveal/Fade";
 import Moment from "react-moment";
-import uniqid from "uniqid";
 import axios from "axios";
 
 import cinnamon from "./../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG";
@@ -104,7 +103,7 @@ const prices = {
     one: 650
   },
   蔓越莓奶酥醬: {
-    one: 500
+    one: 550
   },
   伯爵茶司康: {
     boxOfFour: 360,
@@ -140,10 +139,84 @@ class Confirm extends React.Component {
     this.state = {
       loading: false,
       isComplete: false,
-      isFailed: false
+      isFailed: false,
+      cinnamonEnabled: false,
+      standardSconeEnabled: true,
+      devonEnabled: true,
+      containsDisabledItem: false,
+      orderId: 0
     };
 
     this.sendEmail = this.sendEmail.bind(this);
+  }
+
+  componentDidMount() {
+    axios
+      .get("https://janetsbakeryapi.herokuapp.com/")
+      .then(res => res.data)
+      .then(data => {
+        // handle success
+        console.log(data);
+        this.setState({ 
+          cinnamonEnabled: data.cinnamonEnabled,
+          standardSconeEnabled: data.standardSconeEnabled,
+          devonEnabled: data.devonEnabled
+        });
+      })
+      .then(() => {
+        let cart = this.props.cart;
+        let cinnamonEnabled = this.state.cinnamonEnabled;
+        let standardSconeEnabled = this.state.standardSconeEnabled;
+        let devonEnabled = this.state.devonEnabled;
+
+        let containsDisabledItem = false;
+
+        console.log("原味司康" in cart);
+        console.log("原味司康" in cart && !standardSconeEnabled);
+
+        if ("肉桂捲" in cart && !cinnamonEnabled) {
+          containsDisabledItem = true;
+        }
+
+        if ("原味司康" in cart && !standardSconeEnabled) {
+          containsDisabledItem = true;
+        }
+
+        if ("德文郡奶油" in cart && !devonEnabled) {
+          containsDisabledItem = true;
+        }
+
+        this.setState({containsDisabledItem})
+      })
+      .catch(function(error) {
+        // handle error
+        console.log(error);
+      });
+
+      axios
+      .get("https://janetsbakeryapi.herokuapp.com/getOrderId")
+      .then(res => res.data)
+      .then(data => {
+        // handle success
+        console.log(data);
+        this.setState({ 
+          orderId: data.orderId
+        });
+      })
+      .catch(err => {
+        // handle error
+        console.log(err);
+      })
+  }
+
+  getShippingTimeString(shippingTime) {
+    if (shippingTime == "morning") {
+      return "早上 (13:00前)";
+    } else if (shippingTime == "afternoon") {
+      return "下午 (14:00 - 18:00)";
+    } else {
+      return "不指定";
+    }
   }
 
   handleSubmit = e => {
@@ -155,6 +228,11 @@ class Confirm extends React.Component {
       this.props.details,
       this.props.comments,
       this.props.name,
+      this.props.phone,
+      this.props.recipientName,
+      this.props.recipientPhone,
+      this.props.shippingAddress,
+      this.getShippingTimeString(this.props.shippingTime),
       this.props.costString,
       this.props.shippingCost,
       this.props.totalCost
@@ -197,85 +275,101 @@ class Confirm extends React.Component {
     details,
     comments,
     customerName,
+    customerPhone,
+    receiverName,
+    receiverPhone,
+    shippingAddress,
+    shippingTime,
     costString,
     shippingCost,
     totalCost
-  ) {
-    let paymentDate = this.refs.paymentDate.state.content;
-    let id = uniqid().slice(0, 5);
-    window.emailjs
-      .send("default_service", templateId, {
-        email,
-        id,
-        details,
-        comments,
-        customerName,
-        costString,
-        shippingCost,
-        totalCost,
-        paymentDate
-      })
-      .then(res => {
-        this.setState({ loading: false });
-        this.setState({ isComplete: true });
-        console.log("Email sent");
-      })
-      .then(() => {
-        axios
-          .post("https://janetsbakeryapi.herokuapp.com/", {
-            id: id || "",
-            name: this.props.name || "",
-            phone: this.props.phone || "",
-            email: this.props.email || "",
-            instagram: this.props.instagram || "",
-            cinnamonRollFour: this.getSpreadsheetValue("肉桂捲", "boxOfFour"),
-            cinnamonRollSix: this.getSpreadsheetValue("肉桂捲", "boxOfSix"),
-            creamCheese: this.getSpreadsheetValue("奶油乳酪抹醬", "one"),
-            originalSconeFour: this.getSpreadsheetValue(
-              "原味司康",
-              "boxOfFour"
-            ),
-            originalSconeSix: this.getSpreadsheetValue("原味司康", "boxOfSix"),
-            teaSconeFour: this.getSpreadsheetValue("伯爵茶司康", "boxOfFour"),
-            teaSconeSix: this.getSpreadsheetValue("伯爵茶司康", "boxOfSix"),
-            mixedSconeFour: this.getSpreadsheetValue("綜合司康", "boxOfFour"),
-            mixedSconeSix: this.getSpreadsheetValue("綜合司康", "boxOfSix"),
-            lemonYogurtCake: this.getSpreadsheetValue(
-              "檸檬馬鞭草生乳酪蛋糕",
-              "one"
-            ),
-            lemonYogurtCakeCup: this.getSpreadsheetValue(
-              "檸檬馬鞭草生乳酪蛋糕4杯裝",
-              "one"
-            ),
-            devonCream: this.getSpreadsheetValue("德文郡奶油", "one"),
-            bananaPoundCake: this.getSpreadsheetValue("香蕉磅蛋糕", "one"),
-            originalSouffle: this.getSpreadsheetValue("原味奶酥醬", "one"),
-            viennaCream: this.getSpreadsheetValue("維也納奶油抹醬", "one"),
-            organicCoconut: this.getSpreadsheetValue("有機椰子糖奶酥醬", "one"),
-            cranberrySouffle: this.getSpreadsheetValue("蔓越莓奶酥醬", "one"),
-            pickupOption: this.props.pickupOption || "",
-            shippingAddress: this.props.shippingAddress || "",
-            shippingTime: this.getShippingTime(this.props.shippingTime) || "",
-            recipientName: this.props.recipientName || "",
-            recipientPhone: this.props.recipientPhone || "",
-            shippingCost: this.props.shippingCost || 0,
-            totalCost: this.props.totalCost || 0,
-            comments: this.props.comments || ""
-          })
-          .then(function(response) {
-            console.log(response);
-          })
-          .catch(function(error) {
-            console.log(error);
-          });
-      })
-      // Handle errors here
-      .catch(err => {
-        this.setState({ loading: false });
-        this.setState({ isFailed: true });
-        console.error("Failed to send email. Error: ", err);
-      });
+  ) { 
+    if (this.state.containsDisabledItem) {
+      this.setState({ loading: false });
+      this.setState({ isFailed: true });
+      console.error("Failed to order, cart contains disabled item.");
+    } else {
+      let paymentDate = this.refs.paymentDate.state.content;
+      let id = this.state.orderId;
+      window.emailjs
+        .send("default_service", templateId, {
+          email,
+          id,
+          details,
+          comments,
+          customerName,
+          customerPhone,
+          receiverName,
+          receiverPhone,
+          shippingAddress,
+          shippingTime,
+          costString,
+          shippingCost,
+          totalCost,
+          paymentDate
+        })
+        .then(res => {
+          this.setState({ loading: false });
+          this.setState({ isComplete: true });
+          console.log("Email sent");
+        })
+        .then(() => {
+          axios
+            .post("https://janetsbakeryapi.herokuapp.com/", {
+              id: id || "",
+              name: this.props.name || "",
+              phone: this.props.phone || "",
+              email: this.props.email || "",
+              instagram: this.props.instagram || "",
+              cinnamonRollFour: this.getSpreadsheetValue("肉桂捲", "boxOfFour"),
+              cinnamonRollSix: this.getSpreadsheetValue("肉桂捲", "boxOfSix"),
+              creamCheese: this.getSpreadsheetValue("奶油乳酪抹醬", "one"),
+              originalSconeFour: this.getSpreadsheetValue(
+                "原味司康",
+                "boxOfFour"
+              ),
+              originalSconeSix: this.getSpreadsheetValue("原味司康", "boxOfSix"),
+              teaSconeFour: this.getSpreadsheetValue("伯爵茶司康", "boxOfFour"),
+              teaSconeSix: this.getSpreadsheetValue("伯爵茶司康", "boxOfSix"),
+              mixedSconeFour: this.getSpreadsheetValue("綜合司康", "boxOfFour"),
+              mixedSconeSix: this.getSpreadsheetValue("綜合司康", "boxOfSix"),
+              lemonYogurtCake: this.getSpreadsheetValue(
+                "檸檬馬鞭草生乳酪蛋糕",
+                "one"
+              ),
+              lemonYogurtCakeCup: this.getSpreadsheetValue(
+                "檸檬馬鞭草生乳酪蛋糕4杯裝",
+                "one"
+              ),
+              devonCream: this.getSpreadsheetValue("德文郡奶油", "one"),
+              bananaPoundCake: this.getSpreadsheetValue("香蕉磅蛋糕", "one"),
+              originalSouffle: this.getSpreadsheetValue("原味奶酥醬", "one"),
+              viennaCream: this.getSpreadsheetValue("維也納奶油抹醬", "one"),
+              organicCoconut: this.getSpreadsheetValue("有機椰子糖奶酥醬", "one"),
+              cranberrySouffle: this.getSpreadsheetValue("蔓越莓奶酥醬", "one"),
+              pickupOption: this.props.pickupOption || "",
+              shippingAddress: this.props.shippingAddress || "",
+              shippingTime: this.getShippingTime(this.props.shippingTime) || "",
+              recipientName: this.props.recipientName || "",
+              recipientPhone: this.props.recipientPhone || "",
+              shippingCost: this.props.shippingCost || 0,
+              totalCost: this.props.totalCost || 0,
+              comments: this.props.comments || ""
+            })
+            .then(function(response) {
+              console.log(response);
+            })
+            .catch(function(error) {
+              console.log(error);
+            });
+        })
+        // Handle errors here
+        .catch(err => {
+          this.setState({ loading: false });
+          this.setState({ isFailed: true });
+          console.error("Failed to send email. Error: ", err);
+        });
+    }
   }
 
   render() {
@@ -608,7 +702,7 @@ class Confirm extends React.Component {
           <Moment
             ref="paymentDate"
             format="YYYY/MM/DD"
-            add={{ days: 3 }}
+            add={{ days: 2 }}
             style={{ display: "block", color: "transparent" }}
           >
             {date}
