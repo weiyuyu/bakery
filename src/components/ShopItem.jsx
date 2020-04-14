@@ -14,26 +14,24 @@ import {
 import ItemCarousel from "./ItemCarousel";
 import { Animated } from "react-animated-css";
 
-import cinnamon1 from "./../img/肉桂捲/newCover.JPG";
-import cinnamon2 from "./../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG";
-import cinnamon3 from "./../img/肉桂捲/1 肉桂卷封面照.JPG";
+import cinnamon1 from "./../img/肉桂捲/1 封面.JPG";
+import cinnamon2 from "./../img/肉桂捲/2.JPG";
+import cinnamon3 from "./../img/肉桂捲/3.JPG";
 
-import cream1 from "./../img/奶油乳酪抹醬/6919182F-0F7A-4FE9-9D91-16AF36DAE911.JPG";
-import cream2 from "./../img/奶油乳酪抹醬/6A92216A-EB85-4B97-9F53-BF1356EDE851.JPG";
+import cream1 from "./../img/奶油乳酪抹醬/1 封面.JPG";
 
-import standard_scone1 from "./../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG";
-import standard_scone2 from "./../img/原味司康/180B6A17-7FFD-4B02-8B4B-CF3D5B5F8AD8.JPG";
+import standard_scone1 from "./../img/原味司康/1 封面.JPG";
+import standard_scone2 from "./../img/原味司康/2.JPG";
+import standard_scone3 from "./../img/原味司康/3.JPG";
 
-import tea_scone1 from "./../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94D1DE.JPG";
-import tea_scone2 from "./../img/伯爵茶司康/CE8AFA52-06CB-403C-A8C9-07DCFBFD2FCC.JPG";
-import tea_scone3 from "./../img/伯爵茶司康/113EECCC-B5DF-43C6-B3EB-DFE9AC9B915E 2.jpg";
+import tea_scone1 from "./../img/伯爵茶司康/1 封面.JPG";
 
 import mixed_scone1 from "./../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG";
 
 import lemon_yogurt_cake1 from "./../img/檸檬馬鞭草生乳酪蛋糕/1.JPG";
 import lemon_yogurt_cake2 from "./../img/檸檬馬鞭草生乳酪蛋糕/3.JPG";
 
-import devon_cream1 from "./../img/德文郡奶油/Devon English Clotted Cream.jpg";
+import devon_cream1 from "./../img/德文郡奶油/1 封面.JPG";
 
 import lemon_yogurt_cake_cup1 from "./../img/檸檬馬鞭草生乳酪蛋糕4杯裝/2.JPG";
 
@@ -43,20 +41,19 @@ import banana_pound_cake3 from "./../img/香蕉磅蛋糕/圖2.JPG";
 import banana_pound_cake4 from "./../img/香蕉磅蛋糕/圖3.JPG";
 
 import original_souffle1 from "./../img/原味奶酥醬/1 封面.JPG";
-import original_souffle2 from "./../img/原味奶酥醬/2.JPG";
-import original_souffle3 from "./../img/原味奶酥醬/3.JPG";
 
 import vienna_cream1 from "./../img/維也納奶油抹醬/1 封面.JPG";
 import vienna_cream2 from "./../img/維也納奶油抹醬/2.JPG";
 import vienna_cream3 from "./../img/維也納奶油抹醬/3.JPG";
 
-import organic_coconut1 from "./../img/有機椰子糖奶酥醬/1 封面.jpg";
+import organic_coconut1 from "./../img/有機椰子糖奶酥醬/1 封面.JPG";
 import organic_coconut2 from "./../img/有機椰子糖奶酥醬/2.JPG";
-import organic_coconut3 from "./../img/有機椰子糖奶酥醬/3.jpg";
 
 import cranberry_souffle1 from "./../img/蔓越莓奶酥醬/1 封面.JPG";
 import cranberry_souffle2 from "./../img/蔓越莓奶酥醬/2.JPG";
-import cranberry_souffle3 from "./../img/蔓越莓奶酥醬/3.JPG";
+
+import macha_souffle1 from "./../img/有機純抹茶奶酥醬/1 封面.JPG";
+import macha_souffle2 from "./../img/有機純抹茶奶酥醬/2.JPG";
 
 const styles = {
   cardStyle: {
@@ -85,60 +82,106 @@ const cinnamon = [
   {
     id: 0,
     file: cinnamon1,
-    legend: "肉桂捲"
+    legend: "有機椰子糖肉桂捲"
   },
   {
     id: 1,
     file: cinnamon2,
-    legend: "肉桂捲"
+    legend: "有機椰子糖肉桂捲"
   },
   {
     id: 2,
     file: cinnamon3,
-    legend: "肉桂捲"
-  }
-];
-
-const cream = [
-  {
-    id: 3,
-    file: cream1,
-    legend: "奶油乳酪抹醬"
-  },
-  {
-    id: 4,
-    file: cream2,
-    legend: "奶油乳酪抹醬"
+    legend: "有機椰子糖肉桂捲"
   }
 ];
 
 const standard_scone = [
   {
-    id: 5,
+    id: 3,
     file: standard_scone1,
     legend: "原味司康"
   },
   {
-    id: 6,
+    id: 4,
     file: standard_scone2,
+    legend: "原味司康"
+  },
+  {
+    id: 5,
+    file: standard_scone3,
     legend: "原味司康"
   }
 ];
+
+const devon_cream = [
+  {
+    id: 6,
+    file: devon_cream1,
+    legend: "德文郡奶油"
+  }
+];
+
+const organic_coconut = [
+  {
+    id: 7,
+    file: organic_coconut1,
+    legend: "有機椰子糖奶酥醬"
+  },
+  {
+    id: 8,
+    file: organic_coconut2,
+    legend: "有機椰子糖奶酥醬"
+  }
+];
+
+const macha_souffle = [
+  {
+    id: 9,
+    file: macha_souffle1,
+    legend: "有機純抹茶奶酥醬"
+  },
+  {
+    id: 10,
+    file: macha_souffle2,
+    legend: "有機純抹茶奶酥醬"
+  }
+];
+
+const cranberry_souffle = [
+  {
+    id: 11,
+    file: cranberry_souffle1,
+    legend: "蔓越莓奶酥醬"
+  },
+  {
+    id: 12,
+    file: cranberry_souffle2,
+    legend: "蔓越莓奶酥醬"
+  }
+];
+
+const original_souffle = [
+  {
+    id: 13,
+    file: original_souffle1,
+    legend: "原味奶酥醬"
+  }
+];
+
+const cream = [
+  {
+    id: 14,
+    file: cream1,
+    legend: "奶油乳酪抹醬"
+  }
+];
+
 
 const tea_scone = [
   {
     id: 7,
     file: tea_scone1,
-    legend: "伯爵茶司康"
-  },
-  {
-    id: 8,
-    file: tea_scone2,
-    legend: "伯爵茶司康"
-  },
-  {
-    id: 9,
-    file: tea_scone3,
     legend: "伯爵茶司康"
   }
 ];
@@ -164,13 +207,7 @@ const lemon_yogurt_cake = [
   }
 ];
 
-const devon_cream = [
-  {
-    id: 13,
-    file: devon_cream1,
-    legend: "德文郡奶油"
-  }
-];
+
 
 const lemon_yogurt_cake_cup = [
   {
@@ -203,24 +240,6 @@ const banana_pound_cake = [
   }
 ];
 
-const original_souffle = [
-  {
-    id: 19,
-    file: original_souffle1,
-    legend: "原味奶酥醬"
-  },
-  {
-    id: 20,
-    file: original_souffle2,
-    legend: "原味奶酥醬"
-  },
-  {
-    id: 21,
-    file: original_souffle3,
-    legend: "原味奶酥醬"
-  }
-];
-
 const vienna_cream = [
   {
     id: 22,
@@ -239,50 +258,16 @@ const vienna_cream = [
   }
 ];
 
-const organic_coconut = [
-  {
-    id: 25,
-    file: organic_coconut1,
-    legend: "有機椰子糖奶酥醬"
-  },
-  {
-    id: 26,
-    file: organic_coconut2,
-    legend: "有機椰子糖奶酥醬"
-  },
-  {
-    id: 27,
-    file: organic_coconut3,
-    legend: "有機椰子糖奶酥醬"
-  }
-];
-
-const cranberry_souffle = [
-  {
-    id: 28,
-    file: cranberry_souffle1,
-    legend: "蔓越莓奶酥醬"
-  },
-  {
-    id: 29,
-    file: cranberry_souffle2,
-    legend: "蔓越莓奶酥醬"
-  },
-  {
-    id: 30,
-    file: cranberry_souffle3,
-    legend: "蔓越莓奶酥醬"
-  }
-];
 
 const images = [
   cinnamon,
-  cream,
   standard_scone,
   devon_cream,
+  organic_coconut,
+  macha_souffle,
   cranberry_souffle,
   original_souffle,
-  organic_coconut,
+  cream,
   tea_scone,
   mixed_scone,
   banana_pound_cake,
@@ -430,16 +415,16 @@ export default class ShopItem extends React.Component {
             <Modal.Content style={modalContentStyle}>
               {/* <Image wrapped rounded size='medium' src={thumbnails[this.props.id-1]} style={thumbnailStyle}/> */}
               <ItemCarousel items={images[this.props.id - 1]} />
-              {this.props.itemName === "肉桂捲" && (
+              {this.props.itemName === "有機椰子糖肉桂捲" && (
                 <Header size="small" style={{ fontFamily: "cwTexMing" }}>
                   {" "}
                   每個捲捲都會附上一份自製奶油乳酪抹醬{" "}
                 </Header>
               )}
-              {!this.props.cinnamonEnabled && this.props.itemName === "肉桂捲" && (
+              {!this.props.cinnamonEnabled && this.props.itemName === "有機椰子糖肉桂捲" && (
                 <Header size="small" style={{ fontFamily: "cwTexMing" }}>
-                  肉桂捲採每月初開放「下個月收貨名額」的方式訂購。 <br />
-                  目前名額已滿， 下次肉桂捲開放訂購時間請至 <br />
+                  有機椰子糖肉桂捲採每月初開放「下個月收貨名額」的方式訂購。 <br />
+                  目前名額已滿， 下次有機椰子糖肉桂捲開放訂購時間請至 <br />
                   <span style={{ fontFamily: "Cormorant" }}>
                     @janetsbakery
                   </span>{" "}
@@ -465,7 +450,7 @@ export default class ShopItem extends React.Component {
                   詢問{" "}
                 </Header>
               )}
-              {this.props.itemName !== "肉桂捲" && this.props.soldOut && (
+              {this.props.itemName !== "有機椰子糖肉桂捲" && this.props.soldOut && (
                 <Header size="small" style={{ fontFamily: "Cormorant" }}>
                   SOLD OUT
                 </Header>
@@ -545,7 +530,7 @@ export default class ShopItem extends React.Component {
                 </Header>
               )}
               {
-                this.props.itemName !== "肉桂捲" && this.props.itemName !== "原味司康" && this.props.itemName !== "德文郡奶油" && !this.props.soldOut && (
+                this.props.itemName !== "有機椰子糖肉桂捲" && this.props.itemName !== "原味司康" && this.props.itemName !== "德文郡奶油" && !this.props.soldOut && (
                   <Dropdown
                     placeholder="Select Bundle"
                     selection
@@ -555,7 +540,7 @@ export default class ShopItem extends React.Component {
                   />
                 )
               }
-              {this.props.itemName === "肉桂捲" && this.props.cinnamonEnabled && (
+              {this.props.itemName === "有機椰子糖肉桂捲" && this.props.cinnamonEnabled && (
                 <Dropdown
                   placeholder="Select Bundle"
                   selection
@@ -583,7 +568,7 @@ export default class ShopItem extends React.Component {
                 />
               )}
               <br />
-              {this.props.itemName !== "肉桂捲" && this.props.itemName !== "原味司康" && this.props.itemName !== "德文郡奶油" && !this.props.soldOut && (
+              {this.props.itemName !== "有機椰子糖肉桂捲" && this.props.itemName !== "原味司康" && this.props.itemName !== "德文郡奶油" && !this.props.soldOut && (
                 <div
                   style={{
                     display: "flex",
@@ -614,7 +599,7 @@ export default class ShopItem extends React.Component {
                   />
                 </div>
               )}
-              {this.props.itemName === "肉桂捲" && this.props.cinnamonEnabled && (
+              {this.props.itemName === "有機椰子糖肉桂捲" && this.props.cinnamonEnabled && (
                 <div
                   style={{
                     display: "flex",

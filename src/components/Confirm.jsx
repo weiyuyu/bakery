@@ -12,22 +12,23 @@ import Fade from "react-reveal/Fade";
 import Moment from "react-moment";
 import axios from "axios";
 
-import cinnamon from "./../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG";
-import cream from "./../img/奶油乳酪抹醬/6919182F-0F7A-4FE9-9D91-16AF36DAE911.JPG";
-import standard_scone from "./../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG";
-import tea_scone from "./../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94D1DE.JPG";
+import cinnamon from "./../img/肉桂捲/1 封面.JPG";
+import cream from "./../img/奶油乳酪抹醬/1 封面.JPG";
+import standard_scone from "./../img/原味司康/1 封面.JPG";
+import tea_scone from "./../img/伯爵茶司康/1 封面.JPG";
 import mixed_scone from "./../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG";
 import lemon_yogurt_cake from "./../img/檸檬馬鞭草生乳酪蛋糕/1.JPG";
 import lemon_yogurt_cake_cup from "./../img/檸檬馬鞭草生乳酪蛋糕4杯裝/2.JPG";
-import devon_cream from "./../img/德文郡奶油/Devon English Clotted Cream.jpg";
+import devon_cream from "./../img/德文郡奶油/1 封面.JPG";
 import banana_pound_cake from "./../img/香蕉磅蛋糕/封面.JPG";
 import original_souffle from "./../img/原味奶酥醬/1 封面.JPG";
 import vienna_cream from "./../img/維也納奶油抹醬/1 封面.JPG";
-import organic_coconut from "./../img/有機椰子糖奶酥醬/1 封面.jpg";
+import organic_coconut from "./../img/有機椰子糖奶酥醬/1 封面.JPG";
 import cranberry_souffle from "./../img/蔓越莓奶酥醬/1 封面.JPG";
+import macha_souffle from "./../img/有機純抹茶奶酥醬/1 封面.JPG";
 
 const thumbnails = {
-  肉桂捲: cinnamon,
+  有機椰子糖肉桂捲: cinnamon,
   奶油乳酪抹醬: cream,
   原味奶酥醬: original_souffle,
   有機椰子糖奶酥醬: organic_coconut,
@@ -39,7 +40,8 @@ const thumbnails = {
   香蕉磅蛋糕: banana_pound_cake,
   檸檬馬鞭草生乳酪蛋糕: lemon_yogurt_cake,
   檸檬馬鞭草生乳酪蛋糕4杯裝: lemon_yogurt_cake_cup,
-  維也納奶油抹醬: vienna_cream
+  維也納奶油抹醬: vienna_cream,
+  有機純抹茶奶酥醬: macha_souffle
 };
 
 const styles = {
@@ -66,7 +68,7 @@ const styles = {
 };
 
 const nameEnglish = {
-  肉桂捲: "Cinnamon Roll",
+  有機椰子糖肉桂捲: "Cinnamon Roll",
   奶油乳酪抹醬: "Cream Cheese Spread",
   原味奶酥醬: "Original Butter Biscuit Spread",
   有機椰子糖奶酥醬: "Organic Coconut Sugar Butter Biscuit Spread",
@@ -78,11 +80,12 @@ const nameEnglish = {
   香蕉磅蛋糕: "Banana Pound Cake",
   檸檬馬鞭草生乳酪蛋糕: "Lemon Verbena Yogurt Cheesecake",
   檸檬馬鞭草生乳酪蛋糕4杯裝: "Lemon Verbena Yogurt Cheesecake (4 cups)",
-  維也納奶油抹醬: "Vienna Butter Cream Spread"
+  維也納奶油抹醬: "Vienna Butter Cream Spread",
+  有機純抹茶奶酥醬: "Organic Pure Matcha Butter Biscuit Spread"
 };
 
 const prices = {
-  肉桂捲: {
+  有機椰子糖肉桂捲: {
     boxOfFour: 800,
     boxOfSix: 1200
   },
@@ -97,13 +100,16 @@ const prices = {
     one: 320
   },
   原味奶酥醬: {
-    one: 520
+    small: 440,
+    large: 520
   },
   有機椰子糖奶酥醬: {
-    one: 650
+    small: 520,
+    large: 650
   },
   蔓越莓奶酥醬: {
-    one: 550
+    small: 450,
+    large: 550
   },
   伯爵茶司康: {
     boxOfFour: 360,
@@ -124,6 +130,10 @@ const prices = {
   },
   維也納奶油抹醬: {
     one: 520
+  },
+  有機純抹茶奶酥醬: {
+    small: 590,
+    large: 750
   }
 };
 
@@ -140,6 +150,7 @@ class Confirm extends React.Component {
       loading: false,
       isComplete: false,
       isFailed: false,
+      isClosed: false,
       cinnamonEnabled: false,
       standardSconeEnabled: true,
       devonEnabled: true,
@@ -171,10 +182,7 @@ class Confirm extends React.Component {
 
         let containsDisabledItem = false;
 
-        console.log("原味司康" in cart);
-        console.log("原味司康" in cart && !standardSconeEnabled);
-
-        if ("肉桂捲" in cart && !cinnamonEnabled) {
+        if ("有機椰子糖肉桂捲" in cart && !cinnamonEnabled) {
           containsDisabledItem = true;
         }
 
@@ -286,8 +294,8 @@ class Confirm extends React.Component {
   ) { 
     if (this.state.containsDisabledItem) {
       this.setState({ loading: false });
-      this.setState({ isFailed: true });
-      console.error("Failed to order, cart contains disabled item.");
+      this.setState({ isClosed: true });
+      console.error("Failed to order, order quota exceeded.");
     } else {
       let paymentDate = this.refs.paymentDate.state.content;
       let id = this.state.orderId;
@@ -343,10 +351,15 @@ class Confirm extends React.Component {
               ),
               devonCream: this.getSpreadsheetValue("德文郡奶油", "one"),
               bananaPoundCake: this.getSpreadsheetValue("香蕉磅蛋糕", "one"),
-              originalSouffle: this.getSpreadsheetValue("原味奶酥醬", "one"),
+              originalSouffleSmall: this.getSpreadsheetValue("原味奶酥醬", "small"),
+              originalSouffleLarge: this.getSpreadsheetValue("原味奶酥醬", "large"),
               viennaCream: this.getSpreadsheetValue("維也納奶油抹醬", "one"),
-              organicCoconut: this.getSpreadsheetValue("有機椰子糖奶酥醬", "one"),
-              cranberrySouffle: this.getSpreadsheetValue("蔓越莓奶酥醬", "one"),
+              organicCoconutSmall: this.getSpreadsheetValue("有機椰子糖奶酥醬", "small"),
+              organicCoconutLarge: this.getSpreadsheetValue("有機椰子糖奶酥醬", "large"),
+              cranberrySouffleSmall: this.getSpreadsheetValue("蔓越莓奶酥醬", "small"),
+              cranberrySouffleLarge: this.getSpreadsheetValue("蔓越莓奶酥醬", "large"),
+              machaSouffleSmall: this.getSpreadsheetValue("有機純抹茶奶酥醬", "small"),
+              machaSouffleLarge: this.getSpreadsheetValue("有機純抹茶奶酥醬", "large"),
               pickupOption: this.props.pickupOption || "",
               shippingAddress: this.props.shippingAddress || "",
               shippingTime: this.getShippingTime(this.props.shippingTime) || "",
@@ -374,7 +387,7 @@ class Confirm extends React.Component {
 
   render() {
     const { containerStyle, headerStyle, listItemStyle, buttonStyle } = styles;
-    const { loading, isComplete, isFailed } = this.state;
+    const { loading, isComplete, isFailed, isClosed } = this.state;
     const date = new Date();
 
     let totalPrice = 0;
@@ -411,11 +424,41 @@ class Confirm extends React.Component {
           </h2>
         </Fade>
       );
+    } else if (isClosed) {
+      return (
+        <Fade
+          style={{ justifyContent: "center", padding: 20, paddingBottom: 5 }}
+        >
+          <h2
+            style={{ margin: 10, fontFamily: "cwTexMing", fontSize: "1.3rem" }}
+          >
+            很抱歉！ 
+            <br />
+            您的購物車中已有商品售完！
+            <br />
+            /
+            <br />
+            很感謝您對Janet’s Bakery的支持！
+            <br />
+            Janet’s Bakery的每樣商品都是由Janet手工製作，
+            <br />
+            想保留最好的品質給各位，因此數量有限
+            <br />
+            還請大家見諒及耐心等待。
+            <br />
+            <br />
+            Regards,
+            <br />
+            Janet’s Bakery
+          </h2>
+        </Fade>
+      );
     } else {
       return (
         <Container id="confirmContainer" style={containerStyle} fluid>
           {/*Cart Table*/}
           <Fade bottom>
+            <Header style={headerStyle}> 請再次核對您的訂單品項及訂購資訊，確認無誤後請按下確認鍵，以完成訂購 </Header>
             <Header style={headerStyle}> 購物車 </Header>
             <Table
               basic="very"
@@ -444,7 +487,9 @@ class Confirm extends React.Component {
                     if (
                       quantities["boxOfFour"] > 0 ||
                       quantities["boxOfSix"] ||
-                      quantities["one"] > 0
+                      quantities["one"] > 0 ||
+                      quantities["small"] > 0 ||
+                      quantities["large"] > 0
                     ) {
                       willRender = true;
                     }
@@ -467,6 +512,14 @@ class Confirm extends React.Component {
                     if (item[1]["one"]) {
                       itemTotal += prices[item[0]]["one"] * item[1]["one"];
                       totalPrice += prices[item[0]]["one"] * item[1]["one"];
+                    }
+                    if (item[1]["small"]) {
+                      itemTotal += prices[item[0]]["small"] * item[1]["small"];
+                      totalPrice += prices[item[0]]["small"] * item[1]["small"];
+                    }
+                    if (item[1]["large"]) {
+                      itemTotal += prices[item[0]]["large"] * item[1]["large"];
+                      totalPrice += prices[item[0]]["large"] * item[1]["large"];
                     }
                     return (
                       <Table.Row key={item[0]}>
@@ -527,6 +580,28 @@ class Confirm extends React.Component {
                                   prices[item[0]]["one"]
                                 })`}</span>{" "}
                                 ： {`${item[1]["one"]}`}
+                              </p>
+                            </div>
+                          )}
+                          {item[1]["small"] > 0 && (
+                            <div style={{ display: "flex" }}>
+                              <p style={{ flex: 5 }}>
+                                350g
+                                <span
+                                  style={{ fontFamily: "Cormorant" }}
+                                >{` ($${prices[item[0]]["small"]})`}</span>
+                                ： {`${item[1]["small"]}`}
+                              </p>
+                            </div>
+                          )}
+                          {item[1]["large"] > 0 && (
+                            <div style={{ display: "flex" }}>
+                              <p style={{ flex: 5 }}>
+                                500g
+                                <span
+                                  style={{ fontFamily: "Cormorant" }}
+                                >{` ($${prices[item[0]]["large"]})`}</span>
+                                ： {`${item[1]["large"]}`}
                               </p>
                             </div>
                           )}

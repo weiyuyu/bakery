@@ -2,7 +2,7 @@ import React from 'react';
 import { Container, Button, Image, Header } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
-import logo from './../img/肉桂捲/774AD308-AAF4-41B3-B707-81315258E4D1.JPG';
+import logo from './../img/肉桂捲/IMG_0841.JPG';
 
 const styles = {
   containerStyle: {

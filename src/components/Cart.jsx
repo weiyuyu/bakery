@@ -10,22 +10,23 @@ import {
 import { Link } from "react-router-dom";
 import Fade from "react-reveal/Fade";
 
-import cinnamon from "./../img/肉桂捲/93A298D7-1277-40F0-AD89-AD6065E186C4.JPG";
-import cream from "./../img/奶油乳酪抹醬/6919182F-0F7A-4FE9-9D91-16AF36DAE911.JPG";
-import standard_scone from "./../img/原味司康/AEAE7506-FD0F-446B-97CE-DD872557FDFD.JPG";
-import tea_scone from "./../img/伯爵茶司康/953ED3DF-56B2-4EBC-9E0D-C948BD94D1DE.JPG";
+import cinnamon from "./../img/肉桂捲/1 封面.JPG";
+import cream from "./../img/奶油乳酪抹醬/1 封面.JPG";
+import standard_scone from "./../img/原味司康/1 封面.JPG";
+import tea_scone from "./../img/伯爵茶司康/1 封面.JPG";
 import mixed_scone from "./../img/綜合司康/A9DDCFC7-5CBE-476D-91CE-A6CE4B6785D0.JPG";
 import lemon_yogurt_cake from "./../img/檸檬馬鞭草生乳酪蛋糕/1.JPG";
 import lemon_yogurt_cake_cup from "./../img/檸檬馬鞭草生乳酪蛋糕4杯裝/2.JPG";
-import devon_cream from "./../img/德文郡奶油/Devon English Clotted Cream.jpg";
+import devon_cream from "./../img/德文郡奶油/1 封面.JPG";
 import banana_pound_cake from "./../img/香蕉磅蛋糕/封面.JPG";
 import original_souffle from "./../img/原味奶酥醬/1 封面.JPG";
 import vienna_cream from "./../img/維也納奶油抹醬/1 封面.JPG";
-import organic_coconut from "./../img/有機椰子糖奶酥醬/1 封面.jpg";
+import organic_coconut from "./../img/有機椰子糖奶酥醬/1 封面.JPG";
 import cranberry_souffle from "./../img/蔓越莓奶酥醬/1 封面.JPG";
+import macha_souffle from "./../img/有機純抹茶奶酥醬/1 封面.JPG";
 
 const thumbnails = {
-  肉桂捲: cinnamon,
+  有機椰子糖肉桂捲: cinnamon,
   奶油乳酪抹醬: cream,
   原味司康: standard_scone,
   德文郡奶油: devon_cream,
@@ -37,7 +38,8 @@ const thumbnails = {
   香蕉磅蛋糕: banana_pound_cake,
   檸檬馬鞭草生乳酪蛋糕: lemon_yogurt_cake,
   檸檬馬鞭草生乳酪蛋糕4杯裝: lemon_yogurt_cake_cup,
-  維也納奶油抹醬: vienna_cream
+  維也納奶油抹醬: vienna_cream,
+  有機純抹茶奶酥醬: macha_souffle
 };
 
 const styles = {
@@ -49,7 +51,7 @@ const styles = {
 };
 
 const nameEnglish = {
-  肉桂捲: "Cinnamon Roll",
+  有機椰子糖肉桂捲: "Cinnamon Roll",
   奶油乳酪抹醬: "Cream Cheese Spread",
   原味司康: "Original Scone",
   德文郡奶油: "Devon English Luxury Clotted Cream",
@@ -61,11 +63,12 @@ const nameEnglish = {
   香蕉磅蛋糕: "Banana Pound Cake",
   檸檬馬鞭草生乳酪蛋糕: "Lemon Verbena Yogurt Cheesecake",
   檸檬馬鞭草生乳酪蛋糕4杯裝: "Lemon Verbena Yogurt Cheesecake (4 cups)",
-  維也納奶油抹醬: "Vienna Butter Cream Spread"
+  維也納奶油抹醬: "Vienna Butter Cream Spread",
+  有機純抹茶奶酥醬: "Organic Pure Matcha Butter Biscuit Spread"
 };
 
 const prices = {
-  肉桂捲: {
+  有機椰子糖肉桂捲: {
     boxOfFour: 800,
     boxOfSix: 1200
   },
@@ -80,13 +83,16 @@ const prices = {
     one: 320
   },
   原味奶酥醬: {
-    one: 520
+    small: 440,
+    large: 520
   },
   有機椰子糖奶酥醬: {
-    one: 650
+    small: 520,
+    large: 650
   },
   蔓越莓奶酥醬: {
-    one: 550
+    small: 450,
+    large: 550
   },
   伯爵茶司康: {
     boxOfFour: 360,
@@ -107,6 +113,10 @@ const prices = {
   },
   維也納奶油抹醬: {
     one: 520
+  },
+  有機純抹茶奶酥醬: {
+    small: 590,
+    large: 750
   }
 };
 
@@ -183,7 +193,9 @@ export default class Cart extends React.Component {
                     if (
                       quantities["boxOfFour"] > 0 ||
                       quantities["boxOfSix"] ||
-                      quantities["one"] > 0
+                      quantities["one"] > 0 ||
+                      quantities["small"] > 0 ||
+                      quantities["large"] > 0
                     ) {
                       willRender = true;
                     }
@@ -206,6 +218,14 @@ export default class Cart extends React.Component {
                     if (item[1]["one"]) {
                       itemTotal += prices[item[0]]["one"] * item[1]["one"];
                       totalPrice += prices[item[0]]["one"] * item[1]["one"];
+                    }
+                    if (item[1]["small"]) {
+                      itemTotal += prices[item[0]]["small"] * item[1]["small"];
+                      totalPrice += prices[item[0]]["small"] * item[1]["small"];
+                    }
+                    if (item[1]["large"]) {
+                      itemTotal += prices[item[0]]["large"] * item[1]["large"];
+                      totalPrice += prices[item[0]]["large"] * item[1]["large"];
                     }
                     return (
                       <Table.Row key={item[0]}>
@@ -315,7 +335,45 @@ export default class Cart extends React.Component {
                                   }
                                 />
                               </div>
-                            )}
+                          )}
+                          {item[1]["small"] > 0 && (
+                            <div style={{ display: "flex" }}>
+                              <p style={{ flex: 5 }}>
+                                350g
+                                <span
+                                  style={{ fontFamily: "Cormorant" }}
+                                >{` ($${prices[item[0]]["small"]})`}</span>
+                                ： {`${item[1]["small"]}`}
+                              </p>
+                              <Icon
+                                className="cartRemoveIcon"
+                                name="minus"
+                                style={{ flex: 1 }}
+                                onClick={() =>
+                                  this.handleRemoveClick(item[0], "small")
+                                }
+                              />
+                            </div>
+                          )}
+                          {item[1]["large"] > 0 && (
+                            <div style={{ display: "flex" }}>
+                              <p style={{ flex: 5 }}>
+                                500g
+                                <span
+                                  style={{ fontFamily: "Cormorant" }}
+                                >{` ($${prices[item[0]]["large"]})`}</span>
+                                ： {`${item[1]["large"]}`}
+                              </p>
+                              <Icon
+                                className="cartRemoveIcon"
+                                name="minus"
+                                style={{ flex: 1 }}
+                                onClick={() =>
+                                  this.handleRemoveClick(item[0], "large")
+                                }
+                              />
+                            </div>
+                          )}
                           {item[1]["one"] > 0 &&
                             item[0] === "檸檬馬鞭草生乳酪蛋糕4杯裝" && (
                               <div style={{ display: "flex" }}>

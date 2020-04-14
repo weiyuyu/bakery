@@ -57,7 +57,7 @@ const shippingTimeOptions = [
 ];
 
 const prices = {
-  肉桂捲: {
+  有機椰子糖肉桂捲: {
     boxOfFour: 800,
     boxOfSix: 1200
   },
@@ -72,13 +72,16 @@ const prices = {
     one: 320
   },
   原味奶酥醬: {
-    one: 520
+    small: 440,
+    large: 520
   },
   有機椰子糖奶酥醬: {
-    one: 650
+    small: 520,
+    large: 650
   },
   蔓越莓奶酥醬: {
-    one: 550
+    small: 450,
+    large: 550
   },
   伯爵茶司康: {
     boxOfFour: 360,
@@ -99,6 +102,10 @@ const prices = {
   },
   維也納奶油抹醬: {
     one: 520
+  },
+  有機純抹茶奶酥醬: {
+    small: 590,
+    large: 750
   }
 };
 
@@ -258,7 +265,9 @@ export default class Checkout extends React.Component {
         if (
           quantities["boxOfFour"] > 0 ||
           quantities["boxOfSix"] ||
-          quantities["one"] > 0
+          quantities["one"] > 0 ||
+          quantities["small"] > 0 ||
+          quantities["large"] > 0
         ) {
           willCalculate = true;
         }
@@ -277,6 +286,12 @@ export default class Checkout extends React.Component {
         }
         if (item[1]["one"]) {
           costString += `$${prices[item[0]]["one"]}*${item[1]["one"]} + `;
+        }
+        if (item[1]["small"]) {
+          costString += `$${prices[item[0]]["small"]}*${item[1]["small"]} + `;
+        }
+        if (item[1]["large"]) {
+          costString += `$${prices[item[0]]["large"]}*${item[1]["large"]} + `;
         }
       });
     return costString;
@@ -318,13 +333,16 @@ export default class Checkout extends React.Component {
 
     const entries = Object.entries(cart);
     for (const [key, value] of entries) {
-      console.log(key, value);
-      console.log(value);
-      console.log(value["boxOfFour"]);
       if (value["boxOfFour"] && value["boxOfFour"] > 0) {
         return false;
       }
       if (value["boxOfSix"] && value["boxOfSix"] > 0) {
+        return false;
+      }
+      if (value["small"] && value["small"] > 0) {
+        return false;
+      }
+      if (value["large"] && value["large"] > 0) {
         return false;
       }
       if (value["one"] && value["one"] > 0) {
@@ -354,6 +372,12 @@ export default class Checkout extends React.Component {
       if (value["boxOfSix"] && value["boxOfSix"] > 0) {
         return false;
       }
+      if (value["small"] && value["small"] > 0) {
+        return false;
+      }
+      if (value["large"] && value["large"] > 0) {
+        return false;
+      }
       if (value["one"] && value["one"] > 0) {
         if (key !== "德文郡奶油") {
           return false;
@@ -372,7 +396,8 @@ export default class Checkout extends React.Component {
       !cart["原味奶酥醬"] &&
       !cart["維也納奶油抹醬"] &&
       !cart["有機椰子糖奶酥醬"] &&
-      !cart["蔓越莓奶酥醬"]
+      !cart["蔓越莓奶酥醬"] &&
+      !cart["有機純抹茶奶酥醬"]
     ) {
       onlySouffleAndCream = false;
     }
@@ -391,7 +416,8 @@ export default class Checkout extends React.Component {
           key !== "原味奶酥醬" &&
           key !== "維也納奶油抹醬" &&
           key !== "有機椰子糖奶酥醬" &&
-          key !== "蔓越莓奶酥醬"
+          key !== "蔓越莓奶酥醬" &&
+          key !== "有機純抹茶奶酥醬"
         ) {
           return false;
         }
@@ -410,6 +436,7 @@ export default class Checkout extends React.Component {
       !cart["維也納奶油抹醬"] &&
       !cart["有機椰子糖奶酥醬"] &&
       !cart["蔓越莓奶酥醬"] &&
+      !cart["有機純抹茶奶酥醬"] &&
       !cart["德文郡奶油"]
     ) {
       onlySouffleAndDevon = false;
@@ -430,6 +457,7 @@ export default class Checkout extends React.Component {
           key !== "維也納奶油抹醬" &&
           key !== "有機椰子糖奶酥醬" &&
           key !== "蔓越莓奶酥醬" &&
+          key !== "有機純抹茶奶酥醬" &&
           key !== "德文郡奶油"
         ) {
           return false;
@@ -485,7 +513,7 @@ export default class Checkout extends React.Component {
       console.log("Only Souffle and Cream");
       let originalSouffleCount = 0;
       if (this.props.cart["原味奶酥醬"]) {
-        originalSouffleCount = this.props.cart["原味奶酥醬"]["one"];
+        originalSouffleCount = this.props.cart["原味奶酥醬"]["small"] + this.props.cart["原味奶酥醬"]["large"];
       }
 
       let viennaCreamCount = 0;
@@ -495,19 +523,25 @@ export default class Checkout extends React.Component {
 
       let organicCoconutCount = 0;
       if (this.props.cart["有機椰子糖奶酥醬"]) {
-        organicCoconutCount = this.props.cart["有機椰子糖奶酥醬"]["one"];
+        organicCoconutCount = this.props.cart["有機椰子糖奶酥醬"]["small"] + this.props.cart["有機椰子糖奶酥醬"]["large"];
       }
 
       let cranberrySouffleCount = 0;
       if (this.props.cart["蔓越莓奶酥醬"]) {
-        cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["one"];
+        cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["small"] + this.props.cart["蔓越莓奶酥醬"]["large"];
+      }
+
+      let machaSouffleCount = 0;
+      if (this.props.cart["有機純抹茶奶酥醬"]["small"]) {
+        machaSouffleCount = this.props.cart["有機純抹茶奶酥醬"]["small"] + this.props.cart["有機純抹茶奶酥醬"]["large"];
       }
 
       let souffleAndCreamCount =
         originalSouffleCount +
         viennaCreamCount +
         organicCoconutCount +
-        cranberrySouffleCount;
+        cranberrySouffleCount +
+        machaSouffleCount;
 
       if (souffleAndCreamCount > 0 && souffleAndCreamCount <= 6) {
         return 160;
@@ -519,7 +553,7 @@ export default class Checkout extends React.Component {
         console.log("Only Souffle and Devon");
         let originalSouffleCount = 0;
         if (this.props.cart["原味奶酥醬"]) {
-          originalSouffleCount = this.props.cart["原味奶酥醬"]["one"];
+          originalSouffleCount = this.props.cart["原味奶酥醬"]["small"] + this.props.cart["原味奶酥醬"]["large"];
         }
 
         let viennaCreamCount = 0;
@@ -529,12 +563,17 @@ export default class Checkout extends React.Component {
 
         let organicCoconutCount = 0;
         if (this.props.cart["有機椰子糖奶酥醬"]) {
-          organicCoconutCount = this.props.cart["有機椰子糖奶酥醬"]["one"];
+          organicCoconutCount = this.props.cart["有機椰子糖奶酥醬"]["small"] + this.props.cart["有機椰子糖奶酥醬"]["large"];
         }
 
         let cranberrySouffleCount = 0;
         if (this.props.cart["蔓越莓奶酥醬"]) {
-          cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["one"];
+          cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["small"] + this.props.cart["蔓越莓奶酥醬"]["large"];
+        }
+
+        let machaSouffleCount = 0;
+        if (this.props.cart["有機純抹茶奶酥醬"]["small"]) {
+          machaSouffleCount = this.props.cart["有機純抹茶奶酥醬"]["small"] + this.props.cart["有機純抹茶奶酥醬"]["large"];
         }
 
         let devonCreamCount = this.props.cart["德文郡奶油"]["one"] / 4;
@@ -544,6 +583,7 @@ export default class Checkout extends React.Component {
           viennaCreamCount +
           organicCoconutCount +
           cranberrySouffleCount +
+          machaSouffleCount +
           devonCreamCount;
 
         if (souffleAndCreamCount > 0 && souffleAndCreamCount <= 6) {
@@ -556,7 +596,8 @@ export default class Checkout extends React.Component {
           this.props.cart["原味奶酥醬"] ||
           this.props.cart["維也納奶油抹醬"] ||
           this.props.cart["有機椰子糖奶酥醬"] ||
-          this.props.cart["蔓越莓奶酥醬"]
+          this.props.cart["蔓越莓奶酥醬"] ||
+          this.props.cart["有機純抹茶奶酥醬"]
         ) {
           return 225;
         }
@@ -700,7 +741,9 @@ export default class Checkout extends React.Component {
         if (
           quantities["boxOfFour"] > 0 ||
           quantities["boxOfSix"] ||
-          quantities["one"] > 0
+          quantities["one"] > 0 ||
+          quantities["small"] > 0 ||
+          quantities["large"] > 0
         ) {
           willCalculate = true;
         }
@@ -715,6 +758,12 @@ export default class Checkout extends React.Component {
         }
         if (item[1]["one"]) {
           totalItemCost += prices[item[0]]["one"] * item[1]["one"];
+        }
+        if (item[1]["small"]) {
+          totalItemCost += prices[item[0]]["small"] * item[1]["small"];
+        }
+        if (item[1]["large"]) {
+          totalItemCost += prices[item[0]]["large"] * item[1]["large"];
         }
       });
 
@@ -735,7 +784,9 @@ export default class Checkout extends React.Component {
         if (
           quantities["boxOfFour"] > 0 ||
           quantities["boxOfSix"] ||
-          quantities["one"] > 0
+          quantities["one"] > 0 ||
+          quantities["small"] > 0 ||
+          quantities["large"] > 0
         ) {
           willCalculate = true;
         }
@@ -750,6 +801,12 @@ export default class Checkout extends React.Component {
         }
         if (item[1]["one"]) {
           details += `${item[0]}： ${item[1]["one"]}, `;
+        }
+        if (item[1]["small"]) {
+          details += `${item[0]}(350g)： ${item[1]["small"]}, `;
+        }
+        if (item[1]["large"]) {
+          details += `${item[0]}(500g)： ${item[1]["large"]}, `;
         }
       });
 
