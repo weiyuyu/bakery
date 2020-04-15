@@ -43,7 +43,7 @@ const items = [
     nameEnglish: "Organic Coconut Sugar Butter Biscuit Spread",
     price: {
       small: 520,
-      large: 750
+      large: 650
     },
     soldOut: false
   },
@@ -63,7 +63,7 @@ const items = [
     nameEnglish: "Cranberry Butter Biscuit Spread",
     price: {
       small: 450,
-      large: 750
+      large: 550
     },
     soldOut: false
   },
@@ -73,7 +73,7 @@ const items = [
     nameEnglish: "Original Butter Biscuit Spread",
     price: {
       small: 440,
-      large: 750
+      large: 520
     },
     soldOut: false
   },
