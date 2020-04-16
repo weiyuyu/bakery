@@ -510,30 +510,37 @@ export default class Checkout extends React.Component {
     }
 
     if (this.onlySouffleAndCream()) {
-      console.log("Only Souffle and Cream");
       let originalSouffleCount = 0;
       if (this.props.cart["原味奶酥醬"]) {
-        originalSouffleCount = this.props.cart["原味奶酥醬"]["small"] + this.props.cart["原味奶酥醬"]["large"];
+        let originalSouffleSmallCount = this.props.cart["原味奶酥醬"]["small"] ? this.props.cart["原味奶酥醬"]["small"] : 0;
+        let originalSouffleLargeCount = this.props.cart["原味奶酥醬"]["large"] ? this.props.cart["原味奶酥醬"]["large"] : 0;
+        originalSouffleCount =  originalSouffleSmallCount + originalSouffleLargeCount;
       }
 
       let viennaCreamCount = 0;
       if (this.props.cart["維也納奶油抹醬"]) {
-        viennaCreamCount = this.props.cart["維也納奶油抹醬"]["one"];
+        viennaCreamCount = this.props.cart["維也納奶油抹醬"]["one"] ? this.props.cart["維也納奶油抹醬"]["one"] : 0;
       }
 
       let organicCoconutCount = 0;
       if (this.props.cart["有機椰子糖奶酥醬"]) {
-        organicCoconutCount = this.props.cart["有機椰子糖奶酥醬"]["small"] + this.props.cart["有機椰子糖奶酥醬"]["large"];
+        let organicCoconutSmallCount = this.props.cart["有機椰子糖奶酥醬"]["small"] ? this.props.cart["有機椰子糖奶酥醬"]["small"] : 0;
+        let organicCoconutLargeCount = this.props.cart["有機椰子糖奶酥醬"]["large"] ? this.props.cart["有機椰子糖奶酥醬"]["large"] : 0;
+        organicCoconutCount =  organicCoconutSmallCount + organicCoconutLargeCount;
       }
 
       let cranberrySouffleCount = 0;
       if (this.props.cart["蔓越莓奶酥醬"]) {
-        cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["small"] + this.props.cart["蔓越莓奶酥醬"]["large"];
+        let cranberrySouffleSmallCount = this.props.cart["蔓越莓奶酥醬"]["small"] ? this.props.cart["蔓越莓奶酥醬"]["small"] : 0;
+        let cranberrySouffleLargeCount = this.props.cart["蔓越莓奶酥醬"]["large"] ? this.props.cart["蔓越莓奶酥醬"]["large"] : 0;
+        cranberrySouffleCount = cranberrySouffleSmallCount + cranberrySouffleLargeCount;
       }
 
       let machaSouffleCount = 0;
-      if (this.props.cart["有機純抹茶奶酥醬"]["small"]) {
-        machaSouffleCount = this.props.cart["有機純抹茶奶酥醬"]["small"] + this.props.cart["有機純抹茶奶酥醬"]["large"];
+      if (this.props.cart["有機純抹茶奶酥醬"]) {
+        let machaSouffleSmallCount = this.props.cart["有機純抹茶奶酥醬"]["small"] ? this.props.cart["有機純抹茶奶酥醬"]["small"] : 0;
+        let machaSouffleLargeCount = this.props.cart["有機純抹茶奶酥醬"]["large"] ? this.props.cart["有機純抹茶奶酥醬"]["large"] : 0;
+        machaSouffleCount = machaSouffleSmallCount + machaSouffleLargeCount;
       }
 
       let souffleAndCreamCount =
@@ -543,6 +550,7 @@ export default class Checkout extends React.Component {
         cranberrySouffleCount +
         machaSouffleCount;
 
+      console.log("souffleAndCreamCount: " + souffleAndCreamCount);
       if (souffleAndCreamCount > 0 && souffleAndCreamCount <= 6) {
         return 160;
       } else {
@@ -553,27 +561,35 @@ export default class Checkout extends React.Component {
         console.log("Only Souffle and Devon");
         let originalSouffleCount = 0;
         if (this.props.cart["原味奶酥醬"]) {
-          originalSouffleCount = this.props.cart["原味奶酥醬"]["small"] + this.props.cart["原味奶酥醬"]["large"];
+          let originalSouffleSmallCount = this.props.cart["原味奶酥醬"]["small"] ? this.props.cart["原味奶酥醬"]["small"] : 0;
+          let originalSouffleLargeCount = this.props.cart["原味奶酥醬"]["large"] ? this.props.cart["原味奶酥醬"]["large"] : 0;
+          originalSouffleCount =  originalSouffleSmallCount + originalSouffleLargeCount;
         }
 
         let viennaCreamCount = 0;
         if (this.props.cart["維也納奶油抹醬"]) {
-          viennaCreamCount = this.props.cart["維也納奶油抹醬"]["one"];
+          viennaCreamCount = this.props.cart["維也納奶油抹醬"]["one"] ? this.props.cart["維也納奶油抹醬"]["one"] : 0;
         }
 
         let organicCoconutCount = 0;
         if (this.props.cart["有機椰子糖奶酥醬"]) {
-          organicCoconutCount = this.props.cart["有機椰子糖奶酥醬"]["small"] + this.props.cart["有機椰子糖奶酥醬"]["large"];
+          let organicCoconutSmallCount = this.props.cart["有機椰子糖奶酥醬"]["small"] ? this.props.cart["有機椰子糖奶酥醬"]["small"] : 0;
+          let organicCoconutLargeCount = this.props.cart["有機椰子糖奶酥醬"]["large"] ? this.props.cart["有機椰子糖奶酥醬"]["large"] : 0;
+          organicCoconutCount =  organicCoconutSmallCount + organicCoconutLargeCount;
         }
 
         let cranberrySouffleCount = 0;
         if (this.props.cart["蔓越莓奶酥醬"]) {
-          cranberrySouffleCount = this.props.cart["蔓越莓奶酥醬"]["small"] + this.props.cart["蔓越莓奶酥醬"]["large"];
+          let cranberrySouffleSmallCount = this.props.cart["蔓越莓奶酥醬"]["small"] ? this.props.cart["蔓越莓奶酥醬"]["small"] : 0;
+          let cranberrySouffleLargeCount = this.props.cart["蔓越莓奶酥醬"]["large"] ? this.props.cart["蔓越莓奶酥醬"]["large"] : 0;
+          cranberrySouffleCount = cranberrySouffleSmallCount + cranberrySouffleLargeCount;
         }
 
         let machaSouffleCount = 0;
-        if (this.props.cart["有機純抹茶奶酥醬"]["small"]) {
-          machaSouffleCount = this.props.cart["有機純抹茶奶酥醬"]["small"] + this.props.cart["有機純抹茶奶酥醬"]["large"];
+        if (this.props.cart["有機純抹茶奶酥醬"]) {
+          let machaSouffleSmallCount = this.props.cart["有機純抹茶奶酥醬"]["small"] ? this.props.cart["有機純抹茶奶酥醬"]["small"] : 0;
+          let machaSouffleLargeCount = this.props.cart["有機純抹茶奶酥醬"]["large"] ? this.props.cart["有機純抹茶奶酥醬"]["large"] : 0;
+          machaSouffleCount = machaSouffleSmallCount + machaSouffleLargeCount;
         }
 
         let devonCreamCount = this.props.cart["德文郡奶油"]["one"] / 4;
