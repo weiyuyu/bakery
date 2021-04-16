@@ -47,16 +47,19 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div className="App">
-        <Navigation cartTotal={this.state.cartTotal} />
-        <Main
-          addCartTotal={this.addCartTotal}
-          removeCartTotal={this.removeCartTotal}
-          cartTotal={this.state.cartTotal}
-          cinnamonEnabled={this.state.cinnamonEnabled}
-          standardSconeEnabled={this.state.standardSconeEnabled}
-          devonEnabled={this.state.devonEnabled}
-        />
+      // <div className="App">
+      //   <Navigation cartTotal={this.state.cartTotal} />
+      //   <Main
+      //     addCartTotal={this.addCartTotal}
+      //     removeCartTotal={this.removeCartTotal}
+      //     cartTotal={this.state.cartTotal}
+      //     cinnamonEnabled={this.state.cinnamonEnabled}
+      //     standardSconeEnabled={this.state.standardSconeEnabled}
+      //     devonEnabled={this.state.devonEnabled}
+      //   />
+      // </div>
+      <div>
+        <p>暫時休息中</p>
       </div>
     );
   }
